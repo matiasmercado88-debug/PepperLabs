@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PepperLabs — Software, diseño y comunicación</title>
+<meta name="description" content="Software, identidad visual y comunicación para tu negocio. Cómo funciona por dentro, cómo se ve por fuera y cómo lo contás. El mismo equipo.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PepperLabs">
+<meta property="og:title" content="PepperLabs — Software, diseño y comunicación">
+<meta property="og:description" content="Software, identidad visual y comunicación para tu negocio. El mismo equipo piensa, diseña y construye.">
+<meta property="og:image" content="assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PepperLabs — Software, diseño y comunicación">
+<meta name="twitter:description" content="Software, identidad visual y comunicación para tu negocio. El mismo equipo piensa, diseña y construye.">
+<meta name="twitter:image" content="assets/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
+<link rel="apple-touch-icon" href="favicon192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<script>
+(function(){
+  try{
+    var force = location.search.indexOf('intro=1') !== -1;
+    if (force) localStorage.removeItem('pl-intro-seen');
+    if (!force && localStorage.getItem('pl-intro-seen')){
+      document.documentElement.classList.add('pl-intro-skip');
+    } else {
+      document.documentElement.classList.add('pl-intro-active');
+    }
+  }catch(e){
+    document.documentElement.classList.add('pl-intro-active');
+  }
+})();
+</script>
+</head>
+<body>
+
+<!-- INTRO LOADER (1ra visita · pepper que se dibuja) -->
+<div class="pl-intro" id="plIntro" role="status" aria-label="Cargando">
+  <span class="pl-intro-corner tl"></span>
+  <span class="pl-intro-corner tr"></span>
+  <span class="pl-intro-corner bl"></span>
+  <span class="pl-intro-corner br"></span>
+  <span class="pl-intro-kick">Edición MMXXVI · Córdoba</span>
+  <svg class="pl-intro-pep" id="plIntroPep" viewBox="0 0 94.93 115.91" aria-hidden="true">
+    <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  </svg>
+  <div class="pl-intro-text">
+    <div class="pl-intro-brand">Pepper<em>Labs</em></div>
+    <div class="pl-intro-status">
+      <span>cargando</span>
+      <span class="pct" id="plIntroPct">00</span>
+      <span>%</span>
+    </div>
+    <div class="pl-intro-bar"><div class="pl-intro-bar-fill" id="plIntroBar"></div></div>
+  </div>
+  <span class="pl-intro-foot">Software · Identidad · Comunicación</span>
+</div>
+
+<!-- PEPPER SYMBOL -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="pep" viewBox="0 0 94.93 115.91">
+    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  </symbol>
+</svg>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <ul class="nav-links">
+    <li><a href="sistema.html">Sistema</a></li>
+    <li><a href="identidad.html">Identidad</a></li>
+    <li><a href="comunicacion.html">Comunicación</a></li>
+    <li><a href="trabajos.html">Trabajos</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="01">Sistema</a></li>
+    <li><a href="identidad.html" data-n="02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="03">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="05">Contacto</a></li>
+  </ul>
+  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+</div>
+
+<!-- HERO · Home — El sello -->
+<header class="hero home">
+  <span class="folio">Portada · <strong>MMXXVI</strong> · PepperLabs</span>
+  <div class="wall" aria-hidden="true">
+    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
+    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
+  </div>
+  <div class="pep-main" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
+  <span class="pep-spec">Marca · 01 de 12</span>
+  <div class="hero-in">
+    <span class="hero-kick">PepperLabs · Buenos Aires · MMXXVI</span>
+    <h1>Tu negocio creció. <em>Te damos un equipo</em> <span class="ln">a la altura.</span></h1>
+    <p class="hero-lead">Software, identidad visual y comunicación, en un mismo equipo. Venimos de Software Express — 30 años haciendo sistemas para PyMEs argentinas.</p>
+    <div class="hero-foot">
+      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
+      <a href="#areas" class="btn btn-line">Ver las áreas <span class="ar">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
+    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
+    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
+    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
+  </div>
+</div>
+
+<!-- ÁREAS -->
+<section class="sec" id="areas">
+  <div class="wrap">
+    <div class="pep" aria-hidden="true" style="width:90px;height:110px;color:var(--lime);top:24px;left:-22px;transform:rotate(-16deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
+    <div class="sec-head">
+      <span class="sec-kick">// 01 — Qué hacemos</span>
+      <h2 class="h2">Tres áreas. <em>Un solo negocio.</em></h2>
+    </div>
+    <div class="areas">
+      <a href="sistema.html" class="area area-1">
+        <span class="area-num">01
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </span>
+        <div class="area-art"><img src="assets/sistema.webp" alt="" loading="lazy"></div>
+        <h3 class="area-name">Sistemas y operación</h3>
+        <span class="area-tags">Estrategia · Flujo · Escala</span>
+        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="identidad.html" class="area area-2">
+        <span class="area-num">02
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <div class="area-art"><img src="assets/identidad.webp" alt="" loading="lazy"></div>
+        <h3 class="area-name">Identidad visual</h3>
+        <span class="area-tags">Marca · Guía · Diseño</span>
+        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="comunicacion.html" class="area area-3">
+        <span class="area-num">03
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </span>
+        <div class="area-art"><img src="assets/comunicacion.webp" alt="" loading="lazy"></div>
+        <h3 class="area-name">Comunicación</h3>
+        <span class="area-tags">Estrategia · Contenido</span>
+        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — EL ESTUDIO -->
+<section class="sec" id="estudio">
+  <div class="wrap">
+    <div class="pep" aria-hidden="true" style="width:120px;height:147px;color:var(--violet);top:-30px;right:-30px;transform:rotate(14deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
+    <div class="sec-head">
+      <span class="sec-kick">// 02 — El estudio</span>
+      <h2 class="h2">Treinta años haciendo software. <em class="lime">Ahora con diseño y contenido.</em></h2>
+      <p class="sec-lead">PepperLabs es la evolución de Software Express, el estudio que Carlos Buira fundó en Buenos Aires en 1992. Después de tres décadas haciendo sistemas para PyMEs argentinas, sumamos diseño e identidad para cerrar el círculo: el mismo equipo se ocupa de cómo tu negocio funciona, cómo se ve y cómo se comunica.</p>
+    </div>
+    <div class="cita">
+      <div class="cita-bubble">
+        <p class="cita-t">El sistema se adapta al negocio. Nunca al revés.</p>
+        <p class="cita-a">— Carlos Buira · Software Express, 1992</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — CÓMO TRABAJAMOS -->
+<section class="sec" id="trabajo">
+  <div class="wrap">
+    <div class="pep" aria-hidden="true" style="width:74px;height:90px;color:var(--pink);top:30px;right:5%;transform:rotate(18deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
+    <div class="sec-head">
+      <span class="sec-kick">// 03 — Cómo trabajamos</span>
+      <h2 class="h2">Cinco cosas que <em class="lime">no negociamos.</em></h2>
+      <p class="sec-lead">Detrás de cada decisión hay una razón. Estas cinco la guían.</p>
+    </div>
+    <div class="sintomas">
+      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Claridad</span><span class="sintoma-d">Que se entienda sin esfuerzo.</span></div>
+      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Funcionalidad</span><span class="sintoma-d">Que sirva de verdad, no en la teoría.</span></div>
+      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Criterio</span><span class="sintoma-d">Cada decisión, con su razón.</span></div>
+      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Estructura</span><span class="sintoma-d">Una base que dura.</span></div>
+      <div class="sintoma"><span class="sintoma-n">— 05</span><span class="sintoma-t">Entender la PyME</span><span class="sintoma-d">Sabemos cómo es un negocio real.</span></div>
+      <div class="sintoma"><span class="sintoma-n">— Eje</span><span class="sintoma-t">Tu laburo, más fácil</span><span class="sintoma-d">No te vendemos orden — te sacamos peso de encima.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJOS (preview) -->
+<section class="work-section" id="trabajos">
+  <div class="wrap">
+    <div class="work-head">
+      <div class="left">
+        <span class="sec-kick">// 04 — Trabajos</span>
+        <h2>Lo último <em>que hicimos.</em></h2>
+      </div>
+      <div class="right">
+        <a href="trabajos.html">Ver todos los trabajos →</a>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-meta">
+        <span class="tag">Caso · 01</span>
+        <span class="name">Brox Club</span>
+        <span class="info">Portal del Socio · App para gimnasio · 2026</span>
+      </div>
+      <p class="work-desc">App nativa web para los socios de Brox Club: <em>QR de acceso, reservas de clases, beneficios y perfil</em> — en un look "Dark Fitness Luxury" diseñado y desarrollado por nosotros.</p>
+      <div class="work-features">
+        <span>Diseño UI</span><span>Theming dinámico</span><span>Flask · Blueprint</span><span>Mobile-first</span><span>i18n</span>
+      </div>
+      <div class="work-phones preview">
+        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 01 · Inicio del socio"><img src="assets/work/brox-inicio.png" alt="Brox Club · Inicio"><span class="label">— 01 · Inicio</span></div>
+        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 02 · QR de acceso"><img src="assets/work/brox-qr.png" alt="Brox Club · QR de acceso"><span class="label">— 02 · QR</span></div>
+        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 03 · Reservas de clases"><img src="assets/work/brox-reservas.png" alt="Brox Club · Reservas"><span class="label">— 03 · Reservas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINO (→ contacto.html) -->
+<section class="cta-fino">
+  <div class="wrap">
+    <div class="cta-fino-row">
+      <h2 class="cta-fino-title">¿Tenés un proyecto en mente? <em>Hablemos.</em></h2>
+      <a href="contacto.html" class="btn btn-fill">Empezar conversación <span class="ar">→</span></a>
+    </div>
+    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-row">
+      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
+      <div class="footer-links">
+        <a href="sistema.html">Sistema</a>
+        <a href="identidad.html">Identidad</a>
+        <a href="comunicacion.html">Comunicación</a>
+        <a href="trabajos.html">Trabajos</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* mobile menu */
+  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
+  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
+  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
+  if(mc)mc.addEventListener('click',function(){sm(false);});
+  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var t=document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+})();
+
+/* contact form → WhatsApp prefill */
+function enviarForm(e){
+  if(e) e.preventDefault();
+  var n   = (document.getElementById('cfName').value||'').trim();
+  var emp = (document.getElementById('cfEmp').value||'').trim();
+  var via = (document.getElementById('cfVia').value||'').trim();
+  var msg = (document.getElementById('cfMsg').value||'').trim();
+  if(!n)  { alert('Por favor completá tu nombre.'); return false; }
+  if(!msg){ alert('Contanos brevemente qué necesitás.'); return false; }
+  function safe(s){ return s.replace(/[<>"&]/g,''); }
+  var txt = encodeURIComponent(
+    'Hola PepperLabs, me contacto desde el sitio.\n\n' +
+    'Nombre: ' + safe(n) + '\n' +
+    'Empresa: ' + (safe(emp) || 'No especificada') + '\n' +
+    'Contacto preferido: ' + (safe(via) || 'WhatsApp') + '\n\n' +
+    'Mensaje:\n' + safe(msg).slice(0, 500)
+  );
+  window.open('https://wa.me/5493484333427?text=' + txt, '_blank');
+  return false;
+}
+</script>
+<script src="lightbox.js" defer></script>
+<script>
+(function(){
+  if (document.documentElement.classList.contains('pl-intro-skip')) {
+    var ld0 = document.getElementById('plIntro');
+    if (ld0) ld0.parentNode.removeChild(ld0);
+    document.documentElement.classList.remove('pl-intro-active');
+    return;
+  }
+  var loader = document.getElementById('plIntro');
+  var pep = document.getElementById('plIntroPep');
+  var pct = document.getElementById('plIntroPct');
+  var bar = document.getElementById('plIntroBar');
+  if (!loader || !pep) return;
+  var paths = pep.querySelectorAll('path');
+  var lengths = [];
+  paths.forEach(function(p){
+    var len = p.getTotalLength();
+    lengths.push(len);
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+  });
+  function play(){
+    requestAnimationFrame(function(){
+      loader.classList.add('in','glow');
+      paths.forEach(function(p, i){
+        p.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) ' + (i*0.12) + 's';
+        p.style.strokeDashoffset = '0';
+      });
+      var totalMs = 2400, start = performance.now();
+      (function tick(now){
+        var t = Math.min(1, ((now||performance.now()) - start) / totalMs);
+        var eased = 1 - Math.pow(1 - t, 2.2);
+        var n = Math.round(eased * 100);
+        pct.textContent = (n<10?'0':'') + n;
+        bar.style.width = (eased * 100) + '%';
+        if (t < 1) requestAnimationFrame(tick);
+      })();
+      setTimeout(function(){ loader.classList.add('text-in'); }, 1400);
+      setTimeout(function(){ loader.classList.add('filled'); }, 2200);
+      setTimeout(function(){
+        loader.classList.add('done');
+        document.documentElement.classList.remove('pl-intro-active');
+        try{ localStorage.setItem('pl-intro-seen', String(Date.now())); }catch(e){}
+        setTimeout(function(){
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 800);
+      }, 3000);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', play);
+  } else { play(); }
+})();
+</script>
+
+</body>
+</html>

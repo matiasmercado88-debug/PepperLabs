@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAMA — Manual de Identidad / V02</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --paper: #F1ECE0;
+  --paper-2: #E8E1D2;
+  --ink: #1A1814;
+  --ink-soft: #2C2924;
+  --rust: #B5462C;
+  --line: rgba(26,24,20,0.12);
+  --line-strong: rgba(26,24,20,0.25);
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Archivo', sans-serif;
+  --serif: 'Fraunces', serif;
+}
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--display); font-weight: 300;
+  line-height: 1.5;
+}
+body {
+  background-image: radial-gradient(circle at 1px 1px, rgba(26,24,20,0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ====== TOC BAR ====== */
+.toc-bar {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid var(--line-strong);
+  padding: 12px 32px;
+  display: flex; align-items: center; gap: 20px;
+  backdrop-filter: blur(4px);
+  background: rgba(241, 236, 224, 0.94);
+}
+.toc-mark {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--ink);
+  flex-shrink: 0;
+}
+.toc-mono { width: 28px; height: 28px; display: block; flex-shrink: 0; }
+.toc-label {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink); opacity: 0.55;
+}
+.toc-divider { width: 1px; height: 16px; background: var(--ink); opacity: 0.2; flex-shrink: 0; }
+.toc-doc {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  opacity: 0.5;
+}
+.toc-links {
+  margin-left: auto;
+  display: flex; gap: 24px; list-style: none;
+}
+.toc-links a {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; opacity: 0.5;
+  transition: opacity 0.2s, color 0.2s;
+}
+.toc-links a:hover { opacity: 1; color: var(--rust); }
+
+/* ====== SECTION ====== */
+.section {
+  max-width: 1240px; margin: 0 auto;
+  padding: 80px 56px;
+  position: relative; border-bottom: 1px solid var(--line);
+}
+.section:last-child { border-bottom: none; }
+
+.section-num {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--rust); margin-bottom: 24px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.section-num span { opacity: 0.5; color: var(--ink); }
+.section-headline {
+  font-family: var(--serif); font-weight: 300;
+  font-style: italic; font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.05; letter-spacing: -0.015em;
+  margin-bottom: 32px; max-width: 920px;
+}
+.section-headline em {
+  font-style: normal; font-family: var(--display);
+  font-weight: 700; color: var(--rust); letter-spacing: -0.02em;
+}
+.section-lead {
+  font-family: var(--display); font-weight: 300;
+  font-size: 18px; line-height: 1.65; color: var(--ink-soft);
+  max-width: 700px; margin-bottom: 60px;
+}
+.subsection {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 56px; margin-bottom: 56px; align-items: start;
+}
+.subsection:last-child { margin-bottom: 0; }
+.subsection-tag {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--rust); padding-top: 4px;
+}
+.subsection-content { min-width: 0; }
+.kicker {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink); opacity: 0.6; margin-bottom: 12px;
+}
+.heading {
+  font-family: var(--display); font-weight: 700;
+  font-size: 22px; letter-spacing: -0.01em;
+  margin-bottom: 14px; line-height: 1.2;
+}
+.body-text {
+  font-family: var(--display); font-weight: 300;
+  font-size: 14px; line-height: 1.85; color: var(--ink-soft);
+}
+.body-text p + p { margin-top: 14px; }
+.body-text strong { font-weight: 500; color: var(--ink); }
+
+/* ====== COVER ====== */
+.cover {
+  min-height: 100vh; padding: 80px 56px 56px;
+  max-width: 1240px; margin: 0 auto;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.cover-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 24px; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding-bottom: 16px; border-bottom: 1px solid var(--line);
+  position: relative; z-index: 1;
+}
+.cover-meta span:nth-child(odd) { opacity: 0.5; }
+.cover-meta b { font-weight: 500; }
+.cover-wm {
+  display: block; width: min(860px, 100%);
+  margin: 72px 0 28px;
+  position: relative; z-index: 1;
+}
+.cover-subtitle {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(22px, 3vw, 42px); line-height: 1.1;
+  max-width: 680px; letter-spacing: -0.01em;
+  margin-bottom: 40px; position: relative; z-index: 1;
+}
+.cover-subtitle em {
+  font-style: normal; font-family: var(--display);
+  font-weight: 700; color: var(--rust);
+}
+.cover-foot {
+  display: flex; justify-content: space-between; align-items: end;
+  border-top: 1px solid var(--line); padding-top: 20px;
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.65;
+  position: relative; z-index: 1;
+}
+.cover-trama {
+  position: absolute; top: 48px; right: 56px;
+  width: 240px; height: 70%; opacity: 0.1; pointer-events: none;
+}
+
+/* ====== LOGO DISPLAY BLOCK ====== */
+.logo-display {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 60px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  margin-bottom: 12px; position: relative; min-height: 260px;
+}
+.logo-display.dark { background: var(--ink); }
+.logo-display.rust-bg { background: var(--rust); }
+.logo-display .corner-tl {
+  position: absolute; top: 14px; left: 16px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5;
+}
+.logo-display.dark .corner-tl,
+.logo-display.rust-bg .corner-tl { color: rgba(241,236,224,0.5); opacity: 1; }
+.logo-display .corner-tr {
+  position: absolute; top: 14px; right: 16px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.18em; color: var(--rust);
+}
+.logo-display.dark .corner-tr,
+.logo-display.rust-bg .corner-tr { color: rgba(241,236,224,0.6); }
+
+/* wordmark in display blocks */
+.wm-wrap { width: min(480px, 80%); display: block; }
+.desc {
+  font-family: var(--mono); font-weight: 400; font-size: 10px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  margin-top: 10px; text-align: left; opacity: 0.78;
+}
+.desc.light { color: var(--paper); }
+.logo-display.rust-bg .desc { color: var(--paper); }
+
+/* spec strip */
+.spec-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line); font-family: var(--mono); font-size: 10px;
+}
+.spec-cell { padding: 16px; border-right: 1px solid var(--line); }
+.spec-cell:last-child { border-right: none; }
+.spec-cell .label {
+  text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 8px; opacity: 0.5; margin-bottom: 4px;
+}
+.spec-cell .value { font-weight: 500; letter-spacing: 0.04em; }
+
+/* ====== CONSTRUCTION GRID ====== */
+.construction {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 48px 48px 40px; margin-bottom: 32px; position: relative;
+}
+.construction-svg { width: 100%; height: auto; display: block; }
+.construction .corner-tl, .construction .corner-tr {
+  position: absolute; top: 14px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+.construction .corner-tl { left: 16px; opacity: 0.5; }
+.construction .corner-tr { right: 16px; color: var(--rust); }
+
+/* ====== MONOGRAM BLOCK ====== */
+.mono-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0; border: 1px solid var(--line); margin-bottom: 16px;
+}
+.mono-cell {
+  padding: 56px 40px; display: flex; align-items: center;
+  justify-content: center; border-right: 1px solid var(--line);
+  position: relative; min-height: 220px;
+}
+.mono-cell:nth-child(2n) { border-right: none; }
+.mono-cell .corner-tl {
+  position: absolute; top: 14px; left: 16px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5;
+}
+.mono-cell.dark { background: var(--ink); }
+.mono-cell.dark .corner-tl { color: rgba(241,236,224,0.5); opacity: 1; }
+
+/* ====== PROTECTION AREA ====== */
+.protection {
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 80px; position: relative; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.protection-inner { position: relative; display: inline-block; padding: 36px 48px; }
+.protection-inner::before {
+  content: ''; position: absolute; inset: 0;
+  outline: 1px dashed var(--rust); outline-offset: 16px;
+}
+.protection-inner .wm-wrap { width: min(340px, 70vw); }
+.protection-x {
+  position: absolute; font-family: var(--mono); font-size: 8px;
+  letter-spacing: 0.18em; color: var(--rust); text-transform: uppercase;
+}
+.px-top { top: 2px; left: 50%; transform: translateX(-50%); }
+.px-bottom { bottom: 2px; left: 50%; transform: translateX(-50%); }
+.px-left { left: 24px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+.px-right { right: 24px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+/* ====== COLOR SWATCHES ====== */
+.colors-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line); margin-bottom: 16px;
+}
+.swatch {
+  aspect-ratio: 4/5; padding: 24px;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.swatch:last-child { border-right: none; }
+.swatch.paper { background: var(--paper); color: var(--ink); }
+.swatch.paper2 { background: var(--paper-2); color: var(--ink); }
+.swatch.ink { background: var(--ink); color: var(--paper); }
+.swatch.rust { background: var(--rust); color: var(--paper); }
+.swatch-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; }
+.swatch-name {
+  font-family: var(--display); font-weight: 700;
+  font-size: 22px; letter-spacing: -0.01em; line-height: 1.1; margin-top: auto;
+}
+.swatch-codes {
+  font-family: var(--mono); font-size: 10px; line-height: 1.65; margin-top: 14px;
+  letter-spacing: 0.04em; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px;
+}
+.swatch-codes b {
+  font-weight: 400; opacity: 0.6; text-transform: uppercase;
+  letter-spacing: 0.18em; font-size: 8px;
+}
+
+/* ====== TYPOGRAPHY ====== */
+.type-block {
+  border: 1px solid var(--line); background: var(--paper);
+  padding: 48px; margin-bottom: 24px;
+}
+.type-display {
+  font-size: 92px; line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 32px;
+}
+.type-display.serif {
+  font-family: var(--serif); font-weight: 300; font-style: italic;
+  font-size: 56px; letter-spacing: -0.01em; line-height: 1.1;
+}
+.type-name { font-family: var(--display); font-weight: 700; font-size: 28px; margin-bottom: 6px; letter-spacing: -0.01em; }
+.type-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); margin-bottom: 24px; }
+.type-spec {
+  font-family: var(--mono); font-size: 11px;
+  border-top: 1px solid var(--line); padding-top: 20px;
+  display: grid; grid-template-columns: 140px 1fr;
+  gap: 10px 20px; line-height: 1.65;
+}
+.type-spec b { font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; font-size: 9px; opacity: 0.55; }
+.weights-row {
+  display: flex; flex-wrap: wrap; gap: 32px;
+  font-family: var(--display); font-size: 36px; line-height: 1; letter-spacing: -0.02em;
+  padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 24px 0;
+}
+.weights-row span { display: flex; flex-direction: column; gap: 6px; }
+.weights-row span small { font-family: var(--mono); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.55; }
+
+/* ====== TRAMA PATTERN ====== */
+.trama-block {
+  border: 1px solid var(--line); background: var(--paper);
+  height: 280px; overflow: hidden; margin-bottom: 16px; position: relative;
+}
+.trama-block svg { width: 100%; height: 100%; display: block; }
+
+/* ====== CORRECT / INCORRECT ====== */
+.uses-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0; border: 1px solid var(--line); margin-bottom: 16px;
+}
+.use-cell {
+  aspect-ratio: 5/3; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 40px; overflow: hidden;
+}
+.use-cell:nth-child(2n) { border-right: none; }
+.use-cell:nth-last-child(-n+2) { border-bottom: none; }
+.use-flag {
+  position: absolute; top: 14px; left: 16px;
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+.use-flag.ok { color: var(--rust); }
+.use-flag.no { color: var(--ink); opacity: 0.45; text-decoration: line-through; text-decoration-thickness: 1px; }
+.use-tag {
+  position: absolute; bottom: 14px; left: 16px; right: 16px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; opacity: 0.55;
+}
+.use-wm { display: block; width: min(260px, 70%); }
+
+/* wrong examples via CSS transform on wrapper */
+.wm-wrong-stretch { display: block; width: min(200px,65%); transform: scaleX(1.45); }
+.wm-wrong-rotate  { display: block; width: min(200px,65%); transform: rotate(-12deg); }
+.wm-wrong-shadow  { display: block; width: min(200px,65%); filter: drop-shadow(4px 4px 0 #B5462C) drop-shadow(8px 8px 16px rgba(0,0,0,0.35)); }
+.wm-wrong-color   { display: block; width: min(200px,65%); filter: hue-rotate(175deg) saturate(1.5); }
+
+/* ====== COLOPHON ====== */
+.colophon { background: var(--ink); color: var(--paper); padding: 80px 56px; }
+.colophon-inner { max-width: 1240px; margin: 0 auto; }
+.colophon-wm { display: block; width: min(600px,80%); margin-bottom: 36px; }
+.colophon-text {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 26px; line-height: 1.4; max-width: 640px; margin-bottom: 60px; opacity: 0.85;
+}
+.colophon-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  padding-top: 28px; border-top: 1px solid rgba(241,236,224,0.2);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+}
+.colophon-meta span:nth-child(odd) { opacity: 0.5; }
+.colophon-meta b { font-weight: 500; }
+
+@media (max-width: 900px) {
+  .section { padding: 56px 24px; }
+  .cover { padding: 48px 24px; }
+  .cover-meta, .colophon-meta { grid-template-columns: 1fr 1fr; }
+  .subsection { grid-template-columns: 1fr; gap: 16px; }
+  .toc-bar { padding: 12px 18px; gap: 10px; }
+  .toc-doc { display: none; }
+  .toc-links { gap: 12px; }
+  .toc-links a { font-size: 8px; letter-spacing: 0.14em; }
+  .colors-grid { grid-template-columns: repeat(2, 1fr); }
+  .swatch:nth-child(2n) { border-right: none; }
+  .swatch:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .uses-grid { grid-template-columns: 1fr; }
+  .use-cell { border-right: none !important; }
+  .type-display { font-size: 56px; }
+  .type-display.serif { font-size: 32px; }
+  .spec-strip { grid-template-columns: 1fr 1fr; }
+  .spec-cell:nth-child(2) { border-right: none; }
+  .spec-cell:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .protection { padding: 50px 24px; }
+  .mono-grid { grid-template-columns: 1fr; }
+  .mono-cell { border-right: none !important; border-bottom: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+
+<!-- ====== TOC BAR ====== -->
+<div class="toc-bar">
+  <a href="#cover" class="toc-mark">
+    <!-- Monograma pequeño -->
+    <svg class="toc-mono" viewBox="158 281 87 87" xmlns="http://www.w3.org/2000/svg">
+      <rect x="163.274" y="286.98" fill="#B5462C" width="77.453" height="77.451"/>
+      <path fill="#ECECEC" d="M222.568,311.184v-11.973h-46.635v11.973h17.368v41.019h12.343v-41.019H222.568z"/>
+      <path fill="#ECECEC" d="M228.064,346.438c0-1.627-0.518-2.957-1.699-4.14c-1.107-1.108-2.439-1.626-4.064-1.626c-1.553,0-2.957,0.518-4.064,1.626c-1.107,1.183-1.699,2.513-1.699,4.14c0,1.552,0.592,2.881,1.625,3.99c0.074,0.074,0.074,0.074,0.074,0.074c1.107,1.107,2.514,1.699,4.064,1.699c1.625,0,2.957-0.59,4.064-1.699C227.547,349.393,228.064,347.988,228.064,346.438z"/>
+    </svg>
+    <span class="toc-label">TRAMA</span>
+  </a>
+  <span class="toc-divider"></span>
+  <span class="toc-doc">Manual / V02</span>
+  <ul class="toc-links">
+    <li><a href="#manifiesto">— 01 Manifiesto</a></li>
+    <li><a href="#sistema">02 Sistema</a></li>
+    <li><a href="#color">03 Color</a></li>
+    <li><a href="#tipografia">04 Tipografía</a></li>
+    <li><a href="#trama">05 Trama</a></li>
+    <li><a href="#reglas">06 Reglas</a></li>
+  </ul>
+</div>
+
+<!-- ====== COVER ====== -->
+<div id="cover" class="cover">
+  <svg class="cover-trama" viewBox="0 0 240 600" preserveAspectRatio="none">
+    <defs>
+      <pattern id="pCover" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="36" y2="0" stroke="#1A1814" stroke-width="0.6"/>
+        <line x1="0" y1="18" x2="36" y2="18" stroke="#1A1814" stroke-width="0.4"/>
+        <line x1="18" y1="0" x2="18" y2="36" stroke="#1A1814" stroke-width="0.4"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#pCover)"/>
+  </svg>
+
+  <div class="cover-meta">
+    <span>Estudio</span><b>TRAMA</b>
+    <span>Documento</span><b>Manual de Identidad</b>
+    <span>Versión</span><b>V02 / 2026.05</b>
+    <span>Pliego</span><b>06 / 04</b>
+  </div>
+
+  <div>
+    <!-- Wordmark grande en portada -->
+    <svg class="cover-wm" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+      <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+      <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+      <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+      <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+      <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+    </svg>
+    <h1 class="cover-subtitle">
+      La estructura invisible<br>que sostiene <em>una marca.</em><br>
+      <span style="display:block;margin-top:18px;font-family:var(--mono);font-style:normal;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;opacity:0.65;">— manual de identidad / sistema completo</span>
+    </h1>
+  </div>
+
+  <div class="cover-foot">
+    <span>— Buenos Aires</span>
+    <span>Matías Mercado / autor</span>
+    <span>Est. 2026</span>
+  </div>
+</div>
+
+<!-- ====== 01 MANIFIESTO ====== -->
+<section id="manifiesto" class="section">
+  <div class="section-num"><span>—</span> 01 / Manifiesto</div>
+  <h2 class="section-headline">
+    No diseñamos logos.<br>
+    Formalizamos la estructura<br>
+    invisible que <em>sostiene una marca.</em>
+  </h2>
+
+  <div class="subsection">
+    <div class="subsection-tag">— Quiénes</div>
+    <div class="subsection-content">
+      <div class="kicker">— El taller</div>
+      <h3 class="heading">Un estudio de autor.</h3>
+      <div class="body-text">
+        <p>TRAMA es un taller de diseño de identidad. Un solo autor, un proceso definido, sin atajos ni plantillas. Trabajamos con negocios que ya tienen sustancia pero todavía no tienen la imagen que lo demuestra.</p>
+        <p>No vendemos piezas sueltas. Construimos sistemas completos donde cada elemento sostiene a los demás. Eso es lo que hace que una marca tenga peso propio.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-tag">— Para quién</div>
+    <div class="subsection-content">
+      <div class="kicker">— Audiencia</div>
+      <h3 class="heading">Para los que ya saben lo que son.</h3>
+      <div class="body-text">
+        <p>Profesionales, emprendedores y empresas que crecieron pero cuya imagen no acompañó ese crecimiento. Los que operan bien pero todavía se ven improvisados.</p>
+        <p>Si lo que hacés vale más de lo que tu imagen muestra, ese es el problema que resolvemos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-tag">— Cómo</div>
+    <div class="subsection-content">
+      <div class="kicker">— Método</div>
+      <h3 class="heading">La palabra del cliente, materializada.</h3>
+      <div class="body-text">
+        <p>Trabajamos a partir de la escucha. El cliente trae una palabra: lo que quiere transmitir, lo que su negocio es, lo que todavía no se ve. Nuestro trabajo es interpretar esa palabra y darle forma.</p>
+        <p><strong>No inventamos una imagen — revelamos la que ya corresponde.</strong> El cliente no recibe lo que pidió literalmente; recibe lo que necesitaba sin saber pedirlo. Y se reconoce en eso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 02 SISTEMA / LOGO ====== -->
+<section id="sistema" class="section">
+  <div class="section-num"><span>—</span> 02 / Sistema · Marca</div>
+  <h2 class="section-headline">
+    El sistema, no <em>el dibujo.</em>
+  </h2>
+  <p class="section-lead">
+    La identidad de TRAMA se construye con tres unidades: el wordmark completo, el monograma reducido y la trama gráfica como firma. Cada una sostiene la marca en una escala distinta.
+  </p>
+
+  <!-- 02.1 Logo principal -->
+  <div class="subsection">
+    <div class="subsection-tag">— 02.1 / Logo principal</div>
+    <div class="subsection-content">
+      <div class="logo-display">
+        <span class="corner-tl">— TRAMA / Logo principal · sobre papel</span>
+        <span class="corner-tr">A.01</span>
+        <div>
+          <svg class="wm-wrap" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+            <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+            <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+            <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+            <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+            <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+          </svg>
+          <div class="desc" style="color:var(--ink);">DISEÑO &amp; IDENTIDAD</div>
+        </div>
+      </div>
+
+      <div class="spec-strip">
+        <div class="spec-cell">
+          <div class="label">— Marca</div>
+          <div class="value">Trazados propios</div>
+        </div>
+        <div class="spec-cell">
+          <div class="label">— Construcción</div>
+          <div class="value">Geométrica / modular</div>
+        </div>
+        <div class="spec-cell">
+          <div class="label">— Punto</div>
+          <div class="value">Rust #B5462C</div>
+        </div>
+        <div class="spec-cell">
+          <div class="label">— Descriptor</div>
+          <div class="value">JetBrains Mono 400</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02.2 Construcción -->
+  <div class="subsection">
+    <div class="subsection-tag">— 02.2 / Construcción</div>
+    <div class="subsection-content">
+      <div class="construction">
+        <span class="corner-tl">— Anatomía / proporciones</span>
+        <span class="corner-tr">B.01</span>
+        <svg class="construction-svg" viewBox="20 40 380 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="cGrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="20" y2="0" stroke="#1A1814" stroke-width="0.3" opacity="0.12"/>
+              <line x1="0" y1="0" x2="0" y2="20" stroke="#1A1814" stroke-width="0.3" opacity="0.12"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#cGrid)"/>
+
+          <!-- Cap height guide -->
+          <line x1="38" y1="72.245" x2="392" y2="72.245" stroke="#B5462C" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.55"/>
+          <!-- Baseline guide -->
+          <line x1="38" y1="125.235" x2="392" y2="125.235" stroke="#B5462C" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.55"/>
+
+          <!-- Height markers -->
+          <line x1="28" y1="72.245" x2="28" y2="125.235" stroke="#1A1814" stroke-width="0.5" opacity="0.35"/>
+          <line x1="23" y1="72.245" x2="33" y2="72.245" stroke="#1A1814" stroke-width="0.5" opacity="0.35"/>
+          <line x1="23" y1="125.235" x2="33" y2="125.235" stroke="#1A1814" stroke-width="0.5" opacity="0.35"/>
+
+          <!-- Dot bounding box indicator -->
+          <rect x="342" y="112" width="17" height="16" fill="none" stroke="#B5462C" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.5"/>
+
+          <!-- The actual letterforms -->
+          <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+          <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+          <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+          <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+          <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+          <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+
+          <!-- Annotation labels -->
+          <text x="200" y="59" font-family="JetBrains Mono, monospace" font-size="7" fill="#B5462C" letter-spacing="1.5" text-anchor="middle">cap height</text>
+          <text x="200" y="140" font-family="JetBrains Mono, monospace" font-size="7" fill="#B5462C" letter-spacing="1.5" text-anchor="middle">baseline</text>
+          <text x="18" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="#1A1814" opacity="0.45" text-anchor="middle" transform="rotate(-90,18,100)">X</text>
+          <text x="344" y="108" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#B5462C" letter-spacing="1">punto / firma</text>
+        </svg>
+      </div>
+      <div class="body-text">
+        <p>El wordmark es una <strong>marca construida</strong> — no una fuente tipográfica existente. Los trazados fueron diseñados geométricamente sobre una grilla modular. La altura de la T (cap height) define la unidad <strong>X</strong> del sistema. El punto óxido es la única decisión cromática del logo: la firma del taller.</p>
+        <p>La R, con su pata saliente, es la letra que rompe la alineación y ancla la marca visualmente. Sin ella, el wordmark sería demasiado uniforme. La tensión es intencional.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02.3 Variantes -->
+  <div class="subsection">
+    <div class="subsection-tag">— 02.3 / Versiones canónicas</div>
+    <div class="subsection-content">
+      <!-- Versión negativa -->
+      <div class="logo-display dark" style="margin-bottom: 0; min-height: 220px;">
+        <span class="corner-tl">— Versión negativa · sobre tinta</span>
+        <span class="corner-tr">A.02</span>
+        <div>
+          <svg class="wm-wrap" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ECECEC" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+            <path fill="#ECECEC" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+            <path fill="#ECECEC" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+            <path fill="#ECECEC" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+            <path fill="#ECECEC" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+            <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+          </svg>
+          <div class="desc light">DISEÑO &amp; IDENTIDAD</div>
+        </div>
+      </div>
+
+      <!-- Versión sobre acento -->
+      <div class="logo-display rust-bg" style="margin-top: 0; min-height: 220px;">
+        <span class="corner-tl">— Versión sobre acento · uso enfático</span>
+        <span class="corner-tr">A.03</span>
+        <div>
+          <svg class="wm-wrap" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#F1ECE0" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+            <path fill="#F1ECE0" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+            <path fill="#F1ECE0" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+            <path fill="#F1ECE0" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+            <path fill="#F1ECE0" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+            <path fill="#F1ECE0" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+          </svg>
+          <div class="desc light">DISEÑO &amp; IDENTIDAD</div>
+        </div>
+      </div>
+
+      <div class="body-text" style="margin-top: 24px;">
+        <p>Tres versiones canónicas: sobre papel (uso primario), sobre tinta (uso negativo) y sobre el color de acento (uso enfático). En la versión sobre acento, el punto pasa a paper para mantener la consistencia — la firma ya está dada por el contexto cromático.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02.4 Monograma -->
+  <div class="subsection">
+    <div class="subsection-tag">— 02.4 / Monograma</div>
+    <div class="subsection-content">
+      <div class="mono-grid">
+        <div class="mono-cell">
+          <span class="corner-tl">— Monograma · sobre papel</span>
+          <svg width="100" height="100" viewBox="158 281 87 87" xmlns="http://www.w3.org/2000/svg">
+            <rect x="163.274" y="286.98" fill="#B5462C" width="77.453" height="77.451"/>
+            <path fill="#ECECEC" d="M222.568,311.184v-11.973h-46.635v11.973h17.368v41.019h12.343v-41.019H222.568z"/>
+            <path fill="#ECECEC" d="M228.064,346.438c0-1.627-0.518-2.957-1.699-4.14c-1.107-1.108-2.439-1.626-4.064-1.626c-1.553,0-2.957,0.518-4.064,1.626c-1.107,1.183-1.699,2.513-1.699,4.14c0,1.552,0.592,2.881,1.625,3.99c0.074,0.074,0.074,0.074,0.074,0.074c1.107,1.107,2.514,1.699,4.064,1.699c1.625,0,2.957-0.59,4.064-1.699C227.547,349.393,228.064,347.988,228.064,346.438z"/>
+          </svg>
+        </div>
+        <div class="mono-cell dark">
+          <span class="corner-tl">— Monograma · sobre tinta</span>
+          <svg width="100" height="100" viewBox="158 281 87 87" xmlns="http://www.w3.org/2000/svg">
+            <rect x="163.274" y="286.98" fill="#B5462C" width="77.453" height="77.451"/>
+            <path fill="#ECECEC" d="M222.568,311.184v-11.973h-46.635v11.973h17.368v41.019h12.343v-41.019H222.568z"/>
+            <path fill="#ECECEC" d="M228.064,346.438c0-1.627-0.518-2.957-1.699-4.14c-1.107-1.108-2.439-1.626-4.064-1.626c-1.553,0-2.957,0.518-4.064,1.626c-1.107,1.183-1.699,2.513-1.699,4.14c0,1.552,0.592,2.881,1.625,3.99c0.074,0.074,0.074,0.074,0.074,0.074c1.107,1.107,2.514,1.699,4.064,1.699c1.625,0,2.957-0.59,4.064-1.699C227.547,349.393,228.064,347.988,228.064,346.438z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="body-text" style="margin-top: 16px;">
+        <p>El monograma es la unidad mínima de la marca. Un cuadrado sólido en Rust que contiene la T. con el punto integrado. La forma de cuadrado no es decorativa: comunica sistema, no letra suelta. Funciona en avatares, sellos, stamps, favoritos e ícono de app.</p>
+        <p><strong>Regla de escala:</strong> por debajo de 60 px de ancho en pantalla, o 14 mm en impresión, el wordmark deja de leerse limpio. Por debajo de ese umbral se usa siempre el monograma.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02.5 Área de protección -->
+  <div class="subsection">
+    <div class="subsection-tag">— 02.5 / Área de protección</div>
+    <div class="subsection-content">
+      <div class="protection">
+        <span class="protection-x px-top">X</span>
+        <span class="protection-x px-bottom">X</span>
+        <span class="protection-x px-left">X</span>
+        <span class="protection-x px-right">X</span>
+        <div class="protection-inner">
+          <svg class="wm-wrap" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+            <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+            <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+            <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+            <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+            <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="body-text" style="margin-top: 16px;">
+        <p>El logo necesita aire alrededor para sostenerse. La unidad <strong>X</strong> equivale a la altura de la T. Ningún elemento ajeno puede entrar en esa zona — ni texto, ni otra marca, ni borde de soporte. Esa distancia mínima se respeta siempre, incluso cuando reduce el tamaño efectivo del logo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 03 COLOR ====== -->
+<section id="color" class="section">
+  <div class="section-num"><span>—</span> 03 / Color · Sistema</div>
+  <h2 class="section-headline">
+    Cuatro tonos.<br>
+    Una <em>decisión por color.</em>
+  </h2>
+  <p class="section-lead">
+    La paleta es deliberadamente reducida. Cada color hace un trabajo y solo uno. No hay variaciones tonales, no hay gradientes, no hay sombras. Eso es parte del oficio.
+  </p>
+
+  <div class="colors-grid">
+    <div class="swatch paper">
+      <div class="swatch-tag">— 01 / Base</div>
+      <div>
+        <div class="swatch-name">Paper</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span>#F1ECE0</span>
+          <b>RGB</b><span>241 · 236 · 224</span>
+          <b>CMYK</b><span>4 · 5 · 12 · 0</span>
+          <b>Pantone</b><span>Warm Gray 1 C</span>
+        </div>
+      </div>
+    </div>
+    <div class="swatch paper2">
+      <div class="swatch-tag">— 02 / Soporte</div>
+      <div>
+        <div class="swatch-name">Paper 02</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span>#E8E1D2</span>
+          <b>RGB</b><span>232 · 225 · 210</span>
+          <b>CMYK</b><span>7 · 9 · 18 · 0</span>
+          <b>Uso</b><span>Bloques · separadores</span>
+        </div>
+      </div>
+    </div>
+    <div class="swatch ink">
+      <div class="swatch-tag">— 03 / Tinta</div>
+      <div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span>#1A1814</span>
+          <b>RGB</b><span>26 · 24 · 20</span>
+          <b>CMYK</b><span>70 · 65 · 75 · 90</span>
+          <b>Pantone</b><span>Black 6 C</span>
+        </div>
+      </div>
+    </div>
+    <div class="swatch rust">
+      <div class="swatch-tag">— 04 / Acento</div>
+      <div>
+        <div class="swatch-name">Rust</div>
+        <div class="swatch-codes">
+          <b>HEX</b><span>#B5462C</span>
+          <b>RGB</b><span>181 · 70 · 44</span>
+          <b>CMYK</b><span>20 · 85 · 95 · 10</span>
+          <b>Pantone</b><span>173 C</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" style="margin-top: 48px;">
+    <div class="subsection-tag">— Lógica</div>
+    <div class="subsection-content">
+      <div class="body-text">
+        <p><strong>Paper</strong> es la base — la materia donde se imprime. No es blanco absoluto: ese vacío es frío y plástico. Paper tiene cuerpo, como un papel real.</p>
+        <p><strong>Paper 02</strong> es el soporte — un tono levemente más cálido para separar bloques sin agregar líneas. Aparece cuando una pieza necesita estructura silenciosa.</p>
+        <p><strong>Ink</strong> es la tinta. Negro cálido, no negro absoluto. Lo absoluto es químico; esto es de imprenta.</p>
+        <p><strong>Rust</strong> es el único acento. Óxido — la marca de uso, el rasgo singular que rompe la sobriedad y firma el sistema. Aparece poco. Cuando aparece, importa. El monograma lleva ese color como fondo: es la máxima expresión del acento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 04 TIPOGRAFÍA ====== -->
+<section id="tipografia" class="section">
+  <div class="section-num"><span>—</span> 04 / Tipografía · Voces</div>
+  <h2 class="section-headline">
+    Dos tipografías,<br>
+    dos <em>voces de la marca.</em>
+  </h2>
+  <p class="section-lead">
+    El sistema tipográfico tiene dos cuerpos: uno duro, geométrico, sin ornamento — para estructurar y titular. Otro modulado, con cursiva expresiva — para hablar y argumentar. La tensión entre ambos es la falla controlada del sistema. El wordmark no es una de estas fuentes: es una marca construida.
+  </p>
+
+  <div class="type-block">
+    <div class="kicker">— Tipografía primaria / display</div>
+    <div class="type-display">Aa Tt</div>
+    <div class="type-name">Archivo</div>
+    <div class="type-role">— Tipografía principal · titulares / navegación / UI</div>
+
+    <div class="weights-row">
+      <span style="font-weight:300">Aa <small>Light</small></span>
+      <span style="font-weight:400">Aa <small>Regular</small></span>
+      <span style="font-weight:500">Aa <small>Medium</small></span>
+      <span style="font-weight:700">Aa <small>Bold</small></span>
+      <span style="font-weight:900">Aa <small>Black</small></span>
+    </div>
+
+    <div class="type-spec">
+      <b>— Familia</b><span>Grotesca geométrica, sin adornos, altamente legible</span>
+      <b>— Foundry</b><span>Omnibus-Type · open source · Google Fonts</span>
+      <b>— Pesos</b><span>300 / 400 / 500 / 700 / 900</span>
+      <b>— Uso</b><span>Titulares, subtítulos, UI, etiquetas en display</span>
+      <b>— Nota</b><span>El wordmark de TRAMA no está en Archivo — es un trazado propio. Archivo se usa solo en el sistema editorial.</span>
+    </div>
+  </div>
+
+  <div class="type-block" style="background: var(--paper-2);">
+    <div class="kicker">— Tipografía secundaria / editorial</div>
+    <div class="type-display serif">La estructura invisible que sostiene una marca.</div>
+    <div class="type-name">Fraunces</div>
+    <div class="type-role">— Tipografía secundaria · editorial / citas / acentos</div>
+
+    <div class="weights-row">
+      <span style="font-family:var(--serif);font-weight:300">Aa <small>Light</small></span>
+      <span style="font-family:var(--serif);font-weight:300;font-style:italic">Aa <small>Light Italic</small></span>
+      <span style="font-family:var(--serif);font-weight:400">Aa <small>Regular</small></span>
+      <span style="font-family:var(--serif);font-weight:500">Aa <small>Medium</small></span>
+      <span style="font-family:var(--serif);font-weight:700">Aa <small>Bold</small></span>
+    </div>
+
+    <div class="type-spec">
+      <b>— Familia</b><span>Serif modulada con cursiva expresiva, optical sizing</span>
+      <b>— Foundry</b><span>Undercase Type · open source · Google Fonts</span>
+      <b>— Pesos</b><span>300 / 300 italic / 400 / 500 / 700</span>
+      <b>— Uso</b><span>Bajadas conceptuales, manifestos, acentos editoriales (italic)</span>
+      <b>— Por qué</b><span>El contraste entre la dureza de Archivo y la voz de Fraunces es la "falla" del sistema. Una habla; la otra escucha.</span>
+    </div>
+  </div>
+
+  <div class="type-block">
+    <div class="kicker">— Tipografía técnica / soporte</div>
+    <div class="type-display" style="font-family:var(--mono);font-weight:400;font-size:56px;letter-spacing:0.02em;">JetBrains Mono</div>
+    <div class="type-role">— Datos · etiquetas · descriptor del logo</div>
+    <div class="type-spec">
+      <b>— Uso</b><span>Códigos, especificaciones, números, descriptor del logo, navegación micro</span>
+      <b>— Por qué</b><span>Tono de plano técnico. Aporta precisión sin decoración. El descriptor "DISEÑO &amp; IDENTIDAD" debajo del logo va siempre en JetBrains Mono 400.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 05 TRAMA / PATRÓN ====== -->
+<section id="trama" class="section">
+  <div class="section-num"><span>—</span> 05 / Trama · Firma del sistema</div>
+  <h2 class="section-headline">
+    La trama literal.<br>
+    El <em>elemento gráfico</em><br>que firma el taller.
+  </h2>
+  <p class="section-lead">
+    La trama no es decoración. Es el sistema mismo hecho visible — una grilla de líneas finas atravesada por un trazo y un punto en óxido. Aparece en piezas donde no va el logo y, sin embargo, el sistema queda firmado.
+  </p>
+
+  <div class="trama-block">
+    <svg viewBox="0 0 1200 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="weaveMain" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="36" y2="0" stroke="#1A1814" stroke-width="0.7" opacity="0.4"/>
+          <line x1="0" y1="12" x2="36" y2="12" stroke="#1A1814" stroke-width="0.7" opacity="0.25"/>
+          <line x1="0" y1="24" x2="36" y2="24" stroke="#1A1814" stroke-width="0.7" opacity="0.4"/>
+          <line x1="0" y1="0" x2="0" y2="36" stroke="#1A1814" stroke-width="0.7" opacity="0.25"/>
+          <line x1="18" y1="0" x2="18" y2="36" stroke="#1A1814" stroke-width="0.7" opacity="0.4"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#weaveMain)"/>
+      <line x1="0" y1="140" x2="1200" y2="140" stroke="#B5462C" stroke-width="2"/>
+      <circle cx="780" cy="140" r="5" fill="#B5462C"/>
+    </svg>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-tag">— Anatomía</div>
+    <div class="subsection-content">
+      <div class="body-text">
+        <p><strong>Grilla base.</strong> Líneas verticales y horizontales en tinta — opacidad alterna 0.40 / 0.25. Módulo de 36 unidades, divisiones internas cada 12 unidades.</p>
+        <p><strong>El corte.</strong> Una línea horizontal en óxido (Rust) atraviesa la grilla. No es ornamento: es la decisión que el sistema produce. La trama es regular; el corte la atraviesa.</p>
+        <p><strong>El punto.</strong> Un círculo macizo en óxido marca el corte. Es la firma del autor — el mismo punto que sigue a TRAMA en el logo y en el monograma. Reaparece acá para cerrar el sistema.</p>
+        <p><strong>Reglas de uso.</strong> La trama puede usarse en grande (fondos, separadores, slides) o en pequeño (decoración de tarjeta, marca de agua en documentos). Nunca se rota: siempre horizontal. Nunca se altera el color del corte: siempre Rust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 06 REGLAS / USOS ====== -->
+<section id="reglas" class="section">
+  <div class="section-num"><span>—</span> 06 / Reglas · Usos correctos e incorrectos</div>
+  <h2 class="section-headline">
+    Lo que el sistema <em>permite.</em><br>
+    Lo que no.
+  </h2>
+  <p class="section-lead">
+    Las reglas existen para que el sistema sea sostenible en el tiempo, sin importar quién lo aplique. Cada regla protege una decisión de diseño que ya fue tomada.
+  </p>
+
+  <div class="uses-grid">
+    <!-- SÍ: uso correcto -->
+    <div class="use-cell">
+      <span class="use-flag ok">— SÍ</span>
+      <svg class="use-wm" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+        <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+        <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+        <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+        <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+        <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+      </svg>
+      <span class="use-tag">Proporciones originales · colores del sistema</span>
+    </div>
+
+    <!-- NO: estiramiento -->
+    <div class="use-cell">
+      <span class="use-flag no">NO</span>
+      <svg class="wm-wrong-stretch" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+        <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+        <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+        <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+        <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+        <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+      </svg>
+      <span class="use-tag">No deformar la marca · no estirar</span>
+    </div>
+
+    <!-- NO: color alterado -->
+    <div class="use-cell">
+      <span class="use-flag no">NO</span>
+      <svg class="wm-wrong-color" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+        <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+        <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+        <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+        <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+        <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+      </svg>
+      <span class="use-tag">No alterar la paleta del sistema</span>
+    </div>
+
+    <!-- NO: sombra -->
+    <div class="use-cell">
+      <span class="use-flag no">NO</span>
+      <svg class="wm-wrong-shadow" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+        <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+        <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+        <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+        <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+        <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+      </svg>
+      <span class="use-tag">No agregar sombras ni efectos · sin volumen</span>
+    </div>
+
+    <!-- NO: rotación -->
+    <div class="use-cell">
+      <span class="use-flag no">NO</span>
+      <svg class="wm-wrong-rotate" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#1A1814" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+        <path fill="#1A1814" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+        <path fill="#1A1814" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+        <path fill="#1A1814" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+        <path fill="#1A1814" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+        <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+      </svg>
+      <span class="use-tag">No rotar · siempre alineado a la baseline</span>
+    </div>
+
+    <!-- SÍ: reducción correcta al monograma -->
+    <div class="use-cell">
+      <span class="use-flag ok">— SÍ</span>
+      <svg width="72" height="72" viewBox="158 281 87 87" xmlns="http://www.w3.org/2000/svg">
+        <rect x="163.274" y="286.98" fill="#B5462C" width="77.453" height="77.451"/>
+        <path fill="#ECECEC" d="M222.568,311.184v-11.973h-46.635v11.973h17.368v41.019h12.343v-41.019H222.568z"/>
+        <path fill="#ECECEC" d="M228.064,346.438c0-1.627-0.518-2.957-1.699-4.14c-1.107-1.108-2.439-1.626-4.064-1.626c-1.553,0-2.957,0.518-4.064,1.626c-1.107,1.183-1.699,2.513-1.699,4.14c0,1.552,0.592,2.881,1.625,3.99c0.074,0.074,0.074,0.074,0.074,0.074c1.107,1.107,2.514,1.699,4.064,1.699c1.625,0,2.957-0.59,4.064-1.699C227.547,349.393,228.064,347.988,228.064,346.438z"/>
+      </svg>
+      <span class="use-tag">Reducción correcta · pasar al monograma</span>
+    </div>
+  </div>
+
+  <div class="subsection" style="margin-top: 56px;">
+    <div class="subsection-tag">— Tamaños</div>
+    <div class="subsection-content">
+      <div class="body-text">
+        <p><strong>Tamaño mínimo del wordmark:</strong> 60 píxeles de ancho en pantalla, o 14 mm en impresión. Por debajo de eso el descriptor deja de leerse limpio y los trazados pierden definición.</p>
+        <p><strong>Tamaño mínimo del logo con descriptor:</strong> 120 píxeles de ancho. Si el espacio no permite eso, se usa el wordmark sin descriptor.</p>
+        <p><strong>Por debajo de 60 px:</strong> se reemplaza por el monograma — el cuadrado Rust con T. La marca reducida a su unidad mínima pero con el mismo peso visual.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="subsection-tag">— Co-branding</div>
+    <div class="subsection-content">
+      <div class="body-text">
+        <p>Cuando el logo de TRAMA aparece junto a otra marca, la separación mínima entre ambas es <strong>2X</strong>. Una línea vertical fina puede dividirlas si el espacio lo justifica.</p>
+        <p>TRAMA nunca se subordina visualmente: aparece con el mismo peso que la marca con la que se acompaña. Si el sistema del cliente exige jerarquía, se quita TRAMA antes que reducirla.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== COLOPHON ====== -->
+<section class="colophon">
+  <div class="colophon-inner">
+    <svg class="colophon-wm" viewBox="44 66 318 65" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#ECECEC" d="M227.902,72.245h-11.158v52.989h12.49V94.416l15.594,21.728l15.667-21.728v30.818h12.563V72.245H261.75l-16.924,23.649L227.902,72.245z"/>
+      <path fill="#ECECEC" d="M315.184,72.245h-13.08l-22.688,52.989h13.007l16.187-37.839l16.259,37.839h13.007L315.184,72.245z"/>
+      <path fill="#ECECEC" d="M142.249,77.713c-3.473-3.473-7.76-5.321-12.711-5.469h-25.792v52.989h12.563V84.217h10.347c0.148,0,0.369,0,0.517,0c0.222,0,0.37,0,0.591,0c1.774,0.147,3.399,0.887,4.73,2.217c1.404,1.404,2.143,3.251,2.217,5.321c-0.074,2.069-0.813,3.843-2.217,5.321c-0.666,0.591-1.331,1.108-2.069,1.478c-0.887,0.443-1.922,0.665-3.03,0.739H116.53l21.358,25.94h14.411v-0.074l-14.485-17.589c1.626-0.887,3.104-1.995,4.435-3.399c1.552-1.478,2.734-3.178,3.621-4.878c1.256-2.513,1.848-5.321,1.848-8.351c0-2.365-0.37-4.582-1.182-6.725C145.648,81.852,144.244,79.709,142.249,77.713z"/>
+      <path fill="#ECECEC" d="M152.299,125.16l0.074,0.074h12.933l16.185-37.839l16.259,37.839h13.007l-22.689-52.989h-13.081L152.299,125.16z"/>
+      <path fill="#ECECEC" d="M97.019,72.245H50.386v11.973h17.368v41.017h12.342V84.217H97.02L97.019,72.245L97.019,72.245z"/>
+      <path fill="#B5462C" d="M354.575,115.331c-1.108-1.108-2.439-1.625-4.064-1.625c-1.552,0-2.957,0.517-4.063,1.625c-1.108,1.183-1.7,2.513-1.7,4.139c0,1.552,0.592,2.882,1.626,3.991c0.074,0.074,0.074,0.074,0.074,0.074c1.106,1.108,2.513,1.7,4.063,1.7c1.625,0,2.956-0.591,4.064-1.7c1.182-1.109,1.7-2.513,1.7-4.065C356.275,117.844,355.757,116.513,354.575,115.331z"/>
+    </svg>
+    <p class="colophon-text">
+      Este manual es un sistema vivo. Se actualiza a medida que el estudio crece y descubre nuevas formas de aplicar la marca. Toda decisión nueva se documenta acá.
+    </p>
+    <div class="colophon-meta">
+      <span>Documento</span><b>Manual / V02</b>
+      <span>Autor</span><b>Matías Mercado</b>
+      <span>Lugar</span><b>Buenos Aires</b>
+      <span>Fecha</span><b>2026.05</b>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

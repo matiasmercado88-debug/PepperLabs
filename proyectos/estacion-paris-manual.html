@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estación París — Manual de Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,700;0,900;1,300;1,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:   #EDE8DD;
+  --paper-2: #E2DBCF;
+  --paper-3: #D6CDBE;
+  --ink:     #12100E;
+  --wine:    #7A1E2E;
+  --display: 'Barlow Condensed', sans-serif;
+  --serif:   'Fraunces', serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  background-image: radial-gradient(circle at 1px 1px, rgba(237,232,221,0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+  color: var(--paper);
+  font-family: var(--mono);
+  min-height: 100vh;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 200;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* ─── STICKY NAV ─── */
+.sticky-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(18,16,14,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(237,232,221,0.08);
+  padding: 0 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 48px;
+}
+.sn-brand {
+  font-family: var(--display); font-weight: 900; font-size: 13px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--paper);
+  display: flex; align-items: center; gap: 10px;
+}
+.sn-brand .vl { width: 1px; height: 16px; background: var(--wine); }
+.sn-brand .sub { font-size: 7px; letter-spacing: 0.24em; color: rgba(237,232,221,0.30); }
+.sn-links {
+  display: flex; gap: 0;
+}
+.sn-link {
+  font-size: 8px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(237,232,221,0.30); padding: 0 16px; height: 48px;
+  display: flex; align-items: center; text-decoration: none;
+  border-right: 1px solid rgba(237,232,221,0.06);
+  transition: color 0.2s, background 0.2s;
+}
+.sn-link:hover { color: var(--paper); background: rgba(237,232,221,0.04); }
+.sn-link.active { color: var(--wine); }
+
+/* ─── COVER ─── */
+.cover {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 80px 52px 72px;
+  border-bottom: 1px solid rgba(237,232,221,0.08);
+  position: relative; overflow: hidden;
+}
+.cover::after {
+  content: '';
+  position: absolute; bottom: -10%; right: -5%;
+  width: 55%; height: 70%;
+  background: radial-gradient(ellipse, rgba(122,30,46,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cover-tag {
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--wine);
+  display: flex; align-items: center; gap: 10px;
+}
+.cover-tag::before { content: '—'; }
+
+.cover-wordmark {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(72px, 10vw, 160px);
+  letter-spacing: -0.02em; line-height: 0.88;
+  text-transform: uppercase; color: var(--paper);
+  position: relative; z-index: 1;
+  margin: auto 0; padding: 60px 0;
+}
+.cover-wordmark .wine { color: var(--wine); }
+.cover-wordmark .accent-line {
+  display: block; width: 100%; height: 2px;
+  background: rgba(237,232,221,0.08); position: relative; margin: 12px 0;
+}
+.cover-wordmark .accent-line::before {
+  content:''; position:absolute; left:0; top:0;
+  width: 80px; height:2px; background: var(--wine);
+}
+
+.cover-bottom {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid rgba(237,232,221,0.10); padding-top: 32px;
+  position: relative; z-index: 1;
+}
+.cb-item {
+  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(237,232,221,0.28); line-height: 1.8;
+  padding-right: 20px;
+  border-right: 1px solid rgba(237,232,221,0.07);
+  margin-right: 20px;
+}
+.cb-item:last-child { border-right: none; }
+.cb-item b { display:block; color: rgba(237,232,221,0.60); font-weight: 500; }
+
+/* ─── SECTIONS ─── */
+.manual-section {
+  padding: 96px 52px;
+  border-bottom: 1px solid rgba(237,232,221,0.08);
+  scroll-margin-top: 48px;
+}
+
+.sec-label {
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--wine);
+  margin-bottom: 56px; display: flex; align-items: center; gap: 10px;
+}
+.sec-label::before { content: '—'; }
+
+.sec-title {
+  font-family: var(--display); font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em;
+  line-height: 0.95; color: var(--paper); margin-bottom: 48px;
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+
+.body-text {
+  font-family: var(--serif); font-style: italic;
+  font-size: 15px; line-height: 1.80; color: rgba(237,232,221,0.62);
+}
+.body-text + .body-text { margin-top: 20px; }
+
+/* ─── 00 MANIFIESTO ─── */
+#manifesto { background: var(--paper); }
+#manifesto .sec-label { color: var(--wine); }
+#manifesto .sec-title { color: var(--ink); }
+#manifesto .body-text { color: rgba(18,16,14,0.65); }
+#manifesto .man-large {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(20px, 2.8vw, 34px); line-height: 1.45;
+  color: var(--ink); border-bottom: 1px solid rgba(18,16,14,0.12);
+  padding-bottom: 48px; margin-bottom: 48px;
+}
+#manifesto .man-large em { color: var(--wine); font-style: normal; }
+
+/* ─── 01 MARCA ─── */
+.logo-construction {
+  background: var(--paper); padding: 56px; margin-bottom: 2px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.lc-lockup { text-align: center; width: 100%; max-width: 500px; position: relative; }
+.lc-name {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(40px, 5vw, 72px);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink); display: block; line-height: 1; margin-bottom: 14px;
+}
+.lc-rule { width: 100%; height: 1px; background: rgba(18,16,14,0.18); position: relative; margin-bottom: 10px; }
+.lc-rule::before { content:''; position:absolute; left:0; top:0; width:48px; height:1px; background:var(--wine); }
+.lc-desc { font-size: 9px; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(18,16,14,0.38); }
+
+/* Anotaciones de construcción */
+.lc-annotations {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.ann-h {
+  position: absolute; left: -24px; right: -24px;
+  height: 1px; background: rgba(122,30,46,0.15);
+}
+.ann-label-r {
+  position: absolute; right: -8px;
+  font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(122,30,46,0.50); white-space: nowrap; transform: translateX(100%);
+}
+
+.spec-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+.spec-cell {
+  background: rgba(237,232,221,0.03); border: 1px solid rgba(237,232,221,0.07);
+  padding: 24px;
+}
+.spec-key {
+  font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--wine); margin-bottom: 8px;
+}
+.spec-val {
+  font-size: 12px; letter-spacing: 0.12em; color: rgba(237,232,221,0.65); line-height: 1.7;
+}
+
+/* Zona de protección */
+.protection-demo {
+  background: var(--paper); padding: 56px; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.prot-wrap {
+  position: relative;
+  display: inline-block;
+}
+.prot-zone {
+  position: absolute;
+  inset: -24px;
+  border: 1px dashed rgba(122,30,46,0.30);
+}
+.prot-label {
+  position: absolute;
+  top: -36px; left: 0;
+  font-size: 7px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(122,30,46,0.50);
+}
+.prot-label-b {
+  position: absolute;
+  bottom: -36px; left: 0;
+  font-size: 7px; letter-spacing: 0.20em; text-transform: uppercase;
+  color: rgba(122,30,46,0.50);
+}
+.prot-name {
+  font-family: var(--display); font-weight: 900; font-size: 36px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+  display: block; line-height: 1; margin-bottom: 8px;
+}
+.prot-rule { width: 100%; height: 1px; background: rgba(18,16,14,0.18); position: relative; margin-bottom: 6px; }
+.prot-rule::before { content:''; position:absolute; left:0; top:0; width:28px; height:1px; background:var(--wine); }
+.prot-desc { font-size: 7.5px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(18,16,14,0.35); }
+
+/* ─── 02 COLOR ─── */
+.color-system {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 48px;
+}
+.color-card {
+  padding: 32px 24px; display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 200px;
+}
+.cc-1 { background: #EDE8DD; color: var(--ink); }
+.cc-2 { background: #E2DBCF; color: var(--ink); }
+.cc-3 { background: #12100E; color: var(--paper); border: 1px solid rgba(237,232,221,0.07); }
+.cc-4 { background: #7A1E2E; color: var(--paper); }
+
+.cc-name { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+.cc-role { font-size: 7.5px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 24px; }
+.cc-codes { font-size: 9px; letter-spacing: 0.10em; line-height: 2; opacity: 0.65; }
+.cc-codes b { display:block; opacity: 1; font-size: 11px; letter-spacing: 0.06em; margin-bottom: 4px; }
+.cc-logic {
+  font-size: 8px; letter-spacing: 0.14em; line-height: 1.7; opacity: 0.40;
+  border-top: 1px solid currentColor; border-top-opacity: 0.1; padding-top: 12px; margin-top: 12px;
+}
+
+/* ─── 03 TIPOGRAFÍA ─── */
+.type-system { display: flex; flex-direction: column; gap: 2px; }
+.type-block {
+  background: rgba(237,232,221,0.03); border: 1px solid rgba(237,232,221,0.07);
+  padding: 40px;
+}
+.tb-label {
+  font-size: 8px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--wine); margin-bottom: 20px;
+  display: flex; gap: 16px;
+}
+.tb-label span { color: rgba(237,232,221,0.35); }
+.tb-sample-display {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(36px, 5vw, 80px);
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.95;
+  color: var(--paper); margin-bottom: 12px;
+}
+.tb-sample-serif {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(22px, 3vw, 44px); line-height: 1.30; color: var(--paper);
+  margin-bottom: 12px;
+}
+.tb-sample-mono {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,232,221,0.45);
+}
+.tb-spec {
+  font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(237,232,221,0.28); margin-top: 16px; line-height: 1.8;
+}
+
+/* ─── 04 PATRÓN ─── */
+.pattern-showcase {
+  background: var(--ink); border: 1px solid rgba(237,232,221,0.07);
+  padding: 48px; display: flex; flex-direction: column; gap: 40px;
+  margin-bottom: 40px;
+}
+.pattern-demo {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.pd-label { font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,232,221,0.30); }
+.pd-item {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.pd-rule { height: 1px; background: rgba(237,232,221,0.12); position: relative; }
+.pd-rule::before { content:''; position:absolute; left:0; top:0; height:1px; background:var(--wine); }
+.pd-w-short::before { width: 32px; }
+.pd-w-med::before { width: 52px; }
+.pd-w-long::before { width: 80px; }
+.pd-size { font-size: 7px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(237,232,221,0.22); }
+
+/* Dot grid demo */
+.dot-grid-demo {
+  background: var(--ink);
+  background-image: radial-gradient(circle at 1px 1px, rgba(237,232,221,0.06) 1px, transparent 0);
+  background-size: 24px 24px;
+  height: 80px; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.dot-grid-label { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(237,232,221,0.25); }
+
+/* ─── 05 REGLAS ─── */
+.rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.rule-cell {
+  padding: 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.rc-correct { background: rgba(237,232,221,0.03); border: 1px solid rgba(237,232,221,0.07); }
+.rc-wrong   { background: rgba(122,30,46,0.06); border: 1px solid rgba(122,30,46,0.15); }
+
+.rule-badge {
+  font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+}
+.badge-ok { background: rgba(237,232,221,0.08); color: rgba(237,232,221,0.60); }
+.badge-no { background: rgba(122,30,46,0.20); color: rgba(237,232,221,0.60); }
+
+.rule-demo {
+  padding: 24px; display: flex; align-items: center; justify-content: center; min-height: 96px;
+}
+.rd-paper { background: var(--paper); }
+.rd-dark  { background: var(--ink); border: 1px solid rgba(237,232,221,0.06); }
+
+/* Logo demostraciones incorrectas */
+.wrong-stretch { font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); transform: scaleX(1.45); display: inline-block; }
+.wrong-outline { font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px rgba(18,16,14,0.60); display: inline-block; }
+.wrong-rotate  { font-family: var(--display); font-weight: 900; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); transform: rotate(-15deg); display: inline-block; }
+.wrong-color   { font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: #2E7DD1; display: inline-block; }
+
+.correct-demo-inner .lc-name { font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); display: block; margin-bottom: 6px; }
+.correct-demo-inner .lc-r { width: 100%; height: 1px; background: rgba(18,16,14,0.18); position: relative; margin-bottom: 5px; }
+.correct-demo-inner .lc-r::before { content:''; position:absolute; left:0; top:0; width:24px; height:1px; background:var(--wine); }
+.correct-demo-inner .lc-d { font-size: 7px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(18,16,14,0.38); }
+
+.rule-text { font-size: 9px; letter-spacing: 0.14em; line-height: 1.75; color: rgba(237,232,221,0.45); }
+.wrong-rule { color: rgba(237,232,221,0.35); }
+
+/* ─── COLOFÓN ─── */
+.colophon-section {
+  background: #0a0807;
+  padding: 120px 52px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 60vh;
+  border-top: 2px solid var(--wine);
+  position: relative; overflow: hidden;
+}
+.colophon-section::after {
+  content: '';
+  position: absolute; top: -20%; left: -5%;
+  width: 60%; height: 80%;
+  background: radial-gradient(ellipse, rgba(122,30,46,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.col-wordmark {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(56px, 9vw, 128px);
+  letter-spacing: -0.02em; line-height: 0.88;
+  text-transform: uppercase; color: rgba(237,232,221,0.08);
+  position: relative; z-index: 1;
+}
+.col-wordmark .wine-col { color: rgba(122,30,46,0.25); }
+
+.col-center {
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; z-index: 1;
+}
+.col-rule { width: 80px; height: 1px; background: rgba(237,232,221,0.12); position: relative; margin: 40px 0; }
+.col-rule::before { content:''; position:absolute; left:0; top:0; width:28px; height:1px; background:var(--wine); }
+.col-statement {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(18px, 2.5vw, 30px); line-height: 1.45;
+  color: rgba(237,232,221,0.55); max-width: 560px;
+}
+.col-statement em { color: var(--wine); font-style: normal; }
+
+.col-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(237,232,221,0.07); padding-top: 32px;
+}
+.col-meta { font-size: 9px; letter-spacing: 0.20em; text-transform: uppercase; color: rgba(237,232,221,0.22); line-height: 2; }
+.col-logo {
+  font-family: var(--display); font-weight: 900; font-size: 16px;
+  letter-spacing: 0.06em; text-transform: uppercase; color: rgba(237,232,221,0.40);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+}
+.col-logo .col-rule-small { width: 100%; height: 1px; background: rgba(237,232,221,0.10); position: relative; }
+.col-logo .col-rule-small::before { content:''; position:absolute; right:0; top:0; width:20px; height:1px; background:rgba(122,30,46,0.60); }
+.col-logo .col-desc { font-size: 7px; letter-spacing: 0.24em; color: rgba(237,232,221,0.22); }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="sn-brand">
+    Estación París
+    <div class="vl"></div>
+    <div class="sub">Manual de Marca</div>
+  </div>
+  <div class="sn-links">
+    <a class="sn-link" href="#cover">Portada</a>
+    <a class="sn-link" href="#manifesto">00 Manifiesto</a>
+    <a class="sn-link" href="#marca">01 Marca</a>
+    <a class="sn-link" href="#color">02 Color</a>
+    <a class="sn-link" href="#tipografia">03 Tipografía</a>
+    <a class="sn-link" href="#patron">04 Patrón</a>
+    <a class="sn-link" href="#reglas">05 Reglas</a>
+    <a class="sn-link" href="#colofon">Colofón</a>
+  </div>
+</nav>
+
+<!-- PORTADA -->
+<div class="cover" id="cover">
+  <div class="cover-tag">Manual de identidad visual · Pliego 06 / 06</div>
+
+  <div class="cover-wordmark">
+    ESTACIÓN<br>
+    PAR<span class="wine">Í</span>S<span class="wine">.</span>
+    <span class="accent-line"></span>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cb-item"><b>Documento</b>Manual de marca · V01</div>
+    <div class="cb-item"><b>Banda</b>Estación París</div>
+    <div class="cb-item"><b>Origen</b>Buenos Aires, Argentina</div>
+    <div class="cb-item"><b>Año</b>2025 · Pliego 06 de 06</div>
+  </div>
+</div>
+
+<!-- 00 MANIFIESTO -->
+<section class="manual-section" id="manifesto">
+  <div class="sec-label">00 / Manifiesto</div>
+  <div class="two-col">
+    <div>
+      <div class="man-large">
+        Estación París no canta sobre el amor.<br>
+        Canta sobre <em>lo que queda</em><br>
+        cuando el amor ya se fue.
+      </div>
+      <div class="body-text">
+        Las azoteas, el whisky, las esquinas sin karma, el último idiota del blues sentado en un andén que no es el suyo. Ese es el territorio de la banda — el espacio entre el que llegó y el que se fue, la noche de Buenos Aires como escenario permanente.
+      </div>
+    </div>
+    <div>
+      <div class="body-text">
+        Estación París convierte el blues americano y el tango rioplatense en una sola lengua. No como fusión — como colisión. Robert Johnson en un bar de Almagro. La faca y el whisky en la misma canción. El lunfardo como poesía sin disculparse.
+      </div>
+      <div class="body-text" style="margin-top:28px;">
+        Esta identidad no ilustra la música — la sostiene. Cada decisión gráfica tiene una razón que puede argumentarse con las propias letras de la banda. El sistema existe para que cualquier pieza, en cualquier contexto, sea reconociblemente Estación París.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 MARCA -->
+<section class="manual-section" id="marca">
+  <div class="sec-label">01 / Marca / Sistema</div>
+  <div class="sec-title">El logo.<br>Su construcción.</div>
+
+  <!-- Logo en grande -->
+  <div class="logo-construction">
+    <div class="lc-lockup">
+      <span class="lc-name">Estación París</span>
+      <div class="lc-rule"></div>
+      <span class="lc-desc">Blues · Rock · Buenos Aires</span>
+    </div>
+  </div>
+
+  <!-- Specs del logo -->
+  <div class="spec-grid" style="margin-top:2px; margin-bottom:40px;">
+    <div class="spec-cell">
+      <div class="spec-key">— Nombre</div>
+      <div class="spec-val">Barlow Condensed<br>Weight 900 · Tracking +0.06em<br>Case: Title case (no todo caps)</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-key">— Regla</div>
+      <div class="spec-val">1px · Ancho 100% del nombre<br>Acento vino: 48–52px · Posición izquierda<br>Opacidad base: rgba(ink, 0.18)</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-key">— Descriptor</div>
+      <div class="spec-val">JetBrains Mono 400<br>Tracking +0.38em · Todo caps<br>Opacidad 40% sobre cualquier fondo</div>
+    </div>
+    <div class="spec-cell">
+      <div class="spec-key">— Alineación</div>
+      <div class="spec-val">Siempre alineado a izquierda<br>Descriptor: izquierda canónica<br>Centrado solo en usos ceremoniales</div>
+    </div>
+  </div>
+
+  <!-- Zona de protección -->
+  <div class="sec-label" style="margin-bottom:32px;">— Zona de protección</div>
+  <div class="protection-demo">
+    <div class="prot-wrap">
+      <div class="prot-zone">
+        <div class="prot-label">← 1X →</div>
+        <div class="prot-label-b">← Zona libre de cualquier otro elemento →</div>
+      </div>
+      <span class="prot-name">Estación París</span>
+      <div class="prot-rule"></div>
+      <div class="prot-desc">Blues · Rock · Buenos Aires</div>
+    </div>
+  </div>
+  <div style="margin-top:16px; font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(237,232,221,0.30); line-height:1.8;">
+    X = altura de la "E" mayúscula del logo en el tamaño en uso · Ningún otro elemento puede entrar en esa zona
+  </div>
+</section>
+
+<!-- 02 COLOR -->
+<section class="manual-section" id="color">
+  <div class="sec-label">02 / Color</div>
+  <div class="sec-title">Cuatro tonos.<br>Una noche.</div>
+
+  <div class="color-system">
+    <div class="color-card cc-1">
+      <div>
+        <div class="cc-name">Papel</div>
+        <div class="cc-role">Base · Sustrato</div>
+      </div>
+      <div>
+        <div class="cc-codes">
+          <b>#EDE8DD</b>
+          RGB 237 · 232 · 221<br>
+          CMYK 0 · 2 · 7 · 7
+        </div>
+        <div class="cc-logic">Boleto de colectivo. Carta de bar de mala muerte. Nunca blanco puro.</div>
+      </div>
+    </div>
+    <div class="color-card cc-2">
+      <div>
+        <div class="cc-name">Papel–2</div>
+        <div class="cc-role">Separación · Bloques</div>
+      </div>
+      <div>
+        <div class="cc-codes">
+          <b>#E2DBCF</b>
+          RGB 226 · 219 · 207<br>
+          CMYK 0 · 3 · 9 · 11
+        </div>
+        <div class="cc-logic">Para separar secciones sin usar líneas. Más cálido que gris.</div>
+      </div>
+    </div>
+    <div class="color-card cc-3">
+      <div>
+        <div class="cc-name">Tinta</div>
+        <div class="cc-role">Principal · Dominante</div>
+      </div>
+      <div>
+        <div class="cc-codes">
+          <b>#12100E</b>
+          RGB 18 · 16 · 14<br>
+          CMYK 0 · 11 · 22 · 93
+        </div>
+        <div class="cc-logic">La noche de Buenos Aires. Tiene temperatura. Nunca #000000.</div>
+      </div>
+    </div>
+    <div class="color-card cc-4">
+      <div>
+        <div class="cc-name">Vino</div>
+        <div class="cc-role">Acento · Firma</div>
+      </div>
+      <div>
+        <div class="cc-codes">
+          <b>#7A1E2E</b>
+          RGB 122 · 30 · 46<br>
+          CMYK 0 · 75 · 62 · 52
+        </div>
+        <div class="cc-logic">Carmine oscuro. El Malbec en el mantel. Escaso — firma, no relleno.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="three-col" style="margin-top:40px;">
+    <div>
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— Fondo primario</div>
+      <div class="body-text" style="font-size:13px;">El sistema usa <strong style="font-style:normal;color:var(--paper);">tinta como fondo principal</strong>, no papel. La banda vive de noche. El papel aparece como positivo — lo impreso, la letra, el libreto.</div>
+    </div>
+    <div>
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— El acento</div>
+      <div class="body-text" style="font-size:13px;">El vino es escaso. Aparece en el segmento de la regla, los números de sección, una línea. Nunca como fondo de texto corrido. Nunca en más del 10% de una pieza.</div>
+    </div>
+    <div>
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— Por qué vino</div>
+      <div class="body-text" style="font-size:13px;">El rust es artesanal y cálido. El carmine es urbano y nocturno. Este sistema no es un mercado de diseño — es un bar de Almagro a la una de la mañana.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TIPOGRAFÍA -->
+<section class="manual-section" id="tipografia">
+  <div class="sec-label">03 / Tipografía</div>
+  <div class="sec-title">Tres voces.<br>Un argumento.</div>
+
+  <div class="type-system">
+
+    <div class="type-block">
+      <div class="tb-label">— Display <span>/ Barlow Condensed · Industrial · Para el nombre, titulares, impacto</span></div>
+      <div class="tb-sample-display">ESTACIÓN PARÍS.</div>
+      <div class="tb-sample-display" style="font-weight:300;font-size:clamp(24px,3vw,44px);letter-spacing:0.12em;">BLUES DEL PACTO</div>
+      <div class="tb-spec">
+        Barlow Condensed — Weights: 300 / 700 / 900<br>
+        900: titulares, nombre de banda, afiches · Tracking −0.02em a +0.06em<br>
+        300: subtítulos espaciados, variante clásica · Tracking +0.12em a +0.35em<br>
+        Google Fonts — libre · Sin costo de licencia
+      </div>
+    </div>
+
+    <div class="type-block">
+      <div class="tb-label">— Editorial <span>/ Fraunces Italic · Lírica · Para letras, manifiestos, títulos de canciones</span></div>
+      <div class="tb-sample-serif">
+        Sos el susurro que nunca se calla,<br>
+        <span style="font-weight:700;">el que juzga en la sombra, sin compás.</span>
+      </div>
+      <div class="tb-spec">
+        Fraunces — Weights: 300 italic / 700 italic<br>
+        Siempre en cursiva — nunca romano · La voz del cancionero en el sistema<br>
+        Optical size activada donde sea posible (opsz 9–144)<br>
+        Google Fonts — libre · Sin costo de licencia
+      </div>
+    </div>
+
+    <div class="type-block">
+      <div class="tb-label">— Técnica <span>/ JetBrains Mono · Oficio · Para labels, specs, metadata, descriptores</span></div>
+      <div class="tb-sample-mono">— Buenos Aires · 2025 · Pliego 06 / 06 · V01 · Sistema de identidad visual</div>
+      <div class="tb-spec">
+        JetBrains Mono — Weights: 400 / 500<br>
+        Siempre en mayúsculas · Tracking 0.20em–0.38em según escala<br>
+        La voz técnica del sistema — establece oficio, no jerarquía<br>
+        Google Fonts — libre · Sin costo de licencia
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:40px; padding:32px; background:rgba(237,232,221,0.03); border:1px solid rgba(237,232,221,0.07);">
+    <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:16px;">— La tensión útil del sistema</div>
+    <div class="body-text">Barlow Condensed y Fraunces no se parecen — y eso es exactamente el punto. Uno es industrial y urbano, el otro es lírico y orgánico. Esa fricción controlada replica la misma tensión que existe entre el blues y el tango en las canciones de la banda. No se resuelve — se sostiene.</div>
+  </div>
+</section>
+
+<!-- 04 PATRÓN -->
+<section class="manual-section" id="patron">
+  <div class="sec-label">04 / Patrón / Firma</div>
+  <div class="sec-title">El átomo<br>del sistema.</div>
+
+  <div class="two-col">
+    <div>
+      <div class="pattern-showcase">
+        <div class="pattern-demo">
+          <div class="pd-label">— El átomo mínimo en tres escalas</div>
+          <div class="pd-item">
+            <div class="pd-rule pd-w-short" style="width: 96px;"></div>
+            <div class="pd-size">Small · 32px acento · footers, firmas</div>
+          </div>
+          <div class="pd-item">
+            <div class="pd-rule pd-w-med" style="width: 160px;"></div>
+            <div class="pd-size">Medium · 52px acento · separadores editoriales</div>
+          </div>
+          <div class="pd-item">
+            <div class="pd-rule pd-w-long" style="width: 100%;"></div>
+            <div class="pd-size">Full · 80px acento · reglas de sección</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="pd-label" style="margin-bottom:12px;">— Grilla de puntos</div>
+          <div class="dot-grid-demo">
+            <div class="dot-grid-label">Módulo 24px · Fondo de todos los documentos</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="pd-label" style="margin-bottom:12px;">— El sello / lacre digital</div>
+          <div style="display:flex;align-items:center;justify-content:center;padding:24px 0;">
+            <svg viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(237,232,221,0.18)" stroke-width="1"/>
+              <circle cx="60" cy="60" r="43" fill="none" stroke="rgba(237,232,221,0.10)" stroke-width="0.5"/>
+              <path id="ta" d="M 60,60 m -47,0 a 47,47 0 1,1 94,0" fill="none"/>
+              <text font-family="'JetBrains Mono'" font-size="6.5" letter-spacing="4" fill="rgba(237,232,221,0.38)" text-anchor="middle">
+                <textPath href="#ta" startOffset="25%">BUENOS AIRES · EST. 2024</textPath>
+              </text>
+              <path id="tb" d="M 60,60 m -47,0 a 47,47 0 0,0 94,0" fill="none"/>
+              <text font-family="'JetBrains Mono'" font-size="6.5" letter-spacing="3" fill="rgba(237,232,221,0.38)" text-anchor="middle">
+                <textPath href="#tb" startOffset="25%">BLUES · ROCK · TANGO</textPath>
+              </text>
+              <text x="60" y="66" font-family="'Barlow Condensed'" font-size="28" font-weight="900" text-anchor="middle" letter-spacing="-1.5">
+                <tspan fill="#EDE8DD">E</tspan><tspan fill="#7A1E2E">P</tspan>
+              </text>
+              <circle cx="60" cy="12" r="2" fill="var(--wine)"/>
+              <circle cx="60" cy="108" r="2" fill="rgba(237,232,221,0.20)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:32px;">
+      <div class="body-text">
+        El patrón del sistema son dos elementos que operan en distintos niveles de visibilidad: la grilla de puntos como textura de fondo (siempre presente, nunca dominante) y la regla con acento vino como firma activa.
+      </div>
+      <div class="body-text">
+        La regla con acento vino es el elemento más pequeño que todavía firma una pieza sin que el nombre aparezca. Si alguien que conoce la banda ve esa línea — tinta sutil con 32 a 80px de carmine en el extremo izquierdo — sabe de quién es la pieza.
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+        <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:4px;">— Reglas de uso</div>
+        <div style="font-size:9px;letter-spacing:0.14em;line-height:1.9;color:rgba(237,232,221,0.38);">
+          — El acento vino siempre a la izquierda<br>
+          — La grilla de puntos nunca va sobre fondo papel (solo tinta)<br>
+          — El sello circular mínimo: 60px de diámetro<br>
+          — Nunca combinar sello + wordmark completo en la misma pieza<br>
+          — La regla nunca se usa sin el segmento vino
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 REGLAS -->
+<section class="manual-section" id="reglas">
+  <div class="sec-label">05 / Reglas de uso</div>
+  <div class="sec-title">Qué sí.<br>Qué no.</div>
+
+  <div class="rules-grid">
+
+    <!-- CORRECTO 1 -->
+    <div class="rule-cell rc-correct">
+      <div class="rule-badge badge-ok">✓ Correcto</div>
+      <div class="rule-demo rd-paper">
+        <div class="correct-demo-inner">
+          <span class="lc-name">Estación París</span>
+          <div class="lc-r"></div>
+          <div class="lc-d">Blues · Rock · Buenos Aires</div>
+        </div>
+      </div>
+      <div class="rule-text">Lockup canónico sobre fondo papel. Proporciones originales, descriptor presente.</div>
+    </div>
+
+    <!-- MAL 1: Deformado -->
+    <div class="rule-cell rc-wrong">
+      <div class="rule-badge badge-no">✗ No deformar</div>
+      <div class="rule-demo rd-paper">
+        <span class="wrong-stretch">Estación París</span>
+      </div>
+      <div class="wrong-rule rule-text">El logo nunca se estira ni comprime. Si no entra en el espacio, usar la variante de escala correspondiente.</div>
+    </div>
+
+    <!-- CORRECTO 2 -->
+    <div class="rule-cell rc-correct">
+      <div class="rule-badge badge-ok">✓ Correcto</div>
+      <div class="rule-demo rd-dark">
+        <div class="correct-demo-inner" style="color:var(--paper);">
+          <span class="lc-name" style="color:var(--paper);">Estación París</span>
+          <div class="lc-r" style="background:rgba(237,232,221,0.18);"></div>
+          <div class="lc-d" style="color:rgba(237,232,221,0.38);">Blues · Rock · Buenos Aires</div>
+        </div>
+      </div>
+      <div class="rule-text">Versión tinta: el logo en papel sobre fondo ink. La regla cambia a rgba(paper, 0.18).</div>
+    </div>
+
+    <!-- MAL 2: Outline -->
+    <div class="rule-cell rc-wrong">
+      <div class="rule-badge badge-no">✗ No usar outline</div>
+      <div class="rule-demo rd-paper">
+        <span class="wrong-outline">Estación París</span>
+      </div>
+      <div class="wrong-rule rule-text">El logo nunca se usa en versión contorno. El peso y el macizo son parte esencial de su carácter.</div>
+    </div>
+
+    <!-- MAL 3: Rotado -->
+    <div class="rule-cell rc-wrong">
+      <div class="rule-badge badge-no">✗ No rotar</div>
+      <div class="rule-demo rd-paper" style="overflow:hidden;">
+        <span class="wrong-rotate">Estación París</span>
+      </div>
+      <div class="wrong-rule rule-text">El logo siempre es horizontal. No se rota, no se inclina, no se usa en vertical.</div>
+    </div>
+
+    <!-- MAL 4: Color incorrecto -->
+    <div class="rule-cell rc-wrong">
+      <div class="rule-badge badge-no">✗ No cambiar el color</div>
+      <div class="rule-demo rd-paper">
+        <span class="wrong-color">Estación París</span>
+      </div>
+      <div class="wrong-rule rule-text">El logo solo existe en tinta, papel o vino. Ningún otro color, incluso sobre fondos de marca de terceros.</div>
+    </div>
+
+    <!-- MAL 5: Sin regla -->
+    <div class="rule-cell rc-wrong">
+      <div class="rule-badge badge-no">✗ No quitar la regla</div>
+      <div class="rule-demo rd-paper">
+        <span style="font-family:var(--display);font-weight:900;font-size:20px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);">Estación París</span>
+      </div>
+      <div class="wrong-rule rule-text">La regla es parte del logo, no un adorno. Sin ella, el lockup es incompleto y pierde su firma.</div>
+    </div>
+
+    <!-- CORRECTO 3 -->
+    <div class="rule-cell rc-correct">
+      <div class="rule-badge badge-ok">✓ Tamaño mínimo</div>
+      <div class="rule-demo rd-dark" style="flex-direction:column;gap:12px;align-items:flex-start;">
+        <div style="font-family:var(--display);font-weight:900;font-size:16px;letter-spacing:0.05em;text-transform:uppercase;color:var(--paper);">Estación París</div>
+        <div style="font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:-0.03em;color:rgba(18,16,14,0.0);">
+          <span style="color:var(--paper);">E</span><span style="color:var(--wine);">P</span>
+        </div>
+      </div>
+      <div class="rule-text">Por debajo de 180px de ancho: solo wordmark sin descriptor. Por debajo de 120px: monograma EP.</div>
+    </div>
+
+  </div>
+
+  <!-- Reglas adicionales -->
+  <div style="margin-top:40px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px;">
+    <div style="background:rgba(237,232,221,0.03);border:1px solid rgba(237,232,221,0.07);padding:28px;">
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— Sobre fotografías</div>
+      <div style="font-size:9px;letter-spacing:0.12em;line-height:1.8;color:rgba(237,232,221,0.40);">Siempre versión papel (clara) sobre la zona más oscura de la foto. Nunca sobre zonas claras o de alto contraste. Si la foto no tiene zona oscura apta, usar un bloque de color.</div>
+    </div>
+    <div style="background:rgba(237,232,221,0.03);border:1px solid rgba(237,232,221,0.07);padding:28px;">
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— Co-branding</div>
+      <div style="font-size:9px;letter-spacing:0.12em;line-height:1.8;color:rgba(237,232,221,0.40);">Al aparecer junto a logos de venues, sellos o sponsors: la regla de protección se duplica. El logo de Estación París nunca se achica para "caber" junto a otro — es el otro el que debe ceder espacio.</div>
+    </div>
+    <div style="background:rgba(237,232,221,0.03);border:1px solid rgba(237,232,221,0.07);padding:28px;">
+      <div style="font-size:8px;letter-spacing:0.26em;text-transform:uppercase;color:var(--wine);margin-bottom:12px;">— Sombras y efectos</div>
+      <div style="font-size:9px;letter-spacing:0.12em;line-height:1.8;color:rgba(237,232,221,0.40);">Sin drop shadows. Sin gradientes sobre el logo. Sin efectos de brillo, bisel o relieve. El único efecto permitido es la reducción de opacidad para uso como marca de agua, y solo en materiales internos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOFÓN -->
+<div class="colophon-section" id="colofon">
+  <div class="col-wordmark">
+    ESTACIÓN<br>
+    PAR<span class="wine-col">ÍS</span>.
+  </div>
+
+  <div class="col-center">
+    <div class="col-rule"></div>
+    <div class="col-statement">
+      Un sistema para la noche porteña.<br>
+      Para el blues que no pide permiso.<br>
+      Para las canciones que <em>quedan</em><br>
+      después de que todo lo demás se va.
+    </div>
+  </div>
+
+  <div class="col-bottom">
+    <div class="col-meta">
+      Estación París · Manual de identidad visual<br>
+      V01 · Buenos Aires · 2025<br>
+      Pliego 06 / 06 · Sistema completo
+    </div>
+    <div class="col-logo">
+      Estación París
+      <div class="col-rule-small"></div>
+      <div class="col-desc">Blues · Rock · Buenos Aires</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.sn-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sn-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
