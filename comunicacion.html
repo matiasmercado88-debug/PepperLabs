@@ -3,248 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PepperLabs — Comunicación y posicionamiento</title>
-<meta name="description" content="Comunicación para tu negocio. Pensamos y armamos el contenido del mes para que las redes muestren de verdad lo que sos.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PepperLabs">
-<meta property="og:title" content="PepperLabs — Comunicación y posicionamiento">
-<meta property="og:description" content="Pensamos y armamos el contenido del mes para que las redes muestren de verdad lo que sos.">
-<meta property="og:image" content="assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PepperLabs — Comunicación y posicionamiento">
-<meta name="twitter:description" content="Pensamos y armamos el contenido del mes para que las redes muestren de verdad lo que sos.">
-<meta name="twitter:image" content="assets/og-image.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>PepperLabs · Comunicación — Te escribimos el mes.</title>
+<meta name="description" content="Estrategia, plan mensual, redacción y dirección creativa. Vos aprobás, nosotros publicamos.">
+<link rel="icon" type="image/svg+xml" href="assets/pepper_logo.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=boska@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pepperlabs.css">
+
+<style>
+/* ── Comunicación hero ─────────────────────────────────── */
+.hero-co{
+  position:relative;
+  min-height:calc(100vh - 116px);
+  padding: 60px var(--pad);
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hero-co .meta-strip{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:24px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  padding-bottom:18px; border-bottom:1px solid var(--rule);
+  margin-bottom:50px;
+}
+.hero-co .meta-strip .l{ display:block; color:var(--dim); margin-bottom:6px; }
+.hero-co .meta-strip .v{ color:var(--ink); }
+.hero-co .meta-strip .v em{ font-style:normal; color:var(--warm); }
+@media (max-width:780px){
+  .hero-co .meta-strip{ grid-template-columns:1fr 1fr; gap:18px 24px; margin-bottom:40px; }
+}
+
+.hero-co-inner{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+@media (max-width:1100px){ .hero-co-inner{ grid-template-columns:1fr; gap:48px; } }
+
+.hero-co-left .back{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:36px;
+  transition:color .2s, gap .2s;
+}
+.hero-co-left .back:hover{ color:var(--warm); gap:14px; }
+.hero-co-left h1{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 5.5vw, 80px);
+  line-height:1.02; letter-spacing:-0.028em;
+  color:var(--ink); margin: 24px 0 28px;
+  max-width:16ch;
+}
+.hero-co-left h1 em{
+  font-style:italic; color:var(--warm);
+  text-shadow:0 0 22px rgba(255,113,86,0.35);
+}
+.hero-co-left h1 .dot{
+  display:inline-block; width:0.14em; height:0.14em;
+  background:var(--warm); border-radius:50%;
+  margin-left:0.04em; vertical-align:0.18em;
+  box-shadow:0 0 18px var(--warm);
+}
+.hero-co-left .lead{
+  font-size:19px; line-height:1.55;
+  color:var(--ink-2); max-width:50ch;
+  margin-bottom:40px;
+}
+.hero-co-left .lead strong{ color:var(--ink); font-weight:500; }
+.hero-co-left .lead em{ font-style:normal; color:var(--warm); }
+.hero-co-left .ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+.hero-co-left .ctas .btn--p{ background:var(--warm); border-color:var(--warm); color:var(--bg); }
+.hero-co-left .ctas .btn--p:hover{ box-shadow:0 0 28px rgba(255,113,86,0.35); }
+.hero-co-left .ctas .btn--g:hover{ border-color:var(--warm); color:var(--warm); }
+
+/* Radar / sonar diagram */
+.sonar{
+  position:relative;
+  aspect-ratio: 1 / 1;
+  width:100%;
+  max-width:640px;
+  margin-left:auto;
+}
+.sonar svg{ width:100%; height:100%; display:block; overflow:visible; }
+.sonar .ring{ fill:none; stroke:var(--warm); stroke-width:0.3; opacity:0.7; }
+.sonar .ring-faint{ stroke-width:0.18; opacity:0.4; stroke-dasharray:1.5 1.5; }
+.sonar .radial{ stroke:rgba(255,113,86,0.18); stroke-width:0.2; }
+
+/* Echoes (pepper iterations expanding) */
+.sonar .echo{
+  fill:none; stroke:var(--warm); stroke-linejoin:round;
+  stroke-width:1.5;
+  filter:drop-shadow(0 0 6px rgba(255,113,86,0.5));
+  transform-origin: 50% 50%;
+}
+.sonar .echo.e1{ opacity:1; }
+.sonar .echo.e2{ opacity:.55; transform: scale(1.5); }
+.sonar .echo.e3{ opacity:.32; transform: scale(2.05); }
+.sonar .echo.e4{ opacity:.18; transform: scale(2.6); }
+.sonar .echo.e5{ opacity:.1; transform: scale(3.2); }
+
+/* Pulse animation on rings */
+.sonar .pulse{
+  fill:none; stroke:var(--warm); stroke-width:0.4;
+  transform-origin: 50% 50%;
+  animation: sonarPulse 4s ease-out infinite;
+}
+.sonar .pulse.p2{ animation-delay: 1.3s; }
+.sonar .pulse.p3{ animation-delay: 2.6s; }
+@keyframes sonarPulse{
+  0%{ r: 12; opacity: 0.8; }
+  100%{ r: 45; opacity: 0; }
+}
+
+/* Frame around */
+.sonar-frame{
+  position:absolute; inset:0;
+  border:1px solid var(--rule-2);
+  pointer-events:none;
+}
+.sonar-frame::before, .sonar-frame::after,
+.sonar-frame > i:nth-child(1), .sonar-frame > i:nth-child(2){
+  content:""; position:absolute; width:12px; height:12px;
+  border:1px solid var(--warm);
+}
+.sonar-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.sonar-frame::after{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+.sonar-frame > i:nth-child(1){ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+.sonar-frame > i:nth-child(2){ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+.sonar-label{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--warm);
+  display:flex; gap:10px;
+}
+.sonar-label::before{ content:""; width:14px; height:1px; background:var(--warm); align-self:center; }
+.sonar-spec{
+  position:absolute; bottom:14px; right:14px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.sonar-signal{
+  position:absolute; top:14px; right:14px;
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--warm);
+}
+.sonar-signal::before{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--warm); box-shadow:0 0 8px var(--warm);
+  animation: pl-pulse 1.6s ease-in-out infinite;
+}
+
+/* Bearing labels */
+.bearing{
+  position:absolute;
+  font-family:var(--mono); font-size:8.5px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.bearing.b-n{ top:20px; left:50%; transform:translateX(-50%); }
+.bearing.b-e{ right:20px; top:50%; transform:translateY(-50%); }
+.bearing.b-s{ bottom:20px; left:50%; transform:translateX(-50%); }
+.bearing.b-w{ left:20px; top:50%; transform:translateY(-50%); }
+
+@media (max-width:780px){
+  .bearing{ font-size:7px; }
+}
+
+/* Tape */
+.tape{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden; padding:13px 0;
+  background:var(--bg-2); position:relative; z-index:5;
+}
+.tape-track{ display:flex; width:max-content; animation: tape 42s linear infinite; gap:48px; }
+.tape-item{
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  display:inline-flex; align-items:center; gap:48px;
+  white-space:nowrap;
+}
+.tape-item::after{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--warm); box-shadow:0 0 8px var(--warm);
+}
+@keyframes tape{ to{ transform:translateX(-50%); } }
+
+/* Diag cards */
+.diag-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; }
+@media (max-width:900px){ .diag-grid{ grid-template-columns:1fr; } }
+.diag-card{
+  background:var(--bg-2);
+  border:1px solid var(--rule-2);
+  padding:28px 26px;
+  display:flex; flex-direction:column; gap:14px;
+  transition: transform .25s var(--ease), border-color .25s;
+}
+.diag-card:hover{ transform:translateY(-3px); border-color:color-mix(in srgb, var(--warm) 30%, var(--rule-2)); }
+.diag-card .lab{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--warm);
+}
+.diag-card .t{
+  font-family:var(--serif); font-weight:500;
+  font-size:24px; letter-spacing:-0.015em; line-height:1.1; color:var(--ink);
+}
+.diag-card .d{ font-size:15px; color:var(--ink-2); line-height:1.55; }
+
+/* Services 6-grid */
+.svc-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+}
+@media (max-width:960px){ .svc-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .svc-grid{ grid-template-columns:1fr; } }
+.svc-card{
+  background:var(--bg-2);
+  border:1px solid var(--rule-2);
+  padding:28px 24px 30px;
+  display:flex; flex-direction:column; gap:12px;
+  position:relative;
+  transition: border-color .25s, transform .25s var(--ease);
+}
+.svc-card:hover{ transform:translateY(-3px); border-color:color-mix(in srgb, var(--warm) 30%, var(--rule-2)); }
+.svc-card:hover .svc-card-n{ color:var(--warm); }
+.svc-card-n{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; color:var(--dim);
+  transition: color .25s;
+}
+.svc-card-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:22px; letter-spacing:-0.018em;
+  line-height:1.1; color:var(--ink);
+}
+.svc-card-d{
+  font-size:14.5px; color:var(--ink-2); line-height:1.55;
+}
+
+/* End block override warm */
+.end.co::before{
+  background:radial-gradient(circle, rgba(255,113,86,0.10) 0%, transparent 60%);
+}
+.end.co .h-page em{ color:var(--warm); }
+.end.co .h-page .dot{ background:var(--warm); box-shadow:0 0 22px var(--warm); }
+.end.co .end-ctas .btn--p{ background:var(--warm); border-color:var(--warm); color:var(--bg); }
+.end.co .end-ctas .btn--p:hover{ box-shadow:0 0 28px rgba(255,113,86,0.35); }
+.end.co .end-ctas .btn--g:hover{ border-color:var(--warm); color:var(--warm); }
+.end.co .end-channels a:hover{ color:var(--warm); border-color:var(--warm); }
+.end.co .eyebrow{ color:var(--warm); }
+.end.co .eyebrow::before{ background:var(--warm); }
+
+/* Section color for comunicacion */
+.sec.co{ --ac:var(--warm); }
+.sec.co .sec-head-l .pliego{ color:var(--warm); }
+.sec.co .h-section em{ color:var(--warm); }
+
+</style>
 </head>
 <body>
 
-<!-- PEPPER SYMBOL -->
+<!-- Pepper symbol -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="pep" viewBox="0 0 94.93 115.91">
-    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
-    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
-    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  <symbol id="pep-out" viewBox="0 0 94.93 115.91">
+    <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
   </symbol>
 </svg>
 
-<!-- NAV -->
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <a class="nav-logo" href="index.html"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
   <ul class="nav-links">
     <li><a href="sistema.html">Sistema</a></li>
     <li><a href="identidad.html">Identidad</a></li>
-    <li><a href="comunicacion.html" class="active">Comunicación</a></li>
+    <li><a href="comunicacion.html">Comunicación</a></li>
     <li><a href="trabajos.html">Trabajos</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+    <a href="index.html" class="nav-logo" style="text-decoration:none"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar &times;</button>
   </div>
   <ul>
     <li><a href="sistema.html" data-n="01">Sistema</a></li>
     <li><a href="identidad.html" data-n="02">Identidad</a></li>
     <li><a href="comunicacion.html" data-n="03">Comunicación</a></li>
     <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
-        <li><a href="contacto.html" data-n="05">Contacto</a></li>
+    <li><a href="contacto.html" data-n="05">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+  <a href="contacto.html" class="mm-cta">Hablemos &rarr;</a>
 </div>
 
-<!-- HERO · Comunicación — Eco -->
-<header class="hero comunicacion">
-  <span class="folio">Nº <strong>03</strong> / 05 · Comunicación</span>
-  <div class="echo e5" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="echo e4" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="echo e3" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="echo e2" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="echo e1" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="signal-stamp">
-    <span class="st-l">Transmitting · 03</span>
+<!-- HERO -->
+<header class="hero-co" id="top">
+
+  <div class="meta-strip">
+    <div><span class="l">— Página</span><span class="v">Comunicación &amp; voz</span></div>
+    <div><span class="l">— Área</span><span class="v"><em>01 / lo que asoma</em></span></div>
+    <div><span class="l">— Práctica</span><span class="v">Estrategia · Plan · Redacción</span></div>
+    <div><span class="l">— Entrega</span><span class="v">Plan mensual · Voz · Contenido</span></div>
+    <div><span class="l">— Versión</span><span class="v">v.MMXXVI · activa</span></div>
   </div>
-  <div class="hero-in right">
-    <div class="hero-meta">
-      <a href="index.html" class="back-link">← PepperLabs</a>
-      <span class="sep">·</span>
-      <span class="area-tag">Área 03 · Comunicación</span>
-      <span class="year">MMXXVI</span>
+
+  <div class="hero-co-inner">
+
+    <div class="hero-co-left">
+      <a href="index.html" class="back">← PepperLabs</a>
+      <span class="eyebrow" style="color:var(--warm)"><span style="background:var(--warm); box-shadow:0 0 8px var(--warm); width:7px; height:7px; border-radius:50%; display:inline-block; animation:pl-pulse 2.4s ease-in-out infinite;"></span>Lo que asoma</span>
+      <h1>Digitalizamos <em>la esencia de tu negocio.</em></h1>
+      <p class="lead">Estrategia, plan mensual, generación de contenido, redacción y dirección creativa. <strong>Vos aprobás, nosotros subimos.</strong></p>
+      <div class="ctas">
+        <a href="contacto.html" class="btn btn--p">Hablemos <span class="ar">→</span></a>
+        <a href="#metodo" class="btn btn--g">Cómo trabajamos <span class="ar">→</span></a>
+      </div>
     </div>
-    <h1>Tu mes <em>ya está escrito.</em></h1>
-    <p class="hero-lead">Estrategia, plan mensual, redacción y dirección creativa. Vos aprobás, nosotros publicamos.</p>
-    <div class="hero-foot">
-      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
-      <a href="#metodo" class="btn btn-line">Cómo trabajamos <span class="ar">→</span></a>
+
+    <!-- Sonar -->
+    <div class="sonar" aria-hidden="true">
+      <div class="sonar-frame"><i></i><i></i></div>
+      <span class="sonar-label">— Señal · Transmitiendo</span>
+      <span class="sonar-signal">Transmit · 01</span>
+      <span class="sonar-spec">— Banda · MMXXVI · BA / CBA</span>
+
+      <span class="bearing b-n">— N</span>
+      <span class="bearing b-e">E</span>
+      <span class="bearing b-s">S</span>
+      <span class="bearing b-w">W —</span>
+
+      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <!-- Crosshairs / radial guide lines -->
+        <g>
+          <line class="radial" x1="50" y1="0" x2="50" y2="100"/>
+          <line class="radial" x1="0" y1="50" x2="100" y2="50"/>
+          <line class="radial" x1="14.6" y1="14.6" x2="85.4" y2="85.4"/>
+          <line class="radial" x1="14.6" y1="85.4" x2="85.4" y2="14.6"/>
+        </g>
+
+        <!-- Range rings -->
+        <circle class="ring ring-faint" cx="50" cy="50" r="48"/>
+        <circle class="ring ring-faint" cx="50" cy="50" r="40"/>
+        <circle class="ring ring-faint" cx="50" cy="50" r="32"/>
+        <circle class="ring" cx="50" cy="50" r="24"/>
+        <circle class="ring" cx="50" cy="50" r="16"/>
+
+        <!-- Animated pulses -->
+        <circle class="pulse" cx="50" cy="50" r="12"/>
+        <circle class="pulse p2" cx="50" cy="50" r="12"/>
+        <circle class="pulse p3" cx="50" cy="50" r="12"/>
+
+        <!-- Pepper at center -->
+        <g transform="translate(50,50) scale(0.13) translate(-47.46,-57.95)">
+          <g class="echo e1">
+            <use href="#pep-out"/>
+          </g>
+        </g>
+
+        <!-- Range labels -->
+        <g fill="rgba(122,114,153,0.7)" font-family="JetBrains Mono" font-size="2" letter-spacing="0.04em">
+          <text x="52" y="35">— alcance 02</text>
+          <text x="52" y="27">— alcance 03</text>
+          <text x="52" y="19">— alcance 04</text>
+        </g>
+      </svg>
     </div>
+
   </div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Estrategia</span><span class="marquee-item">Plan mensual</span><span class="marquee-item">Redacción</span><span class="marquee-item">Dirección creativa</span>
-    <span class="marquee-item">Estrategia</span><span class="marquee-item">Plan mensual</span><span class="marquee-item">Redacción</span><span class="marquee-item">Dirección creativa</span>
-    <span class="marquee-item">Estrategia</span><span class="marquee-item">Plan mensual</span><span class="marquee-item">Redacción</span><span class="marquee-item">Dirección creativa</span>
-    <span class="marquee-item">Estrategia</span><span class="marquee-item">Plan mensual</span><span class="marquee-item">Redacción</span><span class="marquee-item">Dirección creativa</span>
+<!-- TAPE -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-item">Estrategia</span>
+    <span class="tape-item">Plan mensual</span>
+    <span class="tape-item">Creación de contenido</span>
+    <span class="tape-item">Dirección creativa</span>
+    <span class="tape-item">Estrategia</span>
+    <span class="tape-item">Plan mensual</span>
+    <span class="tape-item">Creación de contenido</span>
+    <span class="tape-item">Dirección creativa</span>
+    <span class="tape-item">Estrategia</span>
+    <span class="tape-item">Plan mensual</span>
+    <span class="tape-item">Creación de contenido</span>
+    <span class="tape-item">Dirección creativa</span>
   </div>
 </div>
 
-<!-- 01 — DIAGNÓSTICO -->
-<section class="sec" id="diagnostico">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:88px;height:108px;color:var(--pink);top:-30px;right:5%;transform:rotate(14deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 01 — Diagnóstico</span>
-      <h2 class="h2">Cada lunes arranca sin saber <em class="pink">qué postear.</em></h2>
-      <p class="sec-lead">Sin un plan detrás, el contenido sale para cumplir. Y se nota.</p>
-    </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01 · Intención</span><span class="sintoma-t">Se publica por publicar</span><span class="sintoma-d">Sale algo para no dejar la cuenta muerta, sin una idea atrás.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02 · Conjunto</span><span class="sintoma-t">Todo se decide el día anterior</span><span class="sintoma-d">Nunca se piensa el mes completo. Solo el posteo de mañana.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03 · Voz</span><span class="sintoma-t">El tono cambia solo</span><span class="sintoma-d">Una semana formal, otra relajada. La cuenta no suena a una sola cosa.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04 · Sentido</span><span class="sintoma-t">Se miran los likes y nada más</span><span class="sintoma-d">Números sueltos. Nadie sabe si todo eso sirvió para algo.</span></div>
-    </div>
-  </div>
-</section>
+<main>
 
-<!-- 02 — QUÉ HACEMOS -->
-<section class="sec" id="servicios">
+<!-- DIAGNÓSTICO -->
+<section class="sec co" id="diagnostico">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 02 — Qué hacemos</span>
-      <h2 class="h2">Detrás de cada posteo, <em>una idea.</em></h2>
-      <p class="sec-lead">Seis cosas que hacemos para que tu comunicación tenga rumbo. Vos no tenés que tocar nada.</p>
-    </div>
-    <div class="sintomas">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Estrategia de marca</span><span class="sintoma-d">Definimos a quién le hablás y de qué. La base de todo lo que viene.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Plan de publicaciones</span><span class="sintoma-d">Cada mes, qué se cuenta y cuándo. Pensado, no improvisado.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Redacción</span><span class="sintoma-d">Los textos escritos en la voz de tu marca, listos para subir.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Dirección creativa</span><span class="sintoma-d">Qué mostrar y cómo, pieza por pieza.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 05</span><span class="sintoma-t">Seguimiento</span><span class="sintoma-d">Qué está listo, qué falta y qué ya salió. Sin perseguir a nadie.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 06</span><span class="sintoma-t">Lectura de resultados</span><span class="sintoma-d">Al cierre del mes te contamos qué funcionó y qué conviene cambiar.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 — CÓMO TRABAJAMOS -->
-<section class="sec" id="metodo">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:70px;height:85px;color:var(--lime);bottom:30px;left:-14px;transform:rotate(-22deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 03 — Cómo trabajamos</span>
-      <h2 class="h2">Del negocio al plan, en <em class="lime">cinco pasos.</em></h2>
-      <p class="sec-lead">Cada paso deja algo concreto. Y en cada uno, lo único que hacés vos es mirar y aprobar.</p>
-    </div>
-    <div class="sintomas">
-      <div class="sintoma"><span class="sintoma-n">— Paso 01</span><span class="sintoma-t">Te conocemos</span><span class="sintoma-d">Qué hacés, a quién le vendés y qué te diferencia del resto.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 02</span><span class="sintoma-t">Definimos la estrategia</span><span class="sintoma-d">Tu voz, tus temas y a quién le hablás. Lo validás vos.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 03</span><span class="sintoma-t">Armamos el plan del mes</span><span class="sintoma-d">Cada publicación, con su texto, su formato y su fecha.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 04</span><span class="sintoma-t">Revisás y aprobás</span><span class="sintoma-d">Mirás el plan, pedís cambios si querés, y queda listo para salir.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 05</span><span class="sintoma-t">Te pasamos resultados</span><span class="sintoma-d">Qué pasó en el mes y qué conviene para el siguiente.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Cierre</span><span class="sintoma-t">Tu tarea: aprobar</span><span class="sintoma-d">Del resto nos ocupamos nosotros.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 — POR QUÉ IMPORTA -->
-<section class="sec" id="importa">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-kick">// 04 — Por qué importa</span>
-      <h2 class="h2">Una marca se recuerda <em>por lo que sostiene.</em></h2>
-      <p class="sec-lead">Estar presente no alcanza. Una presencia que construye algo se apoya en cuatro cosas.</p>
-    </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Voz</span><span class="sintoma-d">Siempre la misma, la reconozcan donde la reconozcan.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Constancia</span><span class="sintoma-d">Aparecer siempre, no solo cuando sobra tiempo.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Intención</span><span class="sintoma-d">Cada posteo busca algo. Ninguno está para rellenar.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Dirección</span><span class="sintoma-d">Cada mes apoya al siguiente. La presencia tiene rumbo.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINO (→ contacto.html) -->
-<section class="cta-fino">
-  <div class="wrap">
-    <div class="cta-fino-row">
-      <h2 class="cta-fino-title">¿Tenés un proyecto en mente? <em>Hablemos.</em></h2>
-      <a href="contacto.html" class="btn btn-fill">Empezar conversación <span class="ar">→</span></a>
-    </div>
-    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-row">
-      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-      <div class="footer-links">
-        <a href="index.html">Inicio</a>
-        <a href="sistema.html">Sistema</a>
-        <a href="identidad.html">Identidad</a>
-        <a href="trabajos.html">Trabajos</a>
-        <a href="contacto.html">Contacto</a>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 01 / 04</span>
+        <span class="ix">— Diagnóstico</span>
       </div>
-      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
+      <div class="sec-head-r">
+        <h2 class="h-section">Otro mes sin saber <em>qué comunicar.</em></h2>
+        <p class="lead">Sin un plan detrás, el contenido se hace para cumplir. <strong>Corrés de atrás y se nota.</strong></p>
+      </div>
     </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <span class="lab">— 01 · Intención</span>
+        <h3 class="t">Se publica por publicar</h3>
+        <p class="d">Subís algo para no dejar las redes mudas, sin una idea atrás.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 02 · Conjunto</span>
+        <h3 class="t">Todo se decide el día anterior</h3>
+        <p class="d">Nunca se piensa el mes completo. Solo el posteo de mañana.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 03 · Identidad</span>
+        <h3 class="t">El tono cambia solo</h3>
+        <p class="d">Una semana formal, otra relajada. <strong>La cuenta no tiene identidad.</strong></p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 04 · Sentido</span>
+        <h3 class="t">Se miran los likes y nada más</h3>
+        <p class="d">Números sueltos. Nadie sabe si eso sirvió para algo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ HACEMOS -->
+<section class="sec co" id="servicios">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 02 / 04</span>
+        <span class="ix">— Qué hacemos</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Detrás de cada acción, <em>un objetivo.</em></h2>
+        <p class="lead">Seis imprescindibles para que tu comunicación tenga rumbo. <strong>Vos nos contás, nosotros creamos.</strong></p>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-card-n">— 01</span>
+        <h3 class="svc-card-name">Estrategia de marca</h3>
+        <p class="svc-card-d">Definimos a quién le hablás y de qué.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-n">— 02</span>
+        <h3 class="svc-card-name">Calendario de publicaciones</h3>
+        <p class="svc-card-d">Cada mes, qué se cuenta y cuándo.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-n">— 03</span>
+        <h3 class="svc-card-name">Creación de contenido</h3>
+        <p class="svc-card-d">Producción, filmación y redacción como medio del objetivo.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-n">— 04</span>
+        <h3 class="svc-card-name">Dirección creativa</h3>
+        <p class="svc-card-d">Qué mostrar y cómo, con tono y estética propia.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-n">— 05</span>
+        <h3 class="svc-card-name">Seguimiento</h3>
+        <p class="svc-card-d">Qué está, qué falta, cómo seguimos y a dónde vamos.</p>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-n">— 06</span>
+        <h3 class="svc-card-name">Lectura de resultados</h3>
+        <p class="svc-card-d">Qué funcionó y qué conviene ajustar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="sec co" id="metodo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 03 / 04</span>
+        <span class="ix">— Método</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Tu negocio, <em>tu plan.</em></h2>
+        <p class="lead">Armamos planes personalizados a corto, mediano y largo plazo. <strong>Con horizonte concreto.</strong></p>
+      </div>
+    </div>
+
+    <div class="row-list">
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Paso 01</span>
+        <h3 class="row-name">Te <em>conocemos</em></h3>
+        <p class="row-desc">Qué hacés, a quién le vendés y qué te diferencia.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Paso 02</span>
+        <h3 class="row-name">Definimos <em>la estrategia</em></h3>
+        <p class="row-desc">Tu core, tu voz, tus temas y tu tono.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Paso 03</span>
+        <h3 class="row-name">Armamos <em>el plan</em></h3>
+        <p class="row-desc">Cada contenido, su canal, su copy, formato digital y fecha.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Paso 04</span>
+        <h3 class="row-name">Revisás <em>y aprobás</em></h3>
+        <p class="row-desc">Ajustes y validación antes de publicar.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Paso 05</span>
+        <h3 class="row-name">Resultados</h3>
+        <p class="row-desc">Qué pasó y cómo impacta.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— Cierre</span>
+        <h3 class="row-name">Tu tarea: <em>aprobar y corregir</em></h3>
+        <p class="row-desc">Del resto nos ocupamos nosotros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ IMPORTA -->
+<section class="sec co" id="importa">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 04 / 04</span>
+        <span class="ix">— Por qué importa</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Una marca crece cuando <em>muestra lo que es.</em></h2>
+        <p class="lead">Estar presente no alcanza. <strong>Una presencia sólida necesita consistencia, constancia y estética.</strong></p>
+      </div>
+    </div>
+
+    <div class="row-list">
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— 01</span>
+        <h3 class="row-name">Identidad</h3>
+        <p class="row-desc">Siempre reconocible.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— 02</span>
+        <h3 class="row-name">Constancia</h3>
+        <p class="row-desc">Sostener la actividad.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— 03</span>
+        <h3 class="row-name">Intención</h3>
+        <p class="row-desc">Cada posteo tiene una función.</p>
+      </div>
+      <div class="row" style="--ac:var(--warm)">
+        <span class="row-num">— 04</span>
+        <h3 class="row-name">Dirección</h3>
+        <p class="row-desc">Cada mes se construye sobre el anterior.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END -->
+<section class="end co">
+  <div class="end-in">
+    <span class="eyebrow">Si tu marca no termina de sonar</span>
+    <h2 class="h-page">Hablamos <em>cuando vos digas.</em></h2>
+    <p class="lead">Contanos tu rubro y te armamos un plan mensual de ejemplo. <em>Sin compromiso.</em></p>
+    <div class="end-ctas">
+      <a href="contacto.html" class="btn btn--p">Iniciar conversación <span class="ar">→</span></a>
+      <a href="https://wa.me/5493484333427" target="_blank" rel="noopener" class="btn btn--g">WhatsApp directo <span class="ar">→</span></a>
+    </div>
+    <div class="end-channels">
+      <a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a>
+      <a href="https://wa.me/5493484333427">+54 9 3484 33-3427</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="pep"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="name">Pepper<em>Labs</em></span>
+      <p>Resolvemos problemas.</p>
+    </div>
+    <div class="foot-col">
+      <h4>— Áreas</h4>
+      <ul>
+        <li><a href="sistema.html">Sistemas</a></li>
+        <li><a href="identidad.html">Identidad</a></li>
+        <li><a href="comunicacion.html">Comunicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Estudio</h4>
+      <ul>
+        <li><a href="trabajos.html">Trabajos</a></li>
+        <li><a href="index.html#estudio">Manifiesto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Hablemos</h4>
+      <ul>
+        <li><a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a></li>
+        <li><a href="https://wa.me/5493484333427">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>v3.0 · build 2026.05</span>
+    <span>Estudio activo · Tomando proyectos</span>
   </div>
 </footer>
 
-<script>
-(function(){
-  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
-  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
-  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
-  if(mc)mc.addEventListener('click',function(){sm(false);});
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+<div class="mm" id="mm">
+  <div class="mm-head">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="brand-name">Pepper<em>Labs</em></span>
+    </a>
+    <button class="mm-close" id="navClose" type="button">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="— 03">Sistemas</a></li>
+    <li><a href="identidad.html" data-n="— 02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="— 01">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="— 04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="— 05">Contacto</a></li>
+  </ul>
+  <a class="mm-cta" href="contacto.html">Iniciar conversación →</a>
+</div>
 
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-    });
-  });
-})();
-
-function enviarForm(e){
-  if(e) e.preventDefault();
-  var n   = (document.getElementById('cfName').value||'').trim();
-  var emp = (document.getElementById('cfEmp').value||'').trim();
-  var via = (document.getElementById('cfVia').value||'').trim();
-  var msg = (document.getElementById('cfMsg').value||'').trim();
-  if(!n)  { alert('Por favor completá tu nombre.'); return false; }
-  if(!msg){ alert('Contanos brevemente qué necesitás.'); return false; }
-  function safe(s){ return s.replace(/[<>"&]/g,''); }
-  var txt = encodeURIComponent(
-    'Hola PepperLabs, me contacto desde el sitio.\n\n' +
-    'Nombre: ' + safe(n) + '\n' +
-    'Empresa: ' + (safe(emp) || 'No especificada') + '\n' +
-    'Contacto preferido: ' + (safe(via) || 'WhatsApp') + '\n\n' +
-    'Mensaje:\n' + safe(msg).slice(0, 500)
-  );
-  window.open('https://wa.me/5493484333427?text=' + txt, '_blank');
-  return false;
-}
-</script>
-
+<script src="pepperlabs.js" defer></script>
 </body>
 </html>

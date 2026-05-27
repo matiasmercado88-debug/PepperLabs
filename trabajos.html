@@ -3,60 +3,344 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PepperLabs — Trabajos</title>
-<meta name="description" content="Trabajos de PepperLabs: software, identidad visual y comunicación para PyMEs argentinas. Casos reales.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PepperLabs">
-<meta property="og:title" content="PepperLabs — Trabajos">
-<meta property="og:description" content="Lo que hicimos para clientes reales. Software, diseño y comunicación con un mismo equipo.">
-<meta property="og:image" content="assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PepperLabs — Trabajos">
-<meta name="twitter:description" content="Lo que hicimos para clientes reales. Software, diseño y comunicación con un mismo equipo.">
-<meta name="twitter:image" content="assets/og-image.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>PepperLabs · Trabajos — Lo que hicimos.</title>
+<meta name="description" content="Archivo de trabajos: software, identidad y comunicación para PyMEs argentinas.">
+<link rel="icon" type="image/svg+xml" href="assets/pepper_logo.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=boska@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pepperlabs.css">
+
+<style>
+/* ── Trabajos hero ───────────────────────────────────── */
+.hero-tr{
+  position:relative;
+  padding: 60px var(--pad);
+  border-bottom:1px solid var(--rule);
+}
+.hero-tr .meta-strip{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:24px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  padding-bottom:18px; border-bottom:1px solid var(--rule);
+  margin-bottom:60px;
+}
+.hero-tr .meta-strip .l{ display:block; color:var(--dim); margin-bottom:6px; }
+.hero-tr .meta-strip .v{ color:var(--ink); }
+.hero-tr .meta-strip .v em{ font-style:normal; color:var(--cyan); }
+@media (max-width:780px){
+  .hero-tr .meta-strip{ grid-template-columns:1fr 1fr; gap:18px 24px; margin-bottom:40px; }
+}
+
+.hero-tr-grid{
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  gap:60px;
+  align-items:end;
+}
+@media (max-width:900px){ .hero-tr-grid{ grid-template-columns:1fr; gap:40px; } }
+
+.hero-tr-grid .back{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:32px;
+  transition:color .2s, gap .2s;
+}
+.hero-tr-grid .back:hover{ color:var(--cyan); gap:14px; }
+
+.hero-tr h1{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(40px, 6vw, 96px);
+  line-height:1; letter-spacing:-0.03em;
+  color:var(--ink);
+  margin-bottom:20px;
+}
+.hero-tr h1 em{ font-style:italic; color:var(--cyan); }
+.hero-tr h1 .dot{
+  display:inline-block; width:0.14em; height:0.14em;
+  background:var(--cyan); border-radius:50%;
+  margin-left:0.04em; vertical-align:0.18em;
+  box-shadow:0 0 22px var(--cyan);
+}
+.hero-tr .lead{ font-size:18px; max-width:48ch; }
+
+.hero-tr-side{
+  display:flex; flex-direction:column; gap:20px;
+}
+.archive-card{
+  border:1px solid var(--rule-2);
+  padding:24px 24px 26px;
+  background:var(--bg-2);
+  display:flex; flex-direction:column; gap:14px;
+}
+.archive-card h3{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--cyan);
+  display:flex; align-items:center; gap:10px;
+}
+.archive-card h3::before{
+  content:""; width:14px; height:1px; background:var(--cyan);
+}
+.archive-card .stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px 16px;
+  margin-top:6px;
+}
+.archive-card .stat .n{
+  font-family:var(--serif); font-weight:500;
+  font-size:36px; letter-spacing:-0.022em; color:var(--ink);
+  line-height:1;
+}
+.archive-card .stat .n em{ font-style:italic; color:var(--cyan); }
+.archive-card .stat .l{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); margin-top:6px;
+}
+
+/* Big pepper seal floating right of hero (smaller) */
+.tr-seal{
+  position:absolute;
+  right:calc(var(--pad) + 20px);
+  top:90px;
+  width:110px;
+  aspect-ratio: 94.93 / 115.91;
+  opacity:0.35;
+  pointer-events:none;
+  z-index:0;
+}
+.tr-seal svg{
+  width:100%; height:100%;
+  fill:none; stroke:var(--cyan); stroke-width:1.2;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 10px rgba(47,230,255,0.4));
+}
+.tr-seal::before{
+  content:""; position:absolute; inset:-12%;
+  border:1px dashed var(--rule-2); border-radius:50%;
+}
+.tr-seal-stamp{
+  position:absolute;
+  bottom:-28px; left:50%;
+  transform:translateX(-50%);
+  font-family:var(--mono); font-size:8px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); white-space:nowrap;
+}
+@media (max-width:780px){ .tr-seal{ display:none; } }
+
+/* Filter chips */
+.filter{
+  display:flex; align-items:center; gap:10px;
+  flex-wrap:wrap;
+  padding: 28px var(--pad);
+  border-bottom:1px solid var(--rule);
+  background:var(--bg-2);
+  position:relative; z-index:5;
+}
+.filter-lab{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); margin-right:8px;
+}
+.filter-chip{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  padding:8px 16px;
+  border:1px solid var(--rule-2);
+  cursor:pointer;
+  transition:all .2s;
+  background:transparent;
+}
+.filter-chip:hover{ border-color:var(--cyan); color:var(--cyan); }
+.filter-chip.active{
+  background:var(--cyan); color:var(--bg); border-color:var(--cyan);
+}
+.filter-count{
+  margin-left:auto;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.filter-count strong{ color:var(--ink); font-weight:500; }
+
+/* Project archive — list/grid */
+.archive{
+  padding:80px 0;
+  position:relative; z-index:5;
+}
+.archive-head{
+  max-width:1480px;
+  margin:0 auto;
+  padding:0 var(--pad);
+  border-top:1px solid var(--rule-2);
+  margin-bottom:0;
+}
+
+.project{
+  border-top:1px solid var(--rule-2);
+  padding:56px var(--pad);
+  position:relative;
+  display:grid;
+  grid-template-columns: 80px 1.2fr 1.6fr 60px;
+  gap:40px;
+  max-width:1480px;
+  margin:0 auto;
+  align-items:start;
+  transition: background .3s;
+}
+.project:hover{ background:rgba(47,230,255,0.025); }
+.project:hover .project-name{ color:var(--cyan); }
+.project:last-child{ border-bottom:1px solid var(--rule-2); }
+.project[data-hidden="true"]{ display:none; }
+
+.project-num{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; color:var(--dim);
+  padding-top:8px;
+}
+.project-num .y{
+  display:block; margin-top:8px;
+  color:var(--ink); font-size:12px;
+}
+.project-info{
+  display:flex; flex-direction:column; gap:14px;
+}
+.project-tag{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--cyan);
+  display:flex; align-items:center; gap:10px;
+}
+.project-tag::before{
+  content:""; width:14px; height:1px; background:var(--cyan);
+}
+.project-tag.sis{ color:var(--lime); }
+.project-tag.sis::before{ background:var(--lime); }
+.project-tag.com{ color:var(--warm); }
+.project-tag.com::before{ background:var(--warm); }
+.project-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(32px, 4vw, 56px); line-height:1;
+  letter-spacing:-0.025em; color:var(--ink);
+  transition: color .25s;
+}
+.project-name em{ font-style:italic; color:var(--cyan); }
+.project-desc{
+  font-size:15.5px; color:var(--ink-2); line-height:1.55;
+  max-width:42ch;
+}
+.project-desc strong{ color:var(--ink); font-weight:500; }
+.project-tags{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:4px;
+}
+.project-tags span{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.02em; text-transform:uppercase;
+  color:var(--ink-2);
+  padding:5px 10px; border:1px solid var(--rule-2);
+}
+
+.project-shots{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+}
+.project-shots.cols-2{ grid-template-columns:repeat(2,1fr); }
+.project-shots.cols-1{ grid-template-columns:1fr; }
+.project-shot{
+  position:relative;
+  background:var(--bg-2);
+  border:1px solid var(--rule-2);
+  aspect-ratio: 16/10;
+  overflow:hidden;
+  cursor:zoom-in;
+  transition: transform .35s var(--ease), border-color .25s;
+}
+.project-shot.phone{ aspect-ratio: 480/920; }
+.project-shot:hover{ transform:translateY(-3px); border-color:var(--cyan); }
+.project-shot img{
+  width:100%; height:100%; object-fit:cover; object-position:center top;
+  transition: transform .4s var(--ease);
+}
+.project-shot.phone img{ object-fit:contain; object-position:center; }
+.project-shot:hover img{ transform:scale(1.04); }
+.project-shot .label{
+  position:absolute; bottom:0; left:0; right:0;
+  padding:8px 12px;
+  background:linear-gradient(transparent, rgba(11,8,16,0.9));
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink);
+}
+
+.project-arrow{
+  width:40px; height:40px;
+  border:1px solid var(--rule-2);
+  border-radius:50%;
+  display:grid; place-items:center;
+  color:var(--ink-2);
+  transition:all .25s var(--ease);
+  align-self:start; margin-top:8px;
+}
+.project-arrow svg{ width:14px; height:14px; }
+.project:hover .project-arrow{ background:var(--cyan); color:var(--bg); border-color:var(--cyan); }
+
+@media (max-width:1100px){
+  .project{ grid-template-columns: 60px 1fr 40px; gap:20px 16px; }
+  .project-shots{ grid-column: 1 / -1; margin-top:18px; }
+}
+@media (max-width:600px){
+  .project-shots{ grid-template-columns:repeat(2,1fr); gap:8px; }
+  .project-shots.cols-1, .project-shots.cols-2{ grid-template-columns:repeat(2,1fr); }
+}
+
+</style>
 </head>
 <body>
 
+<!-- Pepper symbol -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="pep" viewBox="0 0 94.93 115.91">
-    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
-    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
-    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  <symbol id="pep-out" viewBox="0 0 94.93 115.91">
+    <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
   </symbol>
 </svg>
 
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <a class="nav-logo" href="index.html"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
   <ul class="nav-links">
     <li><a href="sistema.html">Sistema</a></li>
     <li><a href="identidad.html">Identidad</a></li>
     <li><a href="comunicacion.html">Comunicación</a></li>
-    <li><a href="trabajos.html" class="active">Trabajos</a></li>
+    <li><a href="trabajos.html">Trabajos</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+    <a href="index.html" class="nav-logo" style="text-decoration:none"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar &times;</button>
   </div>
   <ul>
     <li><a href="sistema.html" data-n="01">Sistema</a></li>
@@ -65,111 +349,236 @@
     <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
     <li><a href="contacto.html" data-n="05">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+  <a href="contacto.html" class="mm-cta">Hablemos &rarr;</a>
 </div>
 
-<!-- HERO · Trabajos — Archivo/registro -->
-<header class="hero trabajos">
-  <span class="folio">Nº <strong>04</strong> / 05 · Trabajos</span>
+<!-- HERO -->
+<header class="hero-tr" id="top">
+  <div class="wrap">
 
-  <div class="arc-frame" aria-hidden="true">
-    <span class="arc-label">Registro · MMXXVI</span>
-    <svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg>
-    <span class="arc-spec">— Casos / 01 / ∞</span>
+    <div class="meta-strip">
+      <div><span class="l">— Página</span><span class="v">Trabajos · Archivo</span></div>
+      <div><span class="l">— Áreas</span><span class="v"><em>Las tres</em></span></div>
+      <div><span class="l">— Desde</span><span class="v">1992 (Software Express)</span></div>
+      <div><span class="l">— Total</span><span class="v">+300 PyMEs servidas</span></div>
+      <div><span class="l">— Versión</span><span class="v">v.MMXXVI · activa</span></div>
+    </div>
+
+    <div class="hero-tr-grid">
+      <div>
+        <a href="index.html" class="back">← PepperLabs</a>
+        <h1>Trabajos<em>.</em><span class="dot"></span></h1>
+        <p class="lead">Lo que hicimos cuando nos dejaron hacer las cosas bien. Sistemas que andan, marcas que aguantan, y redes que no parecen escritas por un primo.</p>
+      </div>
+
+      <div class="hero-tr-side">
+        <div class="archive-card">
+          <h3>— Archivo · ficha</h3>
+          <div class="stats">
+            <div class="stat"><span class="n">4</span><span class="l">— Proyectos<br>seleccionados</span></div>
+            <div class="stat"><span class="n">3</span><span class="l">— Áreas<br>combinadas</span></div>
+            <div class="stat"><span class="n">300<em>+</em></span><span class="l">— PyMEs<br>servidas (desde 1992)</span></div>
+            <div class="stat"><span class="n">3<em>s</em></span><span class="l">— Para emitir<br>un CAE</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <span class="stamp st1" aria-hidden="true">— Archivo MMXXVI —</span>
-  <span class="stamp st2" aria-hidden="true">Caso Nº 01</span>
-  <span class="stamp st3" aria-hidden="true">Entregado ✓</span>
-
-  <span class="reg-mark rm1" aria-hidden="true"></span>
-  <span class="reg-mark rm2" aria-hidden="true"></span>
-  <span class="reg-mark rm3" aria-hidden="true"></span>
-
-  <div class="hero-in">
-    <span class="hero-kick">PepperLabs · Trabajos</span>
-    <h1>Algunos <em>trabajos.</em></h1>
-    <p class="hero-lead">Lo que hicimos para clientes reales. Cada caso muestra el cruce de software, diseño y comunicación con un mismo equipo.</p>
+  <div class="tr-seal" aria-hidden="true">
+    <svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg>
+    <span class="tr-seal-stamp">— Sello · MMXXVI</span>
   </div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Casos reales</span><span class="marquee-item">Software</span><span class="marquee-item">Identidad</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Casos reales</span><span class="marquee-item">Software</span><span class="marquee-item">Identidad</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Casos reales</span><span class="marquee-item">Software</span><span class="marquee-item">Identidad</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Casos reales</span><span class="marquee-item">Software</span><span class="marquee-item">Identidad</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-  </div>
-</div>
+<!-- FILTER -->
+<nav class="filter">
+  <span class="filter-lab">— Filtrar</span>
+  <button class="filter-chip active" data-area="all" type="button">Todos</button>
+  <button class="filter-chip" data-area="sis" type="button">Sistemas</button>
+  <button class="filter-chip" data-area="id" type="button">Identidad</button>
+  <button class="filter-chip" data-area="co" type="button">Comunicación</button>
+  <span class="filter-count">Mostrando <strong id="visCount">4</strong> de 4</span>
+</nav>
 
-<!-- CASO 01 — BROX CLUB -->
-<section class="work-section">
-  <div class="wrap">
-    <div class="work-card">
-      <div class="work-meta">
-        <span class="tag">Caso · 01</span>
-        <span class="name">Brox Club</span>
-        <span class="info">Portal del Socio · App para gimnasio · 2026</span>
+<!-- ARCHIVE -->
+<main class="archive">
+
+  <!-- Brox -->
+  <article class="project" data-areas="id sis" id="brox">
+    <span class="project-num">— 01<span class="y">2026</span></span>
+    <div class="project-info">
+      <span class="project-tag">Caso · 01 · Producto digital</span>
+      <h3 class="project-name">Brox <em>Club</em></h3>
+      <p class="project-desc">Que el socio entre con QR, reserve la clase y mire sus beneficios <strong>sin que nadie del gym levante un teléfono.</strong> Lo diseñamos y lo programamos nosotros.</p>
+      <div class="project-tags">
+        <span>UI · UX</span><span>Theming dinámico</span><span>Flask · Blueprint</span><span>Mobile-first</span><span>i18n</span>
       </div>
-      <p class="work-desc">App nativa web para los socios de Brox Club. Cubre <em>QR de acceso, reservas de clases, beneficios y perfil</em>, con un theming dinámico que permite cambiar paleta y radius desde el configurador del comercio sin tocar código.</p>
-      <p class="work-desc">El look <em>"Dark Fitness Luxury"</em> — gold sobre dark, tipografía Manrope, superficies derivadas vía <code style="font-family:var(--mono);font-size:13px;color:var(--cyan);">color-mix()</code> — comunica el segmento premium del club sin caer en el cliché del gym genérico.</p>
-      <div class="work-features">
-        <span>Diseño UI/UX</span>
-        <span>Mobile-first</span>
-        <span>Theming dinámico</span>
-        <span>Flask · Blueprint</span>
-        <span>i18n (Flask-Babel)</span>
-        <span>QR access</span>
-        <span>Bottom nav</span>
+    </div>
+    <div class="project-shots">
+      <div class="project-shot phone" data-lightbox="brox" data-caption="Brox Club · 01 · Inicio del socio"><img src="assets/work/brox-inicio.webp" alt="Brox Inicio"><span class="label">— 01 · Inicio</span></div>
+      <div class="project-shot phone" data-lightbox="brox" data-caption="Brox Club · 02 · QR de acceso"><img src="assets/work/brox-qr.webp" alt="Brox QR"><span class="label">— 02 · QR</span></div>
+      <div class="project-shot phone" data-lightbox="brox" data-caption="Brox Club · 03 · Reservas"><img src="assets/work/brox-reservas.webp" alt="Brox Reservas"><span class="label">— 03 · Reservas</span></div>
+    </div>
+    <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+  </article>
+
+  <!-- PepperLabs ERP -->
+  <article class="project" data-areas="sis" id="erp">
+    <span class="project-num">— 02<span class="y">2026</span></span>
+    <div class="project-info">
+      <span class="project-tag sis">Caso · 02 · ERP propio</span>
+      <h3 class="project-name">PepperLabs <em>ERP</em></h3>
+      <p class="project-desc">El sistema con el que cargan facturas todos los días. <strong>PepperCore</strong> (factura, stock, caja, clientes, artículos) más 6 módulos por rubro y 14 extras. Corriendo, ahora mismo, en un comercio de Córdoba que vende cinco cosas distintas al mismo tiempo.</p>
+      <div class="project-tags">
+        <span>ERP</span><span>Multi-rubro</span><span>CAE · 3s</span><span>Modular</span><span>Nativa web</span>
       </div>
-      <div class="work-phones full">
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 01 · Inicio del socio"><img src="assets/work/brox-inicio.webp" alt="Brox Club · Inicio del socio"><span class="label">— 01 · Inicio</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 02 · QR de acceso"><img src="assets/work/brox-qr.webp" alt="Brox Club · QR de acceso"><span class="label">— 02 · QR de acceso</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 03 · Reservas de clases"><img src="assets/work/brox-reservas.webp" alt="Brox Club · Reservas"><span class="label">— 03 · Reservas</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 04 · Club y beneficios"><img src="assets/work/brox-club.webp" alt="Brox Club · Club y beneficios"><span class="label">— 04 · Club</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 05 · Perfil del socio"><img src="assets/work/brox-perfil.webp" alt="Brox Club · Perfil del socio"><span class="label">— 05 · Perfil</span></div>
+    </div>
+    <div class="project-shots">
+      <div class="project-shot" data-lightbox="erp" data-caption="PepperLabs ERP · 01 · Núcleo · Resumen del día"><img src="assets/work/admin-dashboard.webp" alt="ERP Dashboard"><span class="label">— 01 · Núcleo</span></div>
+      <div class="project-shot" data-lightbox="erp" data-caption="PepperLabs ERP · 02 · Bar / Restaurant"><img src="assets/work/admin-bar.webp" alt="ERP Bar"><span class="label">— 02 · Bar</span></div>
+      <div class="project-shot" data-lightbox="erp" data-caption="PepperLabs ERP · 03 · Calendario · Agenda sincronizada"><img src="assets/work/admin-calendario.webp" alt="ERP Calendario"><span class="label">— 03 · Calendario</span></div>
+    </div>
+    <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+  </article>
+
+  <!-- Trama -->
+  <article class="project" data-areas="id" id="trama">
+    <span class="project-num">— 03<span class="y">2026</span></span>
+    <div class="project-info">
+      <span class="project-tag">Caso · 03 · Identidad</span>
+      <h3 class="project-name">Trama <em>— manual</em></h3>
+      <p class="project-desc">Identidad, web y manual de marca para que un estudio nuevo arranque como empresa establecida.</p>
+      <div class="project-tags">
+        <span>Identidad</span><span>Manual de marca</span><span>Web</span><span>Sistema tipográfico</span>
       </div>
+    </div>
+    <div class="project-shots cols-2">
+      <a href="proyectos/trama-swiss.html" class="project-shot" target="_blank" rel="noopener" data-lightbox="trama" data-caption="Trama · 01 · Sitio web"><img src="assets/work/trama-swiss.webp" alt="Trama Swiss"><span class="label">— 01 · Sitio web</span></a>
+      <a href="proyectos/trama-manual.html" class="project-shot" target="_blank" rel="noopener" data-lightbox="trama" data-caption="Trama · 02 · Manual de marca"><img src="assets/work/trama-manual.webp" alt="Trama Manual"><span class="label">— 02 · Manual</span></a>
+    </div>
+    <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+  </article>
+
+  <!-- El Carro -->
+  <article class="project" data-areas="id co" id="elcarro">
+    <span class="project-num">— 04<span class="y">2025</span></span>
+    <div class="project-info">
+      <span class="project-tag com">Caso · 04 · Hospitalidad</span>
+      <h3 class="project-name">El <em>Carro</em></h3>
+      <p class="project-desc">Identidad, sitio web y <strong>un mini-juego que la gente termina jugando 20 minutos.</strong> Para un bodegón de Escobar. La pasta del lunes se ve igual de bien que la del sábado.</p>
+      <div class="project-tags">
+        <span>Identidad</span><span>Web</span><span>Mini-juego HTML</span><span>Foto-céntrico</span>
+      </div>
+    </div>
+    <div class="project-shots cols-2">
+      <a href="proyectos/elcarro/index.html" class="project-shot" target="_blank" rel="noopener" data-lightbox="elcarro" data-caption="El Carro · 01 · Sitio web"><img src="assets/work/elcarro-web.webp" alt="El Carro Web"><span class="label">— 01 · Sitio web</span></a>
+      <a href="proyectos/elcarro/mamila-game.html" class="project-shot" target="_blank" rel="noopener" data-lightbox="elcarro" data-caption="El Carro · 02 · Mini-juego"><img src="assets/work/elcarro-mamila-game.webp" alt="Mamila Game"><span class="label">— 02 · Mini-juego</span></a>
+    </div>
+    <span class="project-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+  </article>
+
+</main>
+
+<!-- END -->
+<section class="end">
+  <div class="end-in">
+    <span class="eyebrow">El próximo lo hacemos juntos</span>
+    <h2 class="h-page">Mostranos <em>qué hay<span class="dot"></span></em></h2>
+    <p class="lead">Contanos qué tenés en mente. Vemos por dónde se arranca y qué conviene.</p>
+    <div class="end-ctas">
+      <a href="contacto.html" class="btn btn--p">Iniciar conversación <span class="ar">→</span></a>
+      <a href="https://wa.me/5493484333427" target="_blank" rel="noopener" class="btn btn--g">WhatsApp directo <span class="ar">→</span></a>
+    </div>
+    <div class="end-channels">
+      <a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a>
+      <a href="https://wa.me/5493484333427">+54 9 3484 33-3427</a>
     </div>
   </div>
 </section>
 
-<!-- CTA FINO -->
-<section class="cta-fino">
-  <div class="wrap">
-    <div class="cta-fino-row">
-      <h2 class="cta-fino-title">¿Tu próximo proyecto <em>arranca acá?</em></h2>
-      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="pep"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="name">Pepper<em>Labs</em></span>
+      <p>Resolvemos problemas.</p>
     </div>
-    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
+    <div class="foot-col">
+      <h4>— Áreas</h4>
+      <ul>
+        <li><a href="sistema.html">Sistemas</a></li>
+        <li><a href="identidad.html">Identidad</a></li>
+        <li><a href="comunicacion.html">Comunicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Estudio</h4>
+      <ul>
+        <li><a href="trabajos.html">Trabajos</a></li>
+        <li><a href="index.html#estudio">Manifiesto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Hablemos</h4>
+      <ul>
+        <li><a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a></li>
+        <li><a href="https://wa.me/5493484333427">WhatsApp</a></li>
+      </ul>
+    </div>
   </div>
-</section>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-row">
-      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-      <div class="footer-links">
-        <a href="index.html">Inicio</a>
-        <a href="sistema.html">Sistema</a>
-        <a href="identidad.html">Identidad</a>
-        <a href="comunicacion.html">Comunicación</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
-    </div>
+  <div class="foot-bar">
+    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>v3.0 · build 2026.05</span>
+    <span>Estudio activo · Tomando proyectos</span>
   </div>
 </footer>
 
+<div class="mm" id="mm">
+  <div class="mm-head">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="brand-name">Pepper<em>Labs</em></span>
+    </a>
+    <button class="mm-close" id="navClose" type="button">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="— 03">Sistemas</a></li>
+    <li><a href="identidad.html" data-n="— 02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="— 01">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="— 04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="— 05">Contacto</a></li>
+  </ul>
+  <a class="mm-cta" href="contacto.html">Iniciar conversación →</a>
+</div>
+
 <script>
+/* Filter logic */
 (function(){
-  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
-  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
-  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
-  if(mc)mc.addEventListener('click',function(){sm(false);});
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+  var chips = document.querySelectorAll('.filter-chip');
+  var projects = document.querySelectorAll('.project');
+  var count = document.getElementById('visCount');
+  function apply(area){
+    var vis = 0;
+    projects.forEach(function(p){
+      var areas = (p.dataset.areas || '').split(' ');
+      var match = (area === 'all') || areas.indexOf(area) > -1;
+      p.dataset.hidden = !match;
+      if (match) vis++;
+    });
+    if (count) count.textContent = vis;
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.remove('active'); });
+      c.classList.add('active');
+      apply(c.dataset.area);
+    });
+  });
 })();
 </script>
+<script src="pepperlabs.js" defer></script>
 <script src="lightbox.js" defer></script>
 </body>
 </html>

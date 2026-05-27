@@ -3,333 +3,782 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PepperLabs — Identidad visual</title>
-<meta name="description" content="Identidad visual para tu negocio. Una marca que se reconoce, la toque quien la toque. Logo, diseño web y piezas dentro de un mismo sistema.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PepperLabs">
-<meta property="og:title" content="PepperLabs — Identidad visual">
-<meta property="og:description" content="Una marca que se reconoce, la toque quien la toque. Logo, web y piezas dentro de un mismo sistema.">
-<meta property="og:image" content="assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PepperLabs — Identidad visual">
-<meta name="twitter:description" content="Una marca que se reconoce, la toque quien la toque. Logo, web y piezas dentro de un mismo sistema.">
-<meta name="twitter:image" content="assets/og-image.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>PepperLabs · Identidad visual — Te miran. Te leen. En ese orden.</title>
+<meta name="description" content="Marca, manual, sistema tipográfico y todos los puntos de contacto. Identidades con estructura — pensadas para durar.">
+<link rel="icon" type="image/svg+xml" href="assets/pepper_logo.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=boska@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pepperlabs.css">
+
+<style>
+/* ── Identidad hero ────────────────────────────────────── */
+.hero-id{
+  position:relative;
+  min-height:calc(100vh - 116px);
+  padding: 60px var(--pad);
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.hero-id .meta-strip{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:24px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  padding-bottom:18px; border-bottom:1px solid var(--rule);
+  margin-bottom:50px;
+}
+.hero-id .meta-strip .l{ display:block; color:var(--dim); margin-bottom:6px; }
+.hero-id .meta-strip .v{ color:var(--ink); }
+.hero-id .meta-strip .v em{ font-style:normal; color:var(--cyan); }
+@media (max-width:780px){
+  .hero-id .meta-strip{ grid-template-columns:1fr 1fr; gap:18px 24px; margin-bottom:40px; }
+}
+
+.hero-id-inner{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+@media (max-width:1100px){ .hero-id-inner{ grid-template-columns:1fr; gap:48px; } }
+
+.hero-id-left .back{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:36px;
+  transition:color .2s, gap .2s;
+}
+.hero-id-left .back:hover{ color:var(--cyan); gap:14px; }
+.hero-id-left h1{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 5.5vw, 80px);
+  line-height:1.02; letter-spacing:-0.028em;
+  color:var(--ink); margin: 24px 0 28px;
+  max-width:16ch;
+}
+.hero-id-left h1 em{
+  font-style:italic; color:var(--cyan);
+  text-shadow:0 0 22px rgba(47,230,255,0.3);
+}
+.hero-id-left h1 .dot{
+  display:inline-block; width:0.14em; height:0.14em;
+  background:var(--cyan); border-radius:50%;
+  margin-left:0.04em; vertical-align:0.18em;
+  box-shadow:0 0 18px var(--cyan);
+}
+.hero-id-left .lead{
+  font-size:19px; line-height:1.55;
+  color:var(--ink-2); max-width:50ch;
+  margin-bottom:40px;
+}
+.hero-id-left .lead strong{ color:var(--ink); font-weight:500; }
+.hero-id-left .lead em{ font-style:normal; color:var(--cyan); }
+.hero-id-left .ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+/* Brand specimen board */
+.specimen{
+  position:relative;
+  aspect-ratio: 1.05 / 1;
+  width:100%;
+  max-width:640px;
+  margin-left:auto;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(47,230,255,0.06) 0%, transparent 70%),
+    var(--bg-2);
+  border:1px solid var(--rule-2);
+  overflow:hidden;
+}
+.specimen-corner{
+  position:absolute; width:12px; height:12px;
+  border:1px solid var(--cyan);
+}
+.specimen-corner.tl{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.specimen-corner.tr{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+.specimen-corner.bl{ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+.specimen-corner.br{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+.specimen-label{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--cyan);
+  display:flex; gap:10px;
+}
+.specimen-label::before{
+  content:""; width:14px; height:1px; background:var(--cyan); align-self:center;
+}
+.specimen-spec{
+  position:absolute; bottom:14px; right:14px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+
+.specimen-pep{
+  position:absolute;
+  left:50%; top:46%;
+  transform:translate(-50%,-50%);
+  width:42%;
+  aspect-ratio: 94.93 / 115.91;
+}
+.specimen-pep svg{
+  width:100%; height:100%;
+  fill:var(--bg);
+  stroke:var(--cyan); stroke-width:2.4;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 16px rgba(47,230,255,0.45));
+}
+
+/* Measurement marks around the pep */
+.measure{
+  position:absolute;
+  font-family:var(--mono); font-size:8.5px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.measure.m-h{
+  left:18%; top:46%;
+  transform:translate(-100%,-50%);
+  display:flex; align-items:center; gap:6px;
+}
+.measure.m-h::after{
+  content:""; width:14px; height:1px; background:var(--rule-2);
+}
+.measure.m-w{
+  left:50%; top:84%;
+  transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+}
+.measure.m-w::before{
+  content:""; width:1px; height:14px; background:var(--rule-2);
+}
+
+/* Swatches */
+.swatch{
+  position:absolute;
+  width:46px; height:46px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.swatch::after{
+  content:attr(data-label);
+  position:absolute; top:calc(100% + 8px); left:0;
+  font-family:var(--mono); font-size:8.5px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+  white-space:nowrap;
+}
+.swatch::before{
+  content:attr(data-role);
+  position:absolute; top:5px; left:6px;
+  font-family:var(--mono); font-size:7.5px;
+  letter-spacing:0.04em; color:rgba(0,0,0,0.45);
+}
+.swatch.s1{ top:18%; right:14%; background:var(--cyan); box-shadow:0 0 18px rgba(47,230,255,0.4); }
+.swatch.s2{ top:18%; right:22%; background:var(--warm); box-shadow:0 0 18px rgba(255,113,86,0.4); }
+.swatch.s3{ top:18%; right:30%; background:var(--lime); box-shadow:0 0 18px rgba(216,255,77,0.4); }
+.swatch.s4{ top:18%; right:38%; background:var(--ink); }
+
+/* Type spec */
+.type-spec{
+  position:absolute;
+  bottom:18%; left:16%;
+  display:flex; align-items:baseline; gap:14px;
+  padding:14px 16px 10px;
+  border:1px solid var(--rule-2);
+  background:rgba(11,8,16,0.6);
+}
+.type-spec .aa{
+  font-family:var(--serif); font-weight:500;
+  font-size:42px; line-height:1;
+  letter-spacing:-0.025em; color:var(--ink);
+}
+.type-spec .aa em{ font-style:italic; color:var(--cyan); }
+.type-spec .meta{
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); line-height:1.5;
+}
+.type-spec .meta strong{ color:var(--ink); font-weight:500; }
+
+/* Mini pepper iterations (lower right) */
+.iters{
+  position:absolute;
+  bottom:14%; right:14%;
+  display:flex; align-items:flex-end; gap:10px;
+}
+.iter{
+  width:42px;
+  aspect-ratio: 94.93 / 115.91;
+  background:rgba(11,8,16,0.5);
+  border:1px solid var(--rule-2);
+  padding:4px;
+  display:flex; align-items:center; justify-content:center;
+}
+.iter svg{ width:100%; height:100%; stroke-linejoin:round; }
+.iter.i1 svg{ fill:none; stroke:var(--cyan); stroke-width:3; }
+.iter.i2 svg{ fill:var(--cyan); stroke:none; }
+.iter.i3 svg{ fill:var(--ink); stroke:none; }
+.iter::after{
+  content:attr(data-l);
+  display:block; position:absolute;
+  margin-top:-14px;
+  font-family:var(--mono); font-size:8px;
+  letter-spacing:0.04em; color:var(--dim);
+  text-transform:uppercase;
+}
+
+@media (max-width:780px){
+  .specimen-pep{ width:50%; }
+  .swatch{ width:34px; height:34px; }
+  .swatch.s1{ right:8%; } .swatch.s2{ right:18%; } .swatch.s3{ right:28%; } .swatch.s4{ right:38%; }
+  .type-spec{ left:8%; bottom:12%; }
+  .iters{ right:6%; bottom:12%; }
+  .iter{ width:32px; }
+  .measure{ font-size:7px; }
+}
+
+/* Tape */
+.tape{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden; padding:13px 0;
+  background:var(--bg-2); position:relative; z-index:5;
+}
+.tape-track{ display:flex; width:max-content; animation: tape 42s linear infinite; gap:48px; }
+.tape-item{
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  display:inline-flex; align-items:center; gap:48px;
+  white-space:nowrap;
+}
+.tape-item::after{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--cyan); box-shadow:0 0 8px var(--cyan);
+}
+@keyframes tape{ to{ transform:translateX(-50%); } }
+
+/* Diag cards (re-use) */
+.diag-grid{
+  display:grid; grid-template-columns: repeat(2, 1fr); gap:18px;
+}
+@media (max-width:900px){ .diag-grid{ grid-template-columns:1fr; } }
+.diag-card{
+  background:var(--bg-2);
+  border:1px solid var(--rule-2);
+  padding:28px 26px;
+  display:flex; flex-direction:column; gap:14px;
+  transition:border-color .25s, transform .25s var(--ease);
+}
+.diag-card:hover{ transform:translateY(-3px); border-color:color-mix(in srgb, var(--warm) 30%, var(--rule-2)); }
+.diag-card .lab{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--warm);
+}
+.diag-card .t{
+  font-family:var(--serif); font-weight:500;
+  font-size:24px; letter-spacing:-0.015em; line-height:1.1; color:var(--ink);
+}
+.diag-card .d{ font-size:15px; color:var(--ink-2); line-height:1.55; }
+
+/* Method steps (row-list reuse with tags) */
+.steps .row-tag{
+  margin-top:10px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+  display:flex; gap:14px; flex-wrap:wrap;
+}
+
+/* Gallery projects */
+.proj-list{ display:flex; flex-direction:column; gap:60px; }
+.proj{
+  position:relative;
+  border-top:1px solid var(--rule-2);
+  padding-top:48px;
+  display:grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap:48px;
+}
+@media (max-width:1000px){ .proj{ grid-template-columns:1fr; gap:36px; } }
+.proj-meta{
+  display:flex; flex-direction:column; gap:18px;
+  position:sticky; top:24px;
+  align-self:start;
+}
+.proj-meta .tag{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--cyan);
+  display:flex; align-items:center; gap:10px;
+}
+.proj-meta .tag::before{
+  content:""; width:14px; height:1px; background:var(--cyan);
+}
+.proj-meta .name{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(28px, 3.4vw, 48px);
+  letter-spacing:-0.022em; line-height:1; color:var(--ink);
+}
+.proj-meta .name em{ font-style:italic; color:var(--cyan); }
+.proj-meta .info{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.proj-meta .desc{
+  font-size:15.5px; color:var(--ink-2); line-height:1.6;
+}
+.proj-meta .desc em{ font-style:italic; color:var(--cyan); }
+
+.proj-screens{
+  display:grid; gap:16px;
+  grid-template-columns: 1fr 1fr;
+}
+.proj-screens.solo{ grid-template-columns:1fr; }
+.proj-screen{
+  position:relative; overflow:hidden;
+  border:1px solid var(--rule-2);
+  background:var(--bg-2);
+  aspect-ratio: 16/10;
+  transition: border-color .25s, transform .25s var(--ease);
+}
+.proj-screen:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+.proj-screen img{
+  width:100%; height:100%; object-fit:cover; object-position:top;
+  transition: transform .4s var(--ease);
+}
+.proj-screen:hover img{ transform:scale(1.03); }
+.proj-screen .label{
+  position:absolute; bottom:0; left:0; right:0;
+  padding:10px 14px;
+  background:linear-gradient(transparent, rgba(11,8,16,0.9));
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink);
+}
+.proj-screen .label em{ font-style:normal; color:var(--cyan); }
+.proj-screen .open{
+  position:absolute; top:10px; right:10px;
+  width:30px; height:30px;
+  border:1px solid var(--rule-2);
+  background:rgba(11,8,16,0.7);
+  display:grid; place-items:center;
+  color:var(--ink-2);
+  opacity:0; transition:all .25s var(--ease);
+}
+.proj-screen:hover .open{ opacity:1; border-color:var(--cyan); color:var(--cyan); }
+.proj-screen .open svg{ width:14px; height:14px; }
+
+</style>
 </head>
 <body>
 
-<!-- PEPPER SYMBOL -->
+<!-- Pepper symbol -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="pep" viewBox="0 0 94.93 115.91">
-    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
-    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
-    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  <symbol id="pep-out" viewBox="0 0 94.93 115.91">
+    <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
   </symbol>
 </svg>
 
-<!-- NAV -->
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <a class="nav-logo" href="index.html"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
   <ul class="nav-links">
     <li><a href="sistema.html">Sistema</a></li>
-    <li><a href="identidad.html" class="active">Identidad</a></li>
+    <li><a href="identidad.html">Identidad</a></li>
     <li><a href="comunicacion.html">Comunicación</a></li>
     <li><a href="trabajos.html">Trabajos</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+    <a href="index.html" class="nav-logo" style="text-decoration:none"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar &times;</button>
   </div>
   <ul>
     <li><a href="sistema.html" data-n="01">Sistema</a></li>
     <li><a href="identidad.html" data-n="02">Identidad</a></li>
     <li><a href="comunicacion.html" data-n="03">Comunicación</a></li>
     <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
-        <li><a href="contacto.html" data-n="05">Contacto</a></li>
+    <li><a href="contacto.html" data-n="05">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+  <a href="contacto.html" class="mm-cta">Hablemos &rarr;</a>
 </div>
 
-<!-- HERO · Identidad — Brand board -->
-<header class="hero identidad">
-  <span class="folio">Nº <strong>02</strong> / 05 · Identidad</span>
-  <span class="crop tl" aria-hidden="true"></span><span class="crop tr" aria-hidden="true"></span>
-  <span class="crop bl" aria-hidden="true"></span><span class="crop br" aria-hidden="true"></span>
+<!-- HERO -->
+<header class="hero-id" id="top">
 
-  <div class="swatch s1" data-role="03" data-label="CYAN · 27E5FF"></div>
-  <div class="swatch s2" data-role="01" data-label="PRIMARY · D63DD0"></div>
-  <div class="swatch s3" data-role="04" data-label="VIOLET · 9D5BFF"></div>
-  <div class="swatch s4" data-role="02" data-label="LIME · C9FF3A"></div>
-
-  <div class="type-spec">
-    <span class="aa">Aa</span>
-    <span class="meta">Space Grotesk<br>700 · −0.03em</span>
+  <div class="meta-strip">
+    <div><span class="l">— Página</span><span class="v">Identidad visual</span></div>
+    <div><span class="l">— Área</span><span class="v"><em>02 / lo que se ve</em></span></div>
+    <div><span class="l">— Práctica</span><span class="v">Marca · Manual · Sistema</span></div>
+    <div><span class="l">— Entrega</span><span class="v">Archivos + reglas de uso</span></div>
+    <div><span class="l">— Versión</span><span class="v">v.MMXXVI · activa</span></div>
   </div>
 
-  <div class="pep-frame">
-    <span class="frame-label">Pepper · Brand mark</span>
-    <svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg>
-    <span class="frame-spec">94 × 116 · v.MMXXVI</span>
-  </div>
+  <div class="hero-id-inner">
 
-  <div class="hero-in">
-    <div class="hero-meta">
-      <a href="index.html" class="back-link">← PepperLabs</a>
-      <span class="sep">·</span>
-      <span class="area-tag">Área 02 · Identidad visual</span>
-      <span class="year">MMXXVI</span>
+    <div class="hero-id-left">
+      <a href="index.html" class="back">← PepperLabs</a>
+      <span class="eyebrow"><span style="background:var(--cyan); box-shadow:0 0 8px var(--cyan); width:7px; height:7px; border-radius:50%; display:inline-block; animation:pl-pulse 2.4s ease-in-out infinite;"></span>Lo que se ve</span>
+      <h1>Resolvemos cómo te ven. <em>Para que se vea lo que ya sos.</em></h1>
+      <p class="lead"><strong>Logo, tipografía, colores, web, piezas.</strong> Las reglas claras para que tu marca no cambie según <em>quién agarra el teclado.</em></p>
+      <div class="ctas">
+        <a href="contacto.html" class="btn btn--p">Hablemos <span class="ar">→</span></a>
+        <a href="#metodo" class="btn btn--g">Cómo trabajamos <span class="ar">→</span></a>
+      </div>
     </div>
-    <h1>La gente decide si confía <em>antes de leer una palabra.</em></h1>
-    <p class="hero-lead">Logo, tipografía, colores, sitio web y piezas. Un sistema visual que se reconoce siempre, lo toque quien lo toque.</p>
-    <div class="hero-foot">
-      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
-      <a href="#metodo" class="btn btn-line">Cómo trabajamos <span class="ar">→</span></a>
+
+    <!-- Brand specimen -->
+    <div class="specimen" aria-hidden="true">
+      <span class="specimen-corner tl"></span>
+      <span class="specimen-corner tr"></span>
+      <span class="specimen-corner bl"></span>
+      <span class="specimen-corner br"></span>
+
+      <span class="specimen-label">— Brand specimen · Marca primaria</span>
+      <span class="specimen-spec">— 94 × 116 · v.MMXXVI</span>
+
+      <div class="specimen-pep">
+        <svg viewBox="0 0 94.93 115.91" preserveAspectRatio="xMidYMid meet">
+          <use href="#pep-out"/>
+        </svg>
+      </div>
+
+      <span class="measure m-h">116 px</span>
+      <span class="measure m-w">94 px</span>
+
+      <div class="swatch s1" data-role="01" data-label="CYAN · 2FE6FF"></div>
+      <div class="swatch s2" data-role="02" data-label="WARM · FF7156"></div>
+      <div class="swatch s3" data-role="03" data-label="LIME · D8FF4D"></div>
+      <div class="swatch s4" data-role="04" data-label="INK · F2EDFF"></div>
+
+      <div class="type-spec">
+        <span class="aa">A<em>a</em></span>
+        <span class="meta"><strong>Boska</strong><br>500 · −0.022em</span>
+      </div>
+
+      <div class="iters">
+        <div class="iter i1" data-l="01"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></div>
+        <div class="iter i2" data-l="02"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></div>
+        <div class="iter i3" data-l="03"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></div>
+      </div>
     </div>
+
   </div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Marca</span><span class="marquee-item">Diseño web</span><span class="marquee-item">Piezas</span><span class="marquee-item">Dirección estética</span>
-    <span class="marquee-item">Marca</span><span class="marquee-item">Diseño web</span><span class="marquee-item">Piezas</span><span class="marquee-item">Dirección estética</span>
-    <span class="marquee-item">Marca</span><span class="marquee-item">Diseño web</span><span class="marquee-item">Piezas</span><span class="marquee-item">Dirección estética</span>
-    <span class="marquee-item">Marca</span><span class="marquee-item">Diseño web</span><span class="marquee-item">Piezas</span><span class="marquee-item">Dirección estética</span>
+<!-- TAPE -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-item">Marca</span>
+    <span class="tape-item">Manual</span>
+    <span class="tape-item">Tipografía</span>
+    <span class="tape-item">Sistema</span>
+    <span class="tape-item">Dirección estética</span>
+    <span class="tape-item">Marca</span>
+    <span class="tape-item">Manual</span>
+    <span class="tape-item">Tipografía</span>
+    <span class="tape-item">Sistema</span>
+    <span class="tape-item">Dirección estética</span>
+    <span class="tape-item">Marca</span>
+    <span class="tape-item">Manual</span>
+    <span class="tape-item">Tipografía</span>
+    <span class="tape-item">Sistema</span>
+    <span class="tape-item">Dirección estética</span>
   </div>
 </div>
 
-<!-- 01 — DIAGNÓSTICO -->
+<main>
+
+<!-- DIAGNÓSTICO -->
 <section class="sec" id="diagnostico">
   <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:88px;height:108px;color:var(--cyan);top:-30px;right:5%;transform:rotate(14deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
     <div class="sec-head">
-      <span class="sec-kick">// 01 — Diagnóstico</span>
-      <h2 class="h2">Tu marca cambia según <em class="pink">quién la toca.</em></h2>
-      <p class="sec-lead">Sin reglas claras, cada uno la interpreta a su manera. Y el cliente lo nota.</p>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 01 / 04</span>
+        <span class="ix">— Diagnóstico</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Tu marca cambia según <em>quién la toca.</em></h2>
+        <p class="lead">El primo que sube las stories, el diseñador del flyer, el chico de la imprenta. <strong>Tres versiones distintas, en la misma semana.</strong> El cliente lo nota.</p>
+      </div>
     </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01 · Redes</span><span class="sintoma-t">Quién publica</span><span class="sintoma-d">El que maneja las redes elige tono y color según el día.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02 · Diseño</span><span class="sintoma-t">Quién la dibuja</span><span class="sintoma-d">Cada freelance interpreta la marca con su propio gusto.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03 · Atención</span><span class="sintoma-t">Quién responde</span><span class="sintoma-d">Ventas, soporte y mostrador hablan en idiomas distintos.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04 · Apuro</span><span class="sintoma-t">Quién improvisa</span><span class="sintoma-d">Una pieza urgente, salida sin pensar, que igual lleva tu logo.</span></div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <span class="lab">— 01 · Redes</span>
+        <h3 class="t">Quién publica</h3>
+        <p class="d">El que sube las stories elige color, fuente y emoji según el día. Y a veces según el humor.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 02 · Diseño</span>
+        <h3 class="t">Quién la dibuja</h3>
+        <p class="d">Cada freelance que pasó por tu marca dejó una versión distinta. Juntándolas pareciera que son cinco empresas.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 03 · Atención</span>
+        <h3 class="t">Quién responde</h3>
+        <p class="d">Ventas, soporte y el mostrador hablan idiomas distintos. El cliente tiene tres experiencias con la misma marca.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 04 · Apuro</span>
+        <h3 class="t">Quién improvisa</h3>
+        <p class="d">Pieza urgente, viernes a las 19hs, salida en cinco minutos. Igual lleva tu logo. Igual sale al mundo.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 02 — QUÉ HACEMOS -->
+<!-- QUÉ HACEMOS -->
 <section class="sec" id="servicios">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 02 — Qué hacemos</span>
-      <h2 class="h2">Una marca que <em>aguanta</em> el día a día.</h2>
-      <p class="sec-lead">Cuatro frentes, una misma lógica. Todo lo que sale de tu negocio se reconoce como tuyo.</p>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 02 / 04</span>
+        <span class="ix">— Qué hacemos</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Una marca que <em>aguanta</em> el día a día.</h2>
+        <p class="lead">Cuatro frentes, una sola lógica. Lo que sale de tu negocio se reconoce como tuyo — lo arme quien lo arme.</p>
+      </div>
     </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Identidad visual</span><span class="sintoma-d">Logo, tipografías y colores. Las reglas claras de cómo se ve tu marca.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Diseño web</span><span class="sintoma-d">Tu sitio, claro y hecho para durar. La cara digital del negocio.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Piezas y contenido</span><span class="sintoma-d">Cada placa, cada aviso, cada pieza, dentro del mismo sistema.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Dirección estética</span><span class="sintoma-d">Acomodamos la marca que ya tenés, sin hacerte empezar de cero.</span></div>
+
+    <div class="row-list">
+      <div class="row">
+        <span class="row-num">— 01</span>
+        <h3 class="row-name">Identidad <em>visual</em></h3>
+        <p class="row-desc">Logo, tipografía, paleta. <strong>Las reglas claras de cómo se ve tu marca</strong> — para que mañana la pueda agarrar otro y no la rompa.</p>
+      </div>
+      <div class="row">
+        <span class="row-num">— 02</span>
+        <h3 class="row-name">Diseño <em>web</em></h3>
+        <p class="row-desc">Tu sitio. Que se entienda en tres segundos qué hacés, dónde estás y cómo te pueden encontrar. Lo demás ya es de más.</p>
+      </div>
+      <div class="row">
+        <span class="row-num">— 03</span>
+        <h3 class="row-name">Piezas <em>&amp; contenido</em></h3>
+        <p class="row-desc">Cada placa, cada aviso, cada flyer, cada historia. Dentro del mismo sistema. Como si siempre lo hubiera diseñado la misma persona.</p>
+      </div>
+      <div class="row">
+        <span class="row-num">— 04</span>
+        <h3 class="row-name">Dirección <em>estética</em></h3>
+        <p class="row-desc">Si la marca que ya tenés no está tan mal, no la tiramos. La acomodamos. <strong>El cliente no se entera del cambio, pero algo le suena mejor.</strong></p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 03 — CÓMO TRABAJAMOS -->
-<section class="sec" id="metodo">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:70px;height:85px;color:var(--lime);bottom:30px;left:-14px;transform:rotate(-22deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 03 — Cómo trabajamos</span>
-      <h2 class="h2">Cuatro pasos, de <em class="lime">principio a fin.</em></h2>
-      <p class="sec-lead">Sin versiones infinitas. Cada paso deja algo cerrado y a la vista.</p>
-    </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— Paso 01</span><span class="sintoma-t">Miramos qué tenés</span><span class="sintoma-d">Revisamos tu marca actual y dónde se rompe. Antes de proponer, entendemos.</span><span class="sintoma-tags"><span>Auditoría</span><span>Qué funciona</span><span>Qué no</span></span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 02</span><span class="sintoma-t">Definimos las reglas</span><span class="sintoma-d">La base sobre la que se apoya todo lo demás. Clara y fácil de seguir.</span><span class="sintoma-tags"><span>Sistema base</span><span>Reglas</span><span>Criterio</span></span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 03</span><span class="sintoma-t">Armamos el lenguaje</span><span class="sintoma-d">Tipografía, color, composición. El sistema completo con el que se ve tu marca.</span><span class="sintoma-tags"><span>Tipografía</span><span>Color</span><span>Composición</span></span></div>
-      <div class="sintoma"><span class="sintoma-n">— Paso 04</span><span class="sintoma-t">Te lo dejamos listo</span><span class="sintoma-d">Manual y archivos, para que cualquiera que la use no se equivoque.</span><span class="sintoma-tags"><span>Manual</span><span>Archivos</span><span>Listo</span></span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 — POR QUÉ IMPORTA -->
-<section class="sec" id="importa">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-kick">// 04 — Por qué importa</span>
-      <h2 class="h2">Cuatro pilares de <em>una marca sólida.</em></h2>
-      <p class="sec-lead">Una marca que se sostiene en el tiempo no es suerte. Se apoya en estas cuatro cosas.</p>
-    </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Estructura</span><span class="sintoma-d">Una base que aguanta todo lo que viene después.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Repetición</span><span class="sintoma-d">Lo que se repite, se reconoce. Y lo que se reconoce, da confianza.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Criterio</span><span class="sintoma-d">Una razón detrás de cada decisión, no el gusto del día.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Continuidad</span><span class="sintoma-d">La misma marca el mes que viene, y el año que viene.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 — GALERÍA -->
-<section class="ident-gallery" id="galeria">
+<!-- MÉTODO -->
+<section class="sec steps" id="metodo">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 05 — Galería</span>
-      <h2 class="h2">Algunas marcas <em class="pink">en pantalla.</em></h2>
-      <p class="sec-lead">Tres proyectos donde la marca, la web y las piezas salen del mismo lugar — pensados, escritos y construidos por el mismo equipo.</p>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 03 / 04</span>
+        <span class="ix">— Método</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Cuatro pasos. <em>Sin versiones infinitas.</em></h2>
+        <p class="lead">Te mostramos cada paso. Si va bien, seguimos. Si no, lo arreglamos antes. Sin sorpresas a fin de mes.</p>
+      </div>
     </div>
 
-    <!-- Proyecto 01 · El Carro -->
-    <article class="ident-project">
-      <header class="ident-project-head">
-        <span class="ident-project-tag">— 01 · Hospitalidad</span>
-        <h3 class="ident-project-name">El Carro</h3>
-        <span class="ident-project-meta">Comida al paso · Escobar · 2026</span>
-      </header>
-      <p class="ident-project-desc">Identidad, sitio web y <em>mini-juego en HTML</em> para un proyecto gastronómico estilo bodegón. Tono cálido, paleta dorada sobre dark, tipografía de cartel — todo cosido por el mismo sistema.</p>
-      <div class="ident-grid cols-2">
-        <a class="ident-screen" href="proyectos/elcarro/index.html" target="_blank" rel="noopener"
-           data-lightbox="elcarro" data-caption="El Carro · Sitio web del local">
-          <img src="assets/identidad/elcarro-web.webp" alt="El Carro · web del local">
-          <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          <div class="label">— 01 · <em>Sitio web</em></div>
-        </a>
-        <a class="ident-screen" href="proyectos/elcarro/mamila-game.html" target="_blank" rel="noopener"
-           data-lightbox="elcarro" data-caption="El Carro · Mini-juego (Mamila)">
-          <img src="assets/identidad/elcarro-mamila-game.webp" alt="El Carro · mini-juego Mamila">
-          <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          <div class="label">— 02 · <em>Mini-juego</em></div>
-        </a>
+    <div class="row-list">
+      <div class="row">
+        <span class="row-num">— Paso 01</span>
+        <h3 class="row-name">Miramos <em>qué tenés</em></h3>
+        <div>
+          <p class="row-desc">Revisamos tu marca actual y dónde se rompe. <strong>Antes de proponer nada, escuchamos.</strong></p>
+          <div class="row-tag"><span>Auditoría</span><span>Qué funciona</span><span>Qué no</span></div>
+        </div>
       </div>
-    </article>
-
-    <!-- Proyecto 02 · Trama -->
-    <article class="ident-project">
-      <header class="ident-project-head">
-        <span class="ident-project-tag">— 02 · Estudio</span>
-        <h3 class="ident-project-name">Trama</h3>
-        <span class="ident-project-meta">Estudio de diseño · Identidad + web + manual</span>
-      </header>
-      <p class="ident-project-desc">Sistema visual para un estudio de identidad. <em>Swiss editorial</em>, retícula tipográfica firme, manual de marca de 6 pliegos — la estructura invisible que sostiene la marca, contada con la propia marca.</p>
-      <div class="ident-grid cols-2">
-        <a class="ident-screen" href="proyectos/trama-swiss.html" target="_blank" rel="noopener"
-           data-lightbox="trama" data-caption="Trama · Sitio web (swiss editorial)">
-          <img src="assets/identidad/trama-swiss.webp" alt="Trama · sitio web swiss editorial">
-          <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          <div class="label">— 01 · <em>Sitio web</em></div>
-        </a>
-        <a class="ident-screen" href="proyectos/trama-manual.html" target="_blank" rel="noopener"
-           data-lightbox="trama" data-caption="Trama · Manual de identidad">
-          <img src="assets/identidad/trama-manual.webp" alt="Trama · manual de identidad">
-          <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          <div class="label">— 02 · <em>Manual de identidad</em></div>
-        </a>
+      <div class="row">
+        <span class="row-num">— Paso 02</span>
+        <h3 class="row-name">Definimos <em>las reglas</em></h3>
+        <div>
+          <p class="row-desc">Tres páginas. Las decisiones básicas que después no se discuten más. <strong>Para que cada nueva pieza no sea una pelea.</strong></p>
+          <div class="row-tag"><span>Sistema base</span><span>Reglas</span><span>Criterio</span></div>
+        </div>
       </div>
-    </article>
-
-    <!-- Proyecto 03 · Estación París -->
-    <article class="ident-project">
-      <header class="ident-project-head">
-        <span class="ident-project-tag">— 03 · Cultura</span>
-        <h3 class="ident-project-name">Estación París</h3>
-        <span class="ident-project-meta">Banda · Buenos Aires · Manual de marca</span>
-      </header>
-      <p class="ident-project-desc">Manual de identidad para una banda de Buenos Aires. <em>Tipografía monumental</em>, acento bordó sobre crema/negro, sistema de pliegos editorial — pensado para que la marca aguante portadas, redes, merch y afiches.</p>
-      <div class="ident-grid">
-        <a class="ident-screen" href="proyectos/estacion-paris-manual.html" target="_blank" rel="noopener"
-           data-lightbox="estacion-paris" data-caption="Estación París · Manual de marca (portada)">
-          <img src="assets/identidad/estacion-paris-manual.webp" alt="Estación París · manual de marca, portada">
-          <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-          <div class="label">— Portada del manual · 6 pliegos</div>
-        </a>
+      <div class="row">
+        <span class="row-num">— Paso 03</span>
+        <h3 class="row-name">Armamos <em>el lenguaje</em></h3>
+        <div>
+          <p class="row-desc">Tipografía, color, composición. Cómo se va a ver tu marca el lunes, el viernes y dentro de tres años.</p>
+          <div class="row-tag"><span>Tipografía</span><span>Color</span><span>Composición</span></div>
+        </div>
       </div>
-    </article>
+      <div class="row">
+        <span class="row-num">— Paso 04</span>
+        <h3 class="row-name">Te lo dejamos <em>listo</em></h3>
+        <div>
+          <p class="row-desc">Manual y archivos. <strong>Para que el día que te quedes sin nosotros, cualquiera la pueda manejar.</strong> Es la idea.</p>
+          <div class="row-tag"><span>Manual</span><span>Archivos</span><span>Listo</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CTA FINO (→ contacto.html) -->
-<section class="cta-fino">
+<!-- GALERÍA -->
+<section class="sec" id="galeria">
   <div class="wrap">
-    <div class="cta-fino-row">
-      <h2 class="cta-fino-title">¿Tenés un proyecto en mente? <em>Hablemos.</em></h2>
-      <a href="contacto.html" class="btn btn-fill">Empezar conversación <span class="ar">→</span></a>
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 04 / 04</span>
+        <span class="ix">— Galería</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Algunas marcas <em>que ya andan.</em></h2>
+        <p class="lead">Dos marcas armadas completas — identidad, web y piezas — desde un solo equipo. Sin freelance suelto, sin reuniones de coordinación.</p>
+      </div>
     </div>
-    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
+
+    <div class="proj-list">
+
+      <article class="proj">
+        <div class="proj-meta">
+          <span class="tag">Proyecto · 01 · Hospitalidad</span>
+          <h3 class="name">El <em>Carro</em></h3>
+          <span class="info">Comida al paso · Escobar · 2026</span>
+          <p class="desc">Identidad, sitio web y <em>mini-juego en HTML</em> para un proyecto gastronómico estilo bodegón. Tono cálido, paleta dorada sobre dark, tipografía de cartel — todo cosido por el mismo sistema.</p>
+        </div>
+        <div class="proj-screens">
+          <a href="proyectos/elcarro/index.html" target="_blank" rel="noopener" class="proj-screen">
+            <img src="assets/work/elcarro-web.webp" alt="El Carro · web del local">
+            <span class="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            <div class="label">— 01 · <em>Sitio web</em></div>
+          </a>
+          <a href="proyectos/elcarro/mamila-game.html" target="_blank" rel="noopener" class="proj-screen">
+            <img src="assets/work/elcarro-mamila-game.webp" alt="El Carro · mini-juego Mamila">
+            <span class="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            <div class="label">— 02 · <em>Mini-juego (Mamila)</em></div>
+          </a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="proj-meta">
+          <span class="tag">Proyecto · 02 · Estudio</span>
+          <h3 class="name">Trama</h3>
+          <span class="info">Estudio de diseño · Identidad + web + manual</span>
+          <p class="desc">Sistema visual para un estudio de identidad. <em>Swiss editorial</em>, retícula tipográfica firme, manual de marca de 6 pliegos — la estructura invisible que sostiene la marca, contada con la propia marca.</p>
+        </div>
+        <div class="proj-screens">
+          <a href="proyectos/trama-swiss.html" target="_blank" rel="noopener" class="proj-screen">
+            <img src="assets/work/trama-swiss.webp" alt="Trama · sitio web swiss editorial">
+            <span class="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            <div class="label">— 01 · <em>Sitio web</em></div>
+          </a>
+          <a href="proyectos/trama-manual.html" target="_blank" rel="noopener" class="proj-screen">
+            <img src="assets/work/trama-manual.webp" alt="Trama · manual de identidad">
+            <span class="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+            <div class="label">— 02 · <em>Manual de identidad</em></div>
+          </a>
+        </div>
+      </article>
+
+
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-row">
-      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-      <div class="footer-links">
-        <a href="index.html">Inicio</a>
-        <a href="sistema.html">Sistema</a>
-        <a href="comunicacion.html">Comunicación</a>
-        <a href="trabajos.html">Trabajos</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
+<!-- END -->
+<section class="end">
+  <div class="end-in">
+    <span class="eyebrow">Si tu marca te quedó vieja</span>
+    <h2 class="h-page">La <em>acomodamos.</em></h2>
+    <p class="lead">Treinta minutos. Mirás lo que tenés. Te decimos qué tocaríamos y qué dejaríamos quieto.</p>
+    <div class="end-ctas">
+      <a href="contacto.html" class="btn btn--p">Iniciar conversación <span class="ar">→</span></a>
+      <a href="https://wa.me/5493484333427" target="_blank" rel="noopener" class="btn btn--g">WhatsApp directo <span class="ar">→</span></a>
     </div>
+    <div class="end-channels">
+      <a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a>
+      <a href="https://wa.me/5493484333427">+54 9 3484 33-3427</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="pep"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="name">Pepper<em>Labs</em></span>
+      <p>Resolvemos problemas.</p>
+    </div>
+    <div class="foot-col">
+      <h4>— Áreas</h4>
+      <ul>
+        <li><a href="sistema.html">Sistemas</a></li>
+        <li><a href="identidad.html">Identidad</a></li>
+        <li><a href="comunicacion.html">Comunicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Estudio</h4>
+      <ul>
+        <li><a href="trabajos.html">Trabajos</a></li>
+        <li><a href="index.html#estudio">Manifiesto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Hablemos</h4>
+      <ul>
+        <li><a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a></li>
+        <li><a href="https://wa.me/5493484333427">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>v3.0 · build 2026.05</span>
+    <span>Estudio activo · Tomando proyectos</span>
   </div>
 </footer>
 
-<script>
-(function(){
-  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
-  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
-  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
-  if(mc)mc.addEventListener('click',function(){sm(false);});
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+<div class="mm" id="mm">
+  <div class="mm-head">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="brand-name">Pepper<em>Labs</em></span>
+    </a>
+    <button class="mm-close" id="navClose" type="button">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="— 03">Sistemas</a></li>
+    <li><a href="identidad.html" data-n="— 02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="— 01">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="— 04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="— 05">Contacto</a></li>
+  </ul>
+  <a class="mm-cta" href="contacto.html">Iniciar conversación →</a>
+</div>
 
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-    });
-  });
-})();
-
-function enviarForm(e){
-  if(e) e.preventDefault();
-  var n   = (document.getElementById('cfName').value||'').trim();
-  var emp = (document.getElementById('cfEmp').value||'').trim();
-  var via = (document.getElementById('cfVia').value||'').trim();
-  var msg = (document.getElementById('cfMsg').value||'').trim();
-  if(!n)  { alert('Por favor completá tu nombre.'); return false; }
-  if(!msg){ alert('Contanos brevemente qué necesitás.'); return false; }
-  function safe(s){ return s.replace(/[<>"&]/g,''); }
-  var txt = encodeURIComponent(
-    'Hola PepperLabs, me contacto desde el sitio.\n\n' +
-    'Nombre: ' + safe(n) + '\n' +
-    'Empresa: ' + (safe(emp) || 'No especificada') + '\n' +
-    'Contacto preferido: ' + (safe(via) || 'WhatsApp') + '\n\n' +
-    'Mensaje:\n' + safe(msg).slice(0, 500)
-  );
-  window.open('https://wa.me/5493484333427?text=' + txt, '_blank');
-  return false;
-}
-</script>
-<script src="lightbox.js" defer></script>
-
+<script src="pepperlabs.js" defer></script>
 </body>
 </html>

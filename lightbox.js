@@ -62,7 +62,7 @@
     img.alt = item.caption || '';
     caption.textContent = item.caption || '';
     counter.textContent = pad(idx + 1) + ' / ' + pad(items.length);
-    if (item.href) {
+    if (item.href && !item.href.startsWith('#')) {
       link.href = item.href;
       link.style.display = '';
     } else {

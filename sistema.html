@@ -3,358 +3,950 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PepperLabs — Sistemas y operación</title>
-<meta name="description" content="Un sistema de verdad para tu negocio. Facturación, stock, caja y los módulos de tu rubro. Todo conectado, operable desde donde estés.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PepperLabs">
-<meta property="og:title" content="PepperLabs — Sistema y operación">
-<meta property="og:description" content="Cargás una factura y se entera todo lo demás. Stock, caja, clientes y los módulos de tu rubro — todo conectado.">
-<meta property="og:image" content="assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PepperLabs — Sistema y operación">
-<meta name="twitter:description" content="Cargás una factura y se entera todo lo demás. Stock, caja, clientes y los módulos de tu rubro — todo conectado.">
-<meta name="twitter:image" content="assets/og-image.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>PepperLabs · Sistemas y operación — Hacés la factura. El resto se entera solo.</title>
+<meta name="description" content="Sistema a medida para tu negocio. Facturación, stock, caja, clientes y los módulos de tu rubro — todo conectado.">
+<link rel="icon" type="image/svg+xml" href="assets/pepper_logo.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=boska@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pepperlabs.css">
+
+<style>
+/* ── Sistema hero ──────────────────────────────────────────── */
+
+.hero-sis{
+  position:relative;
+  min-height:calc(100vh - 116px);
+  padding: 60px var(--pad);
+  overflow:hidden;
+  border-bottom:1px solid var(--rule);
+  display:flex; flex-direction:column; justify-content:center;
+}
+
+/* Page meta strip at top */
+.hero-sis .meta-strip{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap:24px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  padding-bottom:18px; border-bottom:1px solid var(--rule);
+  margin-bottom:50px;
+}
+.hero-sis .meta-strip .l{ display:block; color:var(--dim); margin-bottom:6px; }
+.hero-sis .meta-strip .v{ color:var(--ink); }
+.hero-sis .meta-strip .v em{ font-style:normal; color:var(--lime); }
+@media (max-width:780px){
+  .hero-sis .meta-strip{ grid-template-columns:1fr 1fr; gap:18px 24px; margin-bottom:40px; }
+}
+
+.hero-sis-inner{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:60px;
+  align-items:center;
+  width:100%;
+}
+@media (max-width:1100px){ .hero-sis-inner{ grid-template-columns:1fr; gap:48px; } }
+
+.hero-sis-left{ position:relative; z-index:5; }
+.hero-sis-left .back{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
+  text-transform:uppercase; color:var(--dim);
+  margin-bottom:36px;
+  transition:color .2s, gap .2s;
+}
+.hero-sis-left .back:hover{ color:var(--lime); gap:14px; }
+
+.hero-sis-left h1{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 5.5vw, 80px);
+  line-height:1.02; letter-spacing:-0.028em;
+  color:var(--ink); margin: 24px 0 28px;
+  max-width:16ch;
+}
+.hero-sis-left h1 em{
+  font-style:italic; color:var(--lime);
+  text-shadow:0 0 22px rgba(216,255,77,0.3);
+}
+.hero-sis-left h1 .dot{
+  display:inline-block; width:0.14em; height:0.14em;
+  background:var(--lime); border-radius:50%;
+  margin-left:0.04em; vertical-align:0.18em;
+  box-shadow:0 0 18px var(--lime);
+}
+.hero-sis-left .lead{
+  font-size:19px; line-height:1.55;
+  color:var(--ink-2); max-width:50ch;
+  margin-bottom:40px;
+}
+.hero-sis-left .lead strong{ color:var(--ink); font-weight:500; }
+.hero-sis-left .lead em{ font-style:normal; color:var(--lime); }
+.hero-sis-left .ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+.hero-sis-left .ctas .btn--p{ background:var(--lime); border-color:var(--lime); }
+.hero-sis-left .ctas .btn--p:hover{ box-shadow:0 0 28px rgba(216,255,77,0.35); }
+.hero-sis-left .ctas .btn--g:hover{ border-color:var(--lime); color:var(--lime); }
+
+/* The architecture diagram (right) */
+.arch{
+  position:relative;
+  aspect-ratio: 1.05 / 1;
+  width:100%;
+  max-width:640px;
+  margin-left:auto;
+  align-self:stretch;
+}
+.arch-frame{
+  position:absolute; inset:0;
+  border:1px solid var(--rule-2);
+}
+.arch-frame::before, .arch-frame::after,
+.arch-frame > i:nth-child(1), .arch-frame > i:nth-child(2){
+  content:""; position:absolute; width:12px; height:12px;
+  border:1px solid var(--lime);
+}
+.arch-frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+.arch-frame::after{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+.arch-frame > i:nth-child(1){ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+.arch-frame > i:nth-child(2){ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+.arch-label{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--lime);
+  display:flex; gap:10px;
+}
+.arch-label::before{
+  content:""; width:14px; height:1px; background:var(--lime);
+  align-self:center;
+}
+.arch-spec{
+  position:absolute; bottom:14px; right:14px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.arch-stage{
+  position:absolute; inset:60px 40px 60px 40px;
+}
+
+/* Pepper outline (silhouette as faint frame) */
+.arch-pep{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+}
+.arch-pep svg{
+  width:100%; height:100%;
+  fill:none; stroke:var(--lime); stroke-width:0.6;
+  stroke-linejoin:round; opacity:0.16;
+  filter:drop-shadow(0 0 12px rgba(216,255,77,0.2));
+}
+
+/* The actual architecture overlay */
+.arch-diag{
+  position:absolute; inset:0;
+}
+.arch-diag svg{
+  width:100%; height:100%; overflow:visible;
+}
+.arch-diag .grid line{ stroke:var(--rule); stroke-width:0.4; }
+
+/* Nodes (boxes) */
+.node{
+  position:absolute;
+  border:1px solid var(--lime);
+  background:rgba(11,8,16,0.85);
+  padding:8px 12px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  display:flex; flex-direction:column; gap:2px;
+  color:var(--lime);
+  box-shadow:0 0 18px rgba(216,255,77,0.18);
+  transition: transform .25s var(--ease);
+}
+.node .nm{ color:var(--ink); font-weight:500; font-size:11.5px; }
+.node .id{ color:var(--lime); font-size:9px; }
+.node:hover{ transform:scale(1.05); }
+
+/* Center cluster (PepperCore) */
+.node.n-fact{ top:48%; left:42%; transform:translate(-50%,-50%); }
+.node.n-stock{ top:30%; left:34%; transform:translate(-50%,-50%); }
+.node.n-caja{ top:30%; left:62%; transform:translate(-50%,-50%); }
+.node.n-cli{ top:62%; left:30%; transform:translate(-50%,-50%); }
+.node.n-art{ top:62%; left:60%; transform:translate(-50%,-50%); }
+
+.node:hover{ transform:translate(-50%,-50%) scale(1.06); }
+
+/* Outer extensions */
+.node.ext{
+  background:rgba(11,8,16,0.7);
+  border-color:var(--rule-2);
+  color:var(--ink-2);
+  box-shadow:none;
+}
+.node.ext .id{ color:var(--dim); }
+.node.ext .nm{ color:var(--ink-2); }
+.node.ext:hover{ border-color:var(--lime); color:var(--lime); }
+
+.node.e-bar{ top:8%; left:18%; transform:translate(-50%,-50%); }
+.node.e-canchas{ top:8%; left:78%; transform:translate(-50%,-50%); }
+.node.e-delivery{ top:50%; left:88%; transform:translate(-50%,-50%); }
+.node.e-stock2{ top:88%; left:78%; transform:translate(-50%,-50%); }
+.node.e-cae{ top:88%; left:18%; transform:translate(-50%,-50%); }
+.node.e-shop{ top:50%; left:8%; transform:translate(-50%,-50%); }
+
+/* Status dot at top-right of node */
+.node .led{
+  position:absolute; top:6px; right:8px;
+  width:5px; height:5px; border-radius:50%;
+  background:var(--lime); box-shadow:0 0 6px var(--lime);
+  animation: pl-pulse 2.4s ease-in-out infinite;
+}
+.node.ext .led{ background:var(--cyan); box-shadow:0 0 6px var(--cyan); animation-delay:.6s; }
+
+@media (max-width:1100px){
+  .arch{ aspect-ratio: 1.2/1; }
+  .node{ font-size:8.5px; padding:6px 9px; }
+  .node .nm{ font-size:10px; }
+}
+@media (max-width:780px){
+  .arch{ aspect-ratio: 1.2/1; }
+  .node{ font-size:7.5px; padding:5px 7px; }
+  .node .nm{ font-size:9px; }
+  .arch-stage{ inset:34px 20px; }
+}
+
+/* Tape under hero */
+.tape{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden;
+  padding:13px 0;
+  background:var(--bg-2);
+  position:relative; z-index:5;
+}
+.tape-track{
+  display:flex; width:max-content;
+  animation: tape 42s linear infinite;
+  gap:48px;
+}
+.tape-item{
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  display:inline-flex; align-items:center; gap:48px;
+  white-space:nowrap;
+}
+.tape-item::after{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--lime); box-shadow:0 0 8px var(--lime);
+}
+@keyframes tape{ to{ transform:translateX(-50%); } }
+
+/* Generic page section spacing tweaks */
+.sec.sis{ position:relative; z-index:5; --ac: var(--lime); }
+.sec.sis .sec-head-l .pliego{ color:var(--lime); }
+.sec.sis .h-section em{ color:var(--lime); }
+
+/* Diagnóstico cards */
+.diag-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:18px;
+}
+@media (max-width:900px){ .diag-grid{ grid-template-columns:1fr; } }
+.diag-card{
+  background:var(--bg-2);
+  border:1px solid var(--rule-2);
+  padding:28px 26px;
+  display:flex; flex-direction:column; gap:14px;
+  position:relative;
+  transition:border-color .25s, transform .25s var(--ease);
+}
+.diag-card:hover{ border-color:var(--rule-2); transform:translateY(-3px); border-color:color-mix(in srgb, var(--warm) 30%, var(--rule-2)); }
+.diag-card .lab{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--warm);
+}
+.diag-card .t{
+  font-family:var(--serif); font-weight:500;
+  font-size:24px; letter-spacing:-0.015em;
+  line-height:1.1; color:var(--ink);
+}
+.diag-card .d{
+  font-size:15px; color:var(--ink-2); line-height:1.55;
+}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:20px;
+  margin-top:36px;
+}
+@media (max-width:780px){ .stats{ grid-template-columns:1fr; } }
+.stat{
+  padding:48px 28px 36px;
+  border:1px solid var(--rule-2);
+  text-align:center;
+  background:var(--bg-2);
+  position:relative;
+}
+.stat .n{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(56px, 8vw, 116px);
+  line-height:0.88; letter-spacing:-0.025em;
+  color:var(--lime);
+}
+.stat .n em{ font-style:italic; font-size:.45em; opacity:.85; }
+.stat .l{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); margin-top:14px;
+}
+
+/* Screens — featured + grid */
+.screens-feature{
+  position:relative;
+  border:1px solid var(--rule-2);
+  background:var(--bg-2);
+  margin-bottom:20px;
+  overflow:hidden;
+}
+.screens-feature img{
+  width:100%; display:block;
+}
+.screens-feature .tag{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink); padding:6px 10px;
+  background:rgba(11,8,16,0.8); border:1px solid var(--rule-2);
+}
+.screens-feature .tag em{ color:var(--lime); font-style:normal; }
+
+.screens-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+}
+@media (max-width:900px){ .screens-grid{ grid-template-columns:1fr; } }
+.screen-card{
+  position:relative; overflow:hidden;
+  border:1px solid var(--rule-2);
+  background:var(--bg-2);
+  transition:border-color .25s, transform .25s var(--ease);
+}
+.screen-card:hover{ border-color:var(--lime); transform:translateY(-3px); }
+.screen-card img{ width:100%; display:block; aspect-ratio:16/10; object-fit:cover; object-position:top; }
+.screen-card .label{
+  padding:14px 16px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+}
+.screen-card .label em{ color:var(--lime); font-style:normal; }
+
+/* Module catalogue */
+.cat-head{
+  display:flex; align-items:baseline;
+  gap:18px; flex-wrap:wrap;
+  margin: 56px 0 24px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--rule-2);
+}
+.cat-head:first-of-type{ margin-top:0; }
+.cat-tag{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--lime);
+}
+.cat-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(22px, 2.4vw, 32px);
+  letter-spacing:-0.018em; color:var(--ink);
+}
+.cat-meta{
+  margin-left:auto;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+
+.modgrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap:14px;
+}
+.modcard{
+  padding:18px 18px 20px;
+  border:1px solid var(--rule-2);
+  background:var(--bg-2);
+  display:flex; flex-direction:column; gap:8px;
+  transition:border-color .25s, transform .25s var(--ease);
+  position:relative;
+}
+.modcard:hover{ border-color:var(--lime); transform:translateY(-3px); }
+.modcard:hover .modcard-n{ color:var(--lime); }
+.modcard-n{
+  font-family:var(--mono); font-size:11px;
+  color:var(--dim); transition:color .25s;
+}
+.modcard-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:18px; letter-spacing:-0.015em;
+  color:var(--ink);
+}
+.modcard-d{
+  font-size:13.5px; color:var(--ink-2); line-height:1.5;
+}
+
+/* Plan / price */
+.plan{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:60px;
+  align-items:center;
+  padding:60px 0 30px;
+}
+@media (max-width:900px){ .plan{ grid-template-columns:1fr; gap:40px; } }
+.plan-tag{
+  text-align:left;
+}
+.plan-n{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(72px, 11vw, 180px);
+  line-height:0.88; letter-spacing:-0.04em;
+  color:var(--lime);
+  text-shadow:0 0 30px rgba(216,255,77,0.3);
+}
+.plan-per{
+  font-family:var(--mono); font-size:12px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2); margin-top:14px;
+}
+.plan-body{
+  display:flex; flex-direction:column; gap:18px;
+  border-left:1px solid var(--rule-2);
+  padding-left:40px;
+}
+@media (max-width:900px){
+  .plan-body{ border-left:none; padding-left:0; padding-top:24px; border-top:1px solid var(--rule-2); }
+}
+.plan-body p{
+  font-size:17px; color:var(--ink-2); line-height:1.6;
+}
+.plan-body .inc{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); padding:14px 0;
+  border-top:1px dashed var(--rule-2);
+  border-bottom:1px dashed var(--rule-2);
+}
+.plan-body .inc strong{ color:var(--lime); font-weight:500; }
+.plan-body .btn--p{ background:var(--lime); border-color:var(--lime); width:fit-content; }
+.plan-body .btn--p:hover{ box-shadow:0 0 28px rgba(216,255,77,0.35); }
+
+/* Origin (Software Express) — mirror home studio block */
+.origin{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap:80px;
+  align-items:start;
+}
+@media (max-width:900px){ .origin{ grid-template-columns:1fr; gap:40px; } }
+.origin-l .since{
+  display:flex; align-items:baseline; gap:14px;
+  padding-top:24px; border-top:1px solid var(--rule-2);
+}
+.origin-l .year{
+  font-family:var(--serif); font-weight:500;
+  font-size:42px; letter-spacing:-0.02em; color:var(--lime);
+  font-variant-numeric: tabular-nums;
+}
+.origin-l .label{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); line-height:1.4;
+}
+.origin-l .label strong{ color:var(--ink); font-weight:500; display:block; }
+.origin-r p{
+  font-size:17px; line-height:1.7; color:var(--ink-2); margin-bottom:20px;
+}
+.origin-r p strong{ color:var(--ink); font-weight:500; }
+.origin-r p em{ color:var(--lime); font-style:normal; }
+.origin-r .quote{
+  margin-top:32px;
+  padding:22px 0 22px 24px;
+  border-left:2px solid var(--lime);
+  font-family:var(--serif); font-style:italic;
+  font-size:22px; line-height:1.35; color:var(--ink);
+}
+.origin-r .quote .att{
+  display:block; margin-top:14px;
+  font-family:var(--mono); font-style:normal;
+  font-size:11px; letter-spacing:0.04em;
+  text-transform:uppercase; color:var(--dim);
+}
+
+/* End block override for lime */
+.end.sis::before{
+  background:radial-gradient(circle, rgba(216,255,77,0.10) 0%, transparent 60%);
+}
+.end.sis .h-page em{ color:var(--lime); }
+.end.sis .h-page .dot{ background:var(--lime); box-shadow:0 0 22px var(--lime); }
+.end.sis .end-ctas .btn--p{ background:var(--lime); border-color:var(--lime); color:var(--bg); }
+.end.sis .end-ctas .btn--p:hover{ box-shadow:0 0 28px rgba(216,255,77,0.35); }
+.end.sis .end-ctas .btn--g:hover{ border-color:var(--lime); color:var(--lime); }
+.end.sis .end-channels a:hover{ color:var(--lime); border-color:var(--lime); }
+
+</style>
 </head>
 <body>
 
-<!-- PEPPER SYMBOL -->
+<!-- Pepper symbol -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="pep" viewBox="0 0 94.93 115.91">
-    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
-    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
-    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+  <symbol id="pep-out" viewBox="0 0 94.93 115.91">
+    <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+    <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+    <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+    <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+    <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+    <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+    <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
   </symbol>
 </svg>
 
-<!-- NAV -->
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <a class="nav-logo" href="index.html"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
   <ul class="nav-links">
-    <li><a href="sistema.html" class="active">Sistema</a></li>
+    <li><a href="sistema.html">Sistema</a></li>
     <li><a href="identidad.html">Identidad</a></li>
     <li><a href="comunicacion.html">Comunicación</a></li>
     <li><a href="trabajos.html">Trabajos</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+    <a href="index.html" class="nav-logo" style="text-decoration:none"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar &times;</button>
   </div>
   <ul>
     <li><a href="sistema.html" data-n="01">Sistema</a></li>
     <li><a href="identidad.html" data-n="02">Identidad</a></li>
     <li><a href="comunicacion.html" data-n="03">Comunicación</a></li>
     <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
-        <li><a href="contacto.html" data-n="05">Contacto</a></li>
+    <li><a href="contacto.html" data-n="05">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+  <a href="contacto.html" class="mm-cta">Hablemos &rarr;</a>
 </div>
 
-<!-- HERO · Sistema — La grilla -->
-<header class="hero sistema">
-  <span class="folio">Nº <strong>01</strong> / 05 · Sistema</span>
-  <span class="watermark" aria-hidden="true">01</span>
-  <span class="corner tl" aria-hidden="true"></span>
-  <span class="corner tr" aria-hidden="true"></span>
-  <span class="corner bl" aria-hidden="true"></span>
-  <span class="corner br" aria-hidden="true"></span>
-  <div class="pep-anchor" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <div class="pep-callout">
-    <span class="ct-num">A · 01</span>
-    <span class="ct-text">PepperCore es la base.<br>5 módulos siempre incluidos.</span>
+<!-- ── HERO ────────────────────────────────────────────── -->
+<header class="hero-sis" id="top">
+
+  <div class="meta-strip">
+    <div><span class="l">— Página</span><span class="v">Sistemas y operación</span></div>
+    <div><span class="l">— Área</span><span class="v"><em>03 / lo que sostiene</em></span></div>
+    <div><span class="l">— Práctica</span><span class="v">ERP · Software a medida</span></div>
+    <div><span class="l">— Linaje</span><span class="v">Software Express · 1992</span></div>
+    <div><span class="l">— Versión</span><span class="v">v.MMXXVI · activa</span></div>
   </div>
-  <div class="scale-ruler" aria-hidden="true">
-    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-  </div>
-  <div class="hero-in right">
-    <div class="hero-meta">
-      <a href="index.html" class="back-link">← PepperLabs</a>
-      <span class="sep">·</span>
-      <span class="area-tag">Área 01 · Sistemas y operación</span>
-      <span class="year">MMXXVI</span>
+
+  <div class="hero-sis-inner">
+
+    <div class="hero-sis-left">
+      <a href="index.html" class="back">← PepperLabs</a>
+      <span class="eyebrow" style="color:var(--lime)"><span style="background:var(--lime); box-shadow:0 0 8px var(--lime); width:7px; height:7px; border-radius:50%; display:inline-block; animation:pl-pulse 2.4s ease-in-out infinite;"></span>Lo que sostiene</span>
+      <h1>Resolvemos tu operación entera. <em>En una sola pantalla.</em></h1>
+      <p class="lead"><strong>Stock, caja, clientes</strong> y los módulos de tu rubro. Una sola carga, todo se entera. <em>Cero excels paralelos. Cero planillas que nadie más entiende.</em></p>
+      <div class="ctas">
+        <a href="contacto.html" class="btn btn--p">Pedir cotización <span class="ar">→</span></a>
+        <a href="#catalogo" class="btn btn--g">Ver módulos <span class="ar">→</span></a>
+      </div>
     </div>
-    <h1>Cargás una factura. <em>Se entera todo lo demás.</em></h1>
-    <p class="hero-lead">Stock, caja, clientes y los módulos de tu rubro — todo conectado, sin cargar nada dos veces.</p>
-    <div class="hero-foot">
-      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
-      <a href="#catalogo" class="btn btn-line">Ver módulos <span class="ar">→</span></a>
+
+    <!-- Architecture diagram -->
+    <div class="arch" aria-hidden="true">
+      <div class="arch-frame"><i></i><i></i></div>
+      <span class="arch-label">— Arquitectura · PepperLabs ERP</span>
+      <span class="arch-spec">— 94 × 116 · v.MMXXVI</span>
+
+      <div class="arch-stage">
+
+        <!-- Faint pepper silhouette behind -->
+        <div class="arch-pep">
+          <svg viewBox="0 0 94.93 115.91" preserveAspectRatio="xMidYMid meet">
+            <use href="#pep-out"/>
+          </svg>
+        </div>
+
+        <!-- Connection lines (SVG layer) -->
+        <div class="arch-diag">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <!-- Lines from FACT (center) to PepperCore neighbors -->
+            <g stroke="rgb(216,255,77)" stroke-width="0.3" fill="none" opacity="0.6">
+              <line x1="42" y1="48" x2="34" y2="30"/>
+              <line x1="42" y1="48" x2="62" y2="30"/>
+              <line x1="42" y1="48" x2="30" y2="62"/>
+              <line x1="42" y1="48" x2="60" y2="62"/>
+            </g>
+            <!-- Lines to extensions (dashed) -->
+            <g stroke="rgba(242,237,255,0.25)" stroke-width="0.3" fill="none" stroke-dasharray="1.5 1.5">
+              <line x1="34" y1="30" x2="18" y2="8"/>
+              <line x1="62" y1="30" x2="78" y2="8"/>
+              <line x1="60" y1="62" x2="78" y2="50"/>
+              <line x1="60" y1="62" x2="78" y2="88"/>
+              <line x1="30" y1="62" x2="18" y2="88"/>
+              <line x1="30" y1="62" x2="8" y2="50"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- PepperCore (5 modules) -->
+        <div class="node n-fact"><span class="led"></span><span class="id">CORE · 01</span><span class="nm">FACT</span></div>
+        <div class="node n-stock"><span class="led"></span><span class="id">CORE · 02</span><span class="nm">STOCK</span></div>
+        <div class="node n-caja"><span class="led"></span><span class="id">CORE · 03</span><span class="nm">CAJA</span></div>
+        <div class="node n-cli"><span class="led"></span><span class="id">CORE · 04</span><span class="nm">CLI</span></div>
+        <div class="node n-art"><span class="led"></span><span class="id">CORE · 05</span><span class="nm">ART</span></div>
+
+        <!-- Extensions (PepperWorks) -->
+        <div class="node ext e-bar"><span class="led"></span><span class="id">EXT · 01</span><span class="nm">BAR</span></div>
+        <div class="node ext e-canchas"><span class="led"></span><span class="id">EXT · 02</span><span class="nm">CANCHAS</span></div>
+        <div class="node ext e-delivery"><span class="led"></span><span class="id">EXT · 03</span><span class="nm">DELIVERY</span></div>
+        <div class="node ext e-stock2"><span class="led"></span><span class="id">EXT · 04</span><span class="nm">GIM</span></div>
+        <div class="node ext e-cae"><span class="led"></span><span class="id">EXT · 05</span><span class="nm">CAE · 3s</span></div>
+        <div class="node ext e-shop"><span class="led"></span><span class="id">EXT · 06</span><span class="nm">SHOP</span></div>
+
+      </div>
     </div>
+
   </div>
 </header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Facturación</span><span class="marquee-item">Stock</span><span class="marquee-item">Caja</span><span class="marquee-item">CAE en 3 segundos</span><span class="marquee-item">Sin permanencia</span>
-    <span class="marquee-item">Facturación</span><span class="marquee-item">Stock</span><span class="marquee-item">Caja</span><span class="marquee-item">CAE en 3 segundos</span><span class="marquee-item">Sin permanencia</span>
-    <span class="marquee-item">Facturación</span><span class="marquee-item">Stock</span><span class="marquee-item">Caja</span><span class="marquee-item">CAE en 3 segundos</span><span class="marquee-item">Sin permanencia</span>
-    <span class="marquee-item">Facturación</span><span class="marquee-item">Stock</span><span class="marquee-item">Caja</span><span class="marquee-item">CAE en 3 segundos</span><span class="marquee-item">Sin permanencia</span>
+<!-- ── TAPE ─────────────────────────────────────────── -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-item">Facturación</span>
+    <span class="tape-item">Stock</span>
+    <span class="tape-item">Caja</span>
+    <span class="tape-item">CAE en 3 segundos</span>
+    <span class="tape-item">Sin permanencia</span>
+    <span class="tape-item">Facturación</span>
+    <span class="tape-item">Stock</span>
+    <span class="tape-item">Caja</span>
+    <span class="tape-item">CAE en 3 segundos</span>
+    <span class="tape-item">Sin permanencia</span>
+    <span class="tape-item">Facturación</span>
+    <span class="tape-item">Stock</span>
+    <span class="tape-item">Caja</span>
+    <span class="tape-item">CAE en 3 segundos</span>
+    <span class="tape-item">Sin permanencia</span>
   </div>
 </div>
 
-<!-- 01 — DIAGNÓSTICO -->
-<section class="sec" id="diagnostico">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:88px;height:108px;color:var(--violet);top:-30px;right:5%;transform:rotate(14deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 01 — Diagnóstico</span>
-      <h2 class="h2">Para saber cómo va el negocio, <em class="pink">tenés que salir a buscarlo.</em></h2>
-      <p class="sec-lead">Hoy la información está repartida y a mano. Eso cuesta tiempo todos los días.</p>
-    </div>
-    <div class="sintomas">
-      <div class="sintoma"><span class="sintoma-n">— 01 · Sistemas</span><span class="sintoma-t">No se hablan</span><span class="sintoma-d">Lo que sabe ventas no lo sabe stock. Lo que sabe caja no lo sabe contabilidad.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02 · Cierres</span><span class="sintoma-t">Empiezan buscando</span><span class="sintoma-d">Cada mes arranca con una cacería de archivos. Tiempo que no vuelve.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03 · Fiscal</span><span class="sintoma-t">Con duda permanente</span><span class="sintoma-d">Facturás con la sensación de que algo quedó mal.</span></div>
-    </div>
-  </div>
-</section>
+<main>
 
-<!-- STATS -->
-<section class="sec">
-  <div class="wrap">
-    <div class="stats">
-      <div class="stat"><span class="stat-n">30</span><span class="stat-l">Años de operación real</span></div>
-      <div class="stat"><span class="stat-n">3<em>s</em></span><span class="stat-l">Para emitir un CAE</span></div>
-      <div class="stat"><span class="stat-n">0</span><span class="stat-l">Permanencia mínima</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 02 — ARQUITECTURA -->
-<section class="sec" id="arquitectura">
+<!-- ── DIAGNÓSTICO ─────────────────────────────────────── -->
+<section class="sec sis" id="diagnostico">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 02 — Arquitectura</span>
-      <h2 class="h2">Cargás una factura y se actualiza <em>todo lo demás.</em></h2>
-      <p class="sec-lead">Cuatro principios. Una sola idea detrás: el sistema trabaja, no vos.</p>
-    </div>
-    <div class="sintomas g2">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Todo conectado</span><span class="sintoma-d">Una factura mueve el stock, la caja y la cuenta del cliente. Sin que toques nada más.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Sumás lo que usás</span><span class="sintoma-d">Activás el módulo de tu rubro cuando lo necesitás. Ni antes, ni de más.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">ARCA sin drama</span><span class="sintoma-d">El CAE sale en tres segundos, mientras el cliente todavía está pagando.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Desde donde estés</span><span class="sintoma-d">El mismo sistema en el mostrador, en la oficina y en el teléfono.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 02b — EN PANTALLA -->
-<section class="sys-screens-section" id="en-pantalla">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="sec-kick">// 02b — En pantalla</span>
-      <h2 class="h2">Así se ve un día <em class="cyan">de operación real.</em></h2>
-      <p class="sec-lead">No son maquetas. Es el sistema corriendo en un comercio multi-vertical de Córdoba — bar, canchas, gimnasio, delivery y tienda online, en una sola pantalla.</p>
-    </div>
-
-    <div class="sys-screens-featured">
-      <div class="screen" data-lightbox="sistema" data-caption="Núcleo · Resumen del día (dashboard)">
-        <span class="screen-tag">— Núcleo · Resumen del día</span>
-        <img src="assets/work/admin-dashboard.webp" alt="Dashboard del Núcleo · facturas, ingresos, reservas, deuda, cheques y stock crítico del día">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 01 / 05</span>
+        <span class="ix">— Diagnóstico</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Para saber cómo va el negocio, <em>tuviste que preguntárselo a tres personas.</em></h2>
+        <p class="lead">Al contador, al encargado y al chico de mostrador. <strong>Tres respuestas distintas, tres planillas paralelas.</strong> Y vos sin saber qué creérle.</p>
       </div>
     </div>
 
-    <div class="sys-screens-grid">
-      <div class="screen" data-lightbox="sistema" data-caption="Bar / Restaurant · Comandas en tiempo real">
-        <img src="assets/work/admin-bar.webp" alt="Módulo Bar / Restaurant · plano de mesas, comandas activas, reservas">
+    <div class="diag-grid">
+      <div class="diag-card">
+        <span class="lab">— 01 · Sistemas</span>
+        <h3 class="t">No se hablan</h3>
+        <p class="d">Lo que sabe el mostrador no lo sabe el depósito. Lo que sabe caja no lo sabe el contador. Lo descubrís a fin de mes.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 02 · Cierres</span>
+        <h3 class="t">Empiezan buscando</h3>
+        <p class="d">El primer día del mes lo perdés buscando archivos en cuatro carpetas distintas. Y al sexto archivo, dudaste.</p>
+      </div>
+      <div class="diag-card">
+        <span class="lab">— 03 · Fiscal</span>
+        <h3 class="t">Con duda permanente</h3>
+        <p class="d">Facturaste, mandaste, seguíste — pero te quedó esa sensación de que algo quedó mal. Y a veces quedó mal.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><span class="n">30</span><span class="l">— Años de operación real</span></div>
+      <div class="stat"><span class="n">3<em>s</em></span><span class="l">— Para emitir un CAE</span></div>
+      <div class="stat"><span class="n">0</span><span class="l">— Permanencia mínima</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ARQUITECTURA ───────────────────────────────────── -->
+<section class="sec sis" id="arquitectura">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 02 / 05</span>
+        <span class="ix">— Arquitectura</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Hacés una factura y se actualiza <em>todo lo demás solo.</em></h2>
+        <p class="lead">Cuatro reglas. Una sola carga. Todo se entera solo.</p>
+      </div>
+    </div>
+
+    <div class="row-list">
+      <div class="row" style="--ac:var(--lime)">
+        <span class="row-num">— 01</span>
+        <h3 class="row-name">Todo <em>conectado</em></h3>
+        <p class="row-desc">Una factura mueve el stock, la caja y la cuenta del cliente. <strong>Vos no tocás nada más.</strong> La guita aparece donde tiene que aparecer.</p>
+      </div>
+      <div class="row" style="--ac:var(--lime)">
+        <span class="row-num">— 02</span>
+        <h3 class="row-name">Sumás <em>lo que usás</em></h3>
+        <p class="row-desc">Activás el módulo de tu rubro cuando arrancaste a usarlo. Si no lo usás, no lo pagás.</p>
+      </div>
+      <div class="row" style="--ac:var(--lime)">
+        <span class="row-num">— 03</span>
+        <h3 class="row-name">ARCA <em>sin drama</em></h3>
+        <p class="row-desc">El CAE sale en tres segundos. Más rápido que tu cliente buscando la tarjeta.</p>
+      </div>
+      <div class="row" style="--ac:var(--lime)">
+        <span class="row-num">— 04</span>
+        <h3 class="row-name">Desde <em>donde estés</em></h3>
+        <p class="row-desc">El mismo sistema en el mostrador, en la oficina, en el living del domingo a la noche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EN PANTALLA ─────────────────────────────────────── -->
+<section class="sec sis" id="en-pantalla">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 03 / 05</span>
+        <span class="ix">— En pantalla</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Así se ve un día <em>de operación real.</em></h2>
+        <p class="lead">No son maquetas. Es el sistema corriendo — en un comercio multi-vertical de Córdoba con bar, canchas, gimnasio, delivery y tienda online. Todo en la misma pantalla.</p>
+      </div>
+    </div>
+
+    <div class="screens-feature">
+      <span class="tag">— Núcleo · <em>Resumen del día</em></span>
+      <img src="assets/work/admin-dashboard.webp" alt="Dashboard del Núcleo · facturas, ingresos, reservas, deuda, cheques y stock crítico del día">
+    </div>
+
+    <div class="screens-grid">
+      <div class="screen-card">
+        <img src="assets/work/admin-bar.webp" alt="Bar / Restaurant · comandas en tiempo real">
         <div class="label">— 01 · <em>Bar / Restaurant</em> · Comandas en tiempo real</div>
       </div>
-      <div class="screen" data-lightbox="sistema" data-caption="Calendario · Agenda sincronizada">
-        <img src="assets/work/admin-calendario.webp" alt="Módulo Calendario · agenda personal, eventos y recordatorios">
+      <div class="screen-card">
+        <img src="assets/work/admin-calendario.webp" alt="Calendario · agenda sincronizada">
         <div class="label">— 02 · <em>Calendario</em> · Agenda sincronizada</div>
       </div>
-      <div class="screen" data-lightbox="sistema" data-caption="Operación · Turnos por sucursal">
-        <img src="assets/work/admin-resumen.webp" alt="Dashboard de turnos y reservas del día por complejo">
+      <div class="screen-card">
+        <img src="assets/work/admin-resumen.webp" alt="Operación · turnos por sucursal">
         <div class="label">— 03 · <em>Operación</em> · Turnos por sucursal</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 03 — CATÁLOGO -->
-<section class="sec" id="catalogo">
+<!-- ── CATÁLOGO ──────────────────────────────────────── -->
+<section class="sec sis" id="catalogo">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 03 — Catálogo</span>
-      <h2 class="h2">Empezás con lo básico y sumás lo que <em class="lime">tu rubro pida.</em></h2>
-      <p class="sec-lead">PepperCore es lo esencial, siempre incluido. Cuando la operación lo pide, sumamos el módulo que necesites — sin migraciones ni trámites.</p>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 04 / 05</span>
+        <span class="ix">— Catálogo</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Empezás con lo básico y sumás lo que <em>tu rubro pida.</em></h2>
+        <p class="lead">PepperCore es lo mínimo, siempre incluido. El resto lo activás cuando el negocio te lo pida — no antes, no porque quede lindo.</p>
+      </div>
     </div>
 
-    <div class="modgrid-head">
-      <span class="modgrid-tag">— Base</span>
-      <span class="modgrid-name">PepperCore</span>
-      <span class="modgrid-meta">Siempre incluido</span>
+    <div class="cat-head">
+      <span class="cat-tag">— Base</span>
+      <h3 class="cat-name">PepperCore</h3>
+      <span class="cat-meta">Siempre incluido · 5 módulos</span>
     </div>
     <div class="modgrid">
-      <div class="modcard"><span class="modcard-n">01</span><span class="modcard-name">Facturación</span><span class="modcard-d">El CAE llega antes que el cliente pague.</span></div>
-      <div class="modcard"><span class="modcard-n">02</span><span class="modcard-name">Stock</span><span class="modcard-d">Sabés lo que falta antes que falte.</span></div>
-      <div class="modcard"><span class="modcard-n">03</span><span class="modcard-name">Caja</span><span class="modcard-d">La plata, en tiempo real.</span></div>
-      <div class="modcard"><span class="modcard-n">04</span><span class="modcard-name">Clientes</span><span class="modcard-d">Cada cliente, su historia entera.</span></div>
-      <div class="modcard"><span class="modcard-n">05</span><span class="modcard-name">Artículos</span><span class="modcard-d">El catálogo, en un idioma.</span></div>
+      <div class="modcard"><span class="modcard-n">— 01</span><span class="modcard-name">Facturación</span><span class="modcard-d">El CAE llega antes que el cliente pague.</span></div>
+      <div class="modcard"><span class="modcard-n">— 02</span><span class="modcard-name">Stock</span><span class="modcard-d">Sabés lo que falta antes que falte.</span></div>
+      <div class="modcard"><span class="modcard-n">— 03</span><span class="modcard-name">Caja</span><span class="modcard-d">La plata, en tiempo real.</span></div>
+      <div class="modcard"><span class="modcard-n">— 04</span><span class="modcard-name">Clientes</span><span class="modcard-d">Cada cliente, su historia entera.</span></div>
+      <div class="modcard"><span class="modcard-n">— 05</span><span class="modcard-name">Artículos</span><span class="modcard-d">El catálogo, en un idioma.</span></div>
     </div>
 
-    <div class="modgrid-head">
-      <span class="modgrid-tag">— Por rubro</span>
-      <span class="modgrid-name">PepperWorks</span>
-      <span class="modgrid-meta">Activás tu vertical</span>
+    <div class="cat-head">
+      <span class="cat-tag">— Por rubro</span>
+      <h3 class="cat-name">PepperWorks</h3>
+      <span class="cat-meta">Activás tu vertical · 6 módulos</span>
     </div>
     <div class="modgrid">
-      <div class="modcard"><span class="modcard-n">01</span><span class="modcard-name">Canchas</span><span class="modcard-d">La agenda se llena sin tu teléfono.</span></div>
-      <div class="modcard"><span class="modcard-n">02</span><span class="modcard-name">Bar / Restaurant</span><span class="modcard-d">De la mesa a la cocina, sin gritar.</span></div>
-      <div class="modcard"><span class="modcard-n">03</span><span class="modcard-name">Shop / POS</span><span class="modcard-d">Una venta, un toque.</span></div>
-      <div class="modcard"><span class="modcard-n">04</span><span class="modcard-name">Gimnasio</span><span class="modcard-d">Los socios al día, sin abrirlos uno por uno.</span></div>
-      <div class="modcard"><span class="modcard-n">05</span><span class="modcard-name">Salón de fiestas</span><span class="modcard-d">El calendario reserva por vos.</span></div>
-      <div class="modcard"><span class="modcard-n">06</span><span class="modcard-name">Tienda online</span><span class="modcard-d">El stock del local es el stock online.</span></div>
+      <div class="modcard"><span class="modcard-n">— 01</span><span class="modcard-name">Canchas</span><span class="modcard-d">La agenda se llena sin tu teléfono.</span></div>
+      <div class="modcard"><span class="modcard-n">— 02</span><span class="modcard-name">Bar / Restaurant</span><span class="modcard-d">De la mesa a la cocina, sin gritar.</span></div>
+      <div class="modcard"><span class="modcard-n">— 03</span><span class="modcard-name">Shop / POS</span><span class="modcard-d">Una venta, un toque.</span></div>
+      <div class="modcard"><span class="modcard-n">— 04</span><span class="modcard-name">Gimnasio</span><span class="modcard-d">Los socios al día, sin abrirlos uno por uno.</span></div>
+      <div class="modcard"><span class="modcard-n">— 05</span><span class="modcard-name">Salón de fiestas</span><span class="modcard-d">El calendario reserva por vos.</span></div>
+      <div class="modcard"><span class="modcard-n">— 06</span><span class="modcard-name">Tienda online</span><span class="modcard-d">El stock del local es el stock online.</span></div>
     </div>
 
-    <div class="modgrid-head">
-      <span class="modgrid-tag">— Adicionales</span>
-      <span class="modgrid-name">Sumás cuando la operación lo pide</span>
-      <span class="modgrid-meta">14 módulos</span>
+    <div class="cat-head">
+      <span class="cat-tag">— Adicionales</span>
+      <h3 class="cat-name">Sumás cuando la operación lo pide</h3>
+      <span class="cat-meta">14 módulos</span>
     </div>
     <div class="modgrid">
-      <div class="modcard"><span class="modcard-n">01</span><span class="modcard-name">Cuenta corriente</span><span class="modcard-d">Quién te debe, cuánto, y desde cuándo.</span></div>
-      <div class="modcard"><span class="modcard-n">02</span><span class="modcard-name">Proveedores</span><span class="modcard-d">Lo que debés, siempre a la vista.</span></div>
-      <div class="modcard"><span class="modcard-n">03</span><span class="modcard-name">Contabilidad</span><span class="modcard-d">Exportable a Tango, Bejerman y libros IVA.</span></div>
-      <div class="modcard"><span class="modcard-n">04</span><span class="modcard-name">Cheques</span><span class="modcard-d">Ninguno se pierde entre papeles.</span></div>
-      <div class="modcard"><span class="modcard-n">05</span><span class="modcard-name">Compras</span><span class="modcard-d">Cada orden, su recorrido.</span></div>
-      <div class="modcard"><span class="modcard-n">06</span><span class="modcard-name">Calendario</span><span class="modcard-d">Turnos, agenda y reservas, sincronizados.</span></div>
-      <div class="modcard"><span class="modcard-n">07</span><span class="modcard-name">Delivery</span><span class="modcard-d">Del pedido a la puerta, sin papeles.</span></div>
-      <div class="modcard"><span class="modcard-n">08</span><span class="modcard-name">Pedidos entre sucursales</span><span class="modcard-d">Movés mercadería sin WhatsApp en el medio.</span></div>
-      <div class="modcard"><span class="modcard-n">09</span><span class="modcard-name">Ver comprobantes</span><span class="modcard-d">Todo lo emitido, buscable.</span></div>
-      <div class="modcard"><span class="modcard-n">10</span><span class="modcard-name">Portal del cliente</span><span class="modcard-d">Tu cliente consulta sin escribirte.</span></div>
-      <div class="modcard"><span class="modcard-n">11</span><span class="modcard-name">WhatsApp</span><span class="modcard-d">Avisos y comprobantes salen solos.</span></div>
-      <div class="modcard"><span class="modcard-n">12</span><span class="modcard-name">Consulta de precios</span><span class="modcard-d">Pantalla pública. El precio, sin preguntarte.</span></div>
-      <div class="modcard"><span class="modcard-n">13</span><span class="modcard-name">Índices económicos</span><span class="modcard-d">IPC y cotizaciones, cargados al día.</span></div>
-      <div class="modcard"><span class="modcard-n">14</span><span class="modcard-name">Backup</span><span class="modcard-d">Una copia diaria. Sin que la pidas.</span></div>
+      <div class="modcard"><span class="modcard-n">— 01</span><span class="modcard-name">Cuenta corriente</span><span class="modcard-d">Quién te debe, cuánto, y desde cuándo.</span></div>
+      <div class="modcard"><span class="modcard-n">— 02</span><span class="modcard-name">Proveedores</span><span class="modcard-d">Lo que debés, siempre a la vista.</span></div>
+      <div class="modcard"><span class="modcard-n">— 03</span><span class="modcard-name">Contabilidad</span><span class="modcard-d">Exportable a Tango, Bejerman y libros IVA.</span></div>
+      <div class="modcard"><span class="modcard-n">— 04</span><span class="modcard-name">Cheques</span><span class="modcard-d">Ninguno se pierde entre papeles.</span></div>
+      <div class="modcard"><span class="modcard-n">— 05</span><span class="modcard-name">Compras</span><span class="modcard-d">Cada orden, su recorrido.</span></div>
+      <div class="modcard"><span class="modcard-n">— 06</span><span class="modcard-name">Calendario</span><span class="modcard-d">Turnos, agenda y reservas, sincronizados.</span></div>
+      <div class="modcard"><span class="modcard-n">— 07</span><span class="modcard-name">Delivery</span><span class="modcard-d">Del pedido a la puerta, sin papeles.</span></div>
+      <div class="modcard"><span class="modcard-n">— 08</span><span class="modcard-name">Sucursales</span><span class="modcard-d">Movés mercadería sin WhatsApp en el medio.</span></div>
+      <div class="modcard"><span class="modcard-n">— 09</span><span class="modcard-name">Ver comprobantes</span><span class="modcard-d">Todo lo emitido, buscable.</span></div>
+      <div class="modcard"><span class="modcard-n">— 10</span><span class="modcard-name">Portal del cliente</span><span class="modcard-d">Tu cliente consulta sin escribirte.</span></div>
+      <div class="modcard"><span class="modcard-n">— 11</span><span class="modcard-name">WhatsApp</span><span class="modcard-d">Avisos y comprobantes salen solos.</span></div>
+      <div class="modcard"><span class="modcard-n">— 12</span><span class="modcard-name">Consulta de precios</span><span class="modcard-d">Pantalla pública. El precio, sin preguntarte.</span></div>
+      <div class="modcard"><span class="modcard-n">— 13</span><span class="modcard-name">Índices económicos</span><span class="modcard-d">IPC y cotizaciones, cargados al día.</span></div>
+      <div class="modcard"><span class="modcard-n">— 14</span><span class="modcard-name">Backup</span><span class="modcard-d">Una copia diaria. Sin que la pidas.</span></div>
+    </div>
+
+    <div class="plan">
+      <div class="plan-tag">
+        <div class="plan-n">$60K</div>
+        <div class="plan-per">— Por mes · PepperCore, todo incluido</div>
+      </div>
+      <div class="plan-body">
+        <p>El piso es <strong>PepperCore</strong>: facturación, caja, stock, clientes, artículos. Lo mínimo para que un negocio argentino funcione. Si te alcanza con esto, no te vendemos nada más.</p>
+        <span class="inc">Incluye siempre: <strong>Facturación · Caja · Stock · Clientes · Artículos</strong></span>
+        <a href="contacto.html" class="btn btn--p">Mandá un WhatsApp <span class="ar">→</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 04 — PLAN -->
-<section class="sec" id="plan">
+<!-- ── ORIGEN ─────────────────────────────────────────── -->
+<section class="sec sis" id="origen">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-kick">// 04 — Plan</span>
-      <h2 class="h2">Pagás lo que <em>prendés.</em></h2>
-      <p class="sec-lead">PepperCore es el piso. Cada módulo adicional suma según volumen. Te respondemos la cotización el mismo día.</p>
+      <div class="sec-head-l">
+        <span class="pliego">Pliego 05 / 05</span>
+        <span class="ix">— Origen</span>
+      </div>
+      <div class="sec-head-r">
+        <h2 class="h-section">Treinta años haciendo lo mismo: <em>software que funciona.</em></h2>
+        <p class="lead">Software Express en 1992. PepperLabs en 2026. <strong>Misma cabeza, otro siglo.</strong></p>
+      </div>
     </div>
-    <div class="precio">
-      <div class="precio-tag">
-        <div class="precio-n">$60.000</div>
-        <div class="precio-per">— Por mes · PepperCore, todo incluido</div>
-      </div>
-      <div class="precio-body">
-        <p>El piso es PepperCore: facturación, caja, stock, clientes y artículos. Todo lo esencial, siempre. A partir de ahí sumás solo lo que tu operación pida.</p>
-        <span class="precio-inc">Incluye siempre: Facturación · Caja · Stock · Clientes · Artículos</span>
-        <a href="contacto.html" class="btn btn-fill" style="background:var(--cyan);color:var(--bg);box-shadow:0 0 18px var(--cyan);">Pedir cotización <span class="ar">→</span></a>
-      </div>
+
+    <div class="origin">
+      <blockquote class="quote">
+        “El sistema se adapta al negocio. Nunca al revés.”
+        <span class="att">— Carlos Buira · Software Express · 1992</span>
+      </blockquote>
     </div>
   </div>
 </section>
 
-<!-- 05 — ORIGEN -->
-<section class="sec" id="origen">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:74px;height:90px;color:var(--lime);bottom:30px;left:-12px;transform:rotate(-22deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 05 — Origen</span>
-      <h2 class="h2">Treinta años haciendo lo mismo: <em class="lime">software que funciona.</em></h2>
-      <p class="sec-lead">Software Express acompañó empresas durante tres décadas con la plataforma Dolphi. PepperLabs es esa experiencia, reescrita para cómo se trabaja hoy: nativa web, modular, operable desde el teléfono. Carlos Buira la fundó en 1992. Fernando Buira la lleva a la web.</p>
+<!-- ── END ─────────────────────────────────────────── -->
+<section class="end sis">
+  <div class="end-in">
+    <span class="eyebrow" style="color:var(--lime)">Te queremos escuchar</span>
+    <h2 class="h-page">Pedimos <em>cotización<span class="dot"></span></em></h2>
+    <p class="lead">Contanos qué necesita tu negocio. <em>Te decimos qué módulos te sirven y por dónde empezar.</em></p>
+    <div class="end-ctas">
+      <a href="contacto.html" class="btn btn--p">Pedir cotización <span class="ar">→</span></a>
+      <a href="https://wa.me/5493484333427" target="_blank" rel="noopener" class="btn btn--g">WhatsApp directo <span class="ar">→</span></a>
     </div>
-    <div class="cita">
-      <div class="cita-bubble">
-        <p class="cita-t">El sistema se adapta al negocio. Nunca al revés.</p>
-        <p class="cita-a">— Carlos Buira · Software Express, 1992</p>
-      </div>
+    <div class="end-channels">
+      <a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a>
+      <a href="https://wa.me/5493484333427">+54 9 3484 33-3427</a>
     </div>
   </div>
 </section>
 
-<!-- CTA FINO (→ contacto.html) -->
-<section class="cta-fino">
-  <div class="wrap">
-    <div class="cta-fino-row">
-      <h2 class="cta-fino-title">¿Tenés un proyecto en mente? <em>Hablemos.</em></h2>
-      <a href="contacto.html" class="btn btn-fill">Empezar conversación <span class="ar">→</span></a>
-    </div>
-    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
-  </div>
-</section>
+</main>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-row">
-      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-      <div class="footer-links">
-        <a href="index.html">Inicio</a>
-        <a href="identidad.html">Identidad</a>
-        <a href="comunicacion.html">Comunicación</a>
-        <a href="trabajos.html">Trabajos</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="pep"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="name">Pepper<em>Labs</em></span>
+      <p>Resolvemos problemas.</p>
     </div>
+    <div class="foot-col">
+      <h4>— Áreas</h4>
+      <ul>
+        <li><a href="sistema.html">Sistemas</a></li>
+        <li><a href="identidad.html">Identidad</a></li>
+        <li><a href="comunicacion.html">Comunicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Estudio</h4>
+      <ul>
+        <li><a href="trabajos.html">Trabajos</a></li>
+        <li><a href="index.html#estudio">Manifiesto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Hablemos</h4>
+      <ul>
+        <li><a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a></li>
+        <li><a href="https://wa.me/5493484333427">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>v3.0 · build 2026.05</span>
+    <span>Estudio activo · Tomando proyectos</span>
   </div>
 </footer>
 
-<script>
-(function(){
-  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
-  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
-  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
-  if(mc)mc.addEventListener('click',function(){sm(false);});
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+<!-- Mobile menu -->
+<div class="mm" id="mm">
+  <div class="mm-head">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="brand-name">Pepper<em>Labs</em></span>
+    </a>
+    <button class="mm-close" id="navClose" type="button">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="— 03">Sistemas</a></li>
+    <li><a href="identidad.html" data-n="— 02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="— 01">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="— 04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="— 05">Contacto</a></li>
+  </ul>
+  <a class="mm-cta" href="contacto.html">Iniciar conversación →</a>
+</div>
 
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-    });
-  });
-})();
-
-function enviarForm(e){
-  if(e) e.preventDefault();
-  var n   = (document.getElementById('cfName').value||'').trim();
-  var emp = (document.getElementById('cfEmp').value||'').trim();
-  var via = (document.getElementById('cfVia').value||'').trim();
-  var msg = (document.getElementById('cfMsg').value||'').trim();
-  if(!n)  { alert('Por favor completá tu nombre.'); return false; }
-  if(!msg){ alert('Contanos brevemente qué necesitás.'); return false; }
-  function safe(s){ return s.replace(/[<>"&]/g,''); }
-  var txt = encodeURIComponent(
-    'Hola PepperLabs, me contacto desde el sitio.\n\n' +
-    'Nombre: ' + safe(n) + '\n' +
-    'Empresa: ' + (safe(emp) || 'No especificada') + '\n' +
-    'Contacto preferido: ' + (safe(via) || 'WhatsApp') + '\n\n' +
-    'Mensaje:\n' + safe(msg).slice(0, 500)
-  );
-  window.open('https://wa.me/5493484333427?text=' + txt, '_blank');
-  return false;
-}
-</script>
-<script src="lightbox.js" defer></script>
-
+<script src="pepperlabs.js" defer></script>
 </body>
 </html>

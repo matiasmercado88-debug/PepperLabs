@@ -3,54 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PepperLabs — Software, diseño y comunicación</title>
-<meta name="description" content="Software, identidad visual y comunicación para tu negocio. Cómo funciona por dentro, cómo se ve por fuera y cómo lo contás. El mismo equipo.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PepperLabs">
-<meta property="og:title" content="PepperLabs — Software, diseño y comunicación">
-<meta property="og:description" content="Software, identidad visual y comunicación para tu negocio. El mismo equipo piensa, diseña y construye.">
-<meta property="og:image" content="assets/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PepperLabs — Software, diseño y comunicación">
-<meta name="twitter:description" content="Software, identidad visual y comunicación para tu negocio. El mismo equipo piensa, diseña y construye.">
-<meta name="twitter:image" content="assets/og-image.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>PepperLabs — Tu negocio creció. Vos seguís a pulmón.</title>
+<meta name="description" content="Software, identidad y comunicación bajo un mismo techo. Estudio argentino, 30 años de oficio.">
+<link rel="icon" type="image/svg+xml" href="assets/pepper_logo.svg">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilo.css">
-<script>
-(function(){
-  try{
-    var force = location.search.indexOf('intro=1') !== -1;
-    if (force) localStorage.removeItem('pl-intro-seen');
-    if (!force && localStorage.getItem('pl-intro-seen')){
-      document.documentElement.classList.add('pl-intro-skip');
-    } else {
-      document.documentElement.classList.add('pl-intro-active');
-    }
-  }catch(e){
-    document.documentElement.classList.add('pl-intro-active');
-  }
-})();
-</script>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&f[]=boska@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="pepperlabs.css">
+
+<style>
+/* ── Home-specific: stage / pepper composition ────────────── */
+
+.stage{
+  position:relative;
+  min-height:calc(100vh - 115px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:48px;
+  padding:48px var(--pad) 60px;
+  overflow:hidden;
+}
+
+/* Tape al pie del hero */
+.tape{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  overflow:hidden;
+  padding:13px 0;
+  background:var(--bg-2);
+  position:relative; z-index:5;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.tape-track{
+  display:flex; width:max-content;
+  animation: tape 42s linear infinite;
+  gap:48px;
+}
+.tape-item{
+  font-family:var(--mono); font-size:13px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  display:inline-flex; align-items:center; gap:48px;
+  white-space:nowrap;
+}
+.tape-item::after{
+  content:""; width:6px; height:6px; border-radius:50%;
+  background:var(--cyan); box-shadow:0 0 8px var(--cyan);
+}
+@keyframes tape{ to{ transform:translateX(-50%); } }
+
+.pepper{
+  position:relative;
+  width:min(46vh, 340px);
+  aspect-ratio: 94.93 / 115.91;
+  z-index:5;
+  flex-shrink:0;
+}
+@media (max-width:780px){
+  .pepper{ width:min(42vh, 260px); }
+  .stage{ padding:40px var(--pad) 60px; gap:36px; }
+}
+
+.pepper-canvas{ position:absolute; inset:0; }
+.pepper svg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  overflow:visible;
+}
+
+/* SKIN — silueta */
+.skin path{
+  fill:none;
+  stroke:var(--cyan);
+  stroke-width:1.6;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 12px rgba(47,230,255,0.4));
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+  animation: drawSkin 2.4s cubic-bezier(.4,.1,.2,1) forwards;
+}
+.skin path:nth-child(1){ animation-delay:0s; }
+.skin path:nth-child(2){ animation-delay:.15s; }
+.skin path:nth-child(3){ animation-delay:.3s; }
+.skin path:nth-child(4){ animation-delay:.1s; }
+.skin path:nth-child(5){ animation-delay:.4s; }
+.skin path:nth-child(6){ animation-delay:.5s; }
+.skin path:nth-child(7){ animation-delay:.2s; }
+@keyframes drawSkin{ to{ stroke-dashoffset:0; } }
+
+/* SYSTEM — grilla técnica interior */
+.system{ opacity:0; animation: fadeLayer 1.2s ease 2s forwards; }
+.system line, .system circle, .system rect, .system path{
+  stroke:var(--lime);
+  stroke-width:0.5;
+  fill:none;
+  filter:drop-shadow(0 0 4px rgba(216,255,77,0.5));
+  opacity:0.55;
+}
+.system text{
+  fill:var(--lime);
+  font-family:'JetBrains Mono', monospace;
+  font-size:2.2px;
+  letter-spacing:0.05em;
+  opacity:0.7;
+}
+@keyframes fadeLayer{ to{ opacity:1; } }
+
+/* SIGNAL — ondas */
+.signal{ opacity:0; animation: fadeLayer 1.2s ease 2.5s forwards; }
+.signal circle{
+  fill:none;
+  stroke:var(--warm);
+  stroke-width:0.6;
+  opacity:0.4;
+  filter:drop-shadow(0 0 4px rgba(255,113,86,0.5));
+  transform-origin: 65px 12px;
+  animation: signalPulse 3s ease-out infinite;
+}
+.signal circle:nth-child(1){ animation-delay:0s; }
+.signal circle:nth-child(2){ animation-delay:0.6s; }
+.signal circle:nth-child(3){ animation-delay:1.2s; }
+.signal circle:nth-child(4){ animation-delay:1.8s; }
+@keyframes signalPulse{
+  0%{ transform: scale(0.3); opacity:0.7; }
+  100%{ transform: scale(1.6); opacity:0; }
+}
+
+/* HIT ZONES */
+.zones{ position:absolute; inset:0; z-index:10; }
+.zone{ position:absolute; cursor:pointer; }
+.zone.z-stem{ top:0; left:38%; width:38%; height:32%; }
+.zone.z-body{ top:24%; left:0; width:100%; height:76%; }
+.zone.z-inner{ top:40%; left:25%; width:50%; height:45%; }
+
+.pepper[data-hover="stem"] .signal circle{ opacity:0.85; stroke-width:0.9; }
+.pepper[data-hover="stem"] .skin path{ opacity:0.4; }
+.pepper[data-hover="stem"] .system{ opacity:0.4; }
+
+.pepper[data-hover="body"] .skin path{
+  stroke-width:2.2;
+  filter:drop-shadow(0 0 18px rgba(47,230,255,0.85));
+}
+.pepper[data-hover="body"] .system{ opacity:0.4; }
+.pepper[data-hover="body"] .signal{ opacity:0.4; }
+
+.pepper[data-hover="inner"] .system line,
+.pepper[data-hover="inner"] .system circle,
+.pepper[data-hover="inner"] .system rect{
+  stroke-width:0.9; opacity:1;
+}
+.pepper[data-hover="inner"] .system text{ opacity:1; }
+.pepper[data-hover="inner"] .skin path{ opacity:0.5; }
+.pepper[data-hover="inner"] .signal{ opacity:0.4; }
+
+/* Annotations */
+.annotations{ position:absolute; inset:-80px; pointer-events:none; z-index:8; }
+.annot{
+  position:absolute;
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-2);
+  opacity:0;
+  transform:translateY(4px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  pointer-events:auto;
+}
+.annot::before{ content:""; height:1px; background:currentColor; display:block; }
+.annot .num{ color:var(--ac, var(--cyan)); }
+.annot .name{ color:var(--ink); }
+.annot .desc{ color:var(--dim); }
+
+.annot.an-comunicacion{ --ac: var(--warm); top:-10px; right:-180px; }
+.annot.an-comunicacion::before{ width:50px; }
+.annot.an-identidad{ --ac: var(--cyan); top:50%; left:-260px; transform:translateY(-50%) translateX(4px); }
+.annot.an-identidad::after{ content:""; position:absolute; right:-50px; top:50%; width:50px; height:1px; background:var(--cyan); }
+.annot.an-sistemas{ --ac: var(--lime); bottom:-10px; right:-200px; }
+.annot.an-sistemas::before{ width:50px; }
+
+.pepper[data-hover="stem"] ~ .annotations .an-comunicacion{ opacity:1; transform:translateY(0); }
+.pepper[data-hover="body"] ~ .annotations .an-identidad{ opacity:1; transform:translateY(-50%); }
+.pepper[data-hover="inner"] ~ .annotations .an-sistemas{ opacity:1; transform:translateY(0); }
+.annotations.first-load .annot{ opacity:0.5; transform:translateY(0); }
+.annotations.first-load .an-identidad{ transform:translateY(-50%); }
+
+@media (max-width:1100px){
+  .annot.an-comunicacion{ right:auto; left:50%; top:-50px; transform:translateX(-50%); }
+  .annot.an-comunicacion::before{ display:none; }
+  .annot.an-identidad{ left:auto; right:-30%; top:50%; }
+  .annot.an-identidad::after{ display:none; }
+  .annot.an-sistemas{ right:auto; left:50%; bottom:-50px; transform:translateX(-50%); }
+  .annot.an-sistemas::before{ display:none; }
+  .annotations.first-load .an-identidad{ transform:translateY(-50%); }
+}
+@media (max-width:780px){
+  .annot{ font-size:10px; }
+  .annot .desc{ display:none; }
+}
+
+/* Stage text */
+.stage-text{
+  position:relative; z-index:6;
+  text-align:center; max-width:1100px;
+  width:100%;
+  pointer-events:none;
+}
+.stage-text .tagline{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(28px, 4vw, 60px);
+  line-height:1.05;
+  letter-spacing:-0.025em;
+  color:var(--ink);
+  opacity:0;
+  animation: textIn 1.2s var(--ease) 1.6s forwards;
+}
+.stage-text .tagline em{ font-style:italic; color:var(--cyan); }
+.stage-text .tagline{
+  display:flex; flex-direction:column; align-items:center; gap:.05em;
+}
+.stage-text .tagline .fixed{
+  display:block; color:var(--ink); font-style:normal;
+}
+.stage-text .tagline em.rotator{
+  display:block;
+  height:1.2em;
+  overflow:hidden;
+  line-height:1.2;
+}
+.stage-text .tagline em.rotator .r-track{
+  display:flex; flex-direction:column;
+  transition: transform .55s cubic-bezier(.4,.1,.2,1);
+  will-change:transform;
+}
+.stage-text .tagline em.rotator .r-track > span{
+  height:1.2em;
+  line-height:1.2;
+  white-space:nowrap;
+}
+.stage-text .tagline em.rotator .r-track > span.brand{
+  color:var(--cyan); font-style:normal; font-weight:600;
+  font-family:var(--sans); letter-spacing:-0.01em;
+}
+.stage-text .tagline .dot{
+  display:inline-block; width:0.18em; height:0.18em;
+  background:var(--cyan); border-radius:50%;
+  margin-left:0.04em; vertical-align:0.08em;
+  box-shadow:0 0 18px var(--cyan);
+}
+.stage-text .sub{
+  font-family:var(--mono); font-size:11px;
+  color:var(--ink-2); margin-top:18px; opacity:0;
+  animation: textIn 1.2s var(--ease) 2.2s forwards;
+}
+.stage-text .sub em{ font-style:normal; color:var(--cyan); }
+@keyframes textIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.stage-eyebrow{
+  position:absolute; top:36px; right:var(--pad);
+  z-index:6;
+  display:flex; align-items:center; gap:12px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--dim);
+  opacity:0; animation: textIn 1s ease 1.2s forwards;
+  text-align:right;
+  max-width:50vw;
+}
+.stage-eyebrow::before{
+  content:""; width:32px; height:1px; background:var(--rule-2);
+  flex-shrink:0;
+}
+.stage-eyebrow em{ font-style:normal; color:var(--ink); letter-spacing:0.04em; }
+@media (max-width:780px){
+  .stage-eyebrow{ display:none; }
+}
+
+.scroll-hint{
+  position:absolute;
+  left:50%; bottom:30px; transform:translateX(-50%);
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--dim); z-index:6;
+  opacity:0;
+  animation: textIn 1s ease 3s forwards, hintBob 2.6s ease-in-out 3.5s infinite;
+}
+.scroll-hint::after{ content:"↓"; font-size:14px; }
+@keyframes hintBob{
+  0%,100%{ transform:translateX(-50%) translateY(0); }
+  50%{ transform:translateX(-50%) translateY(4px); }
+}
+
+/* Three offices section */
+.three{ padding: 14vh var(--pad) 14vh; border-top:1px solid var(--rule); background:linear-gradient(180deg, transparent, rgba(20,16,31,0.5)); }
+.three-intro{ max-width:840px; margin:0 auto 80px; }
+.three-intro .eyebrow{ margin-bottom:24px; }
+.three-intro h2{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 4.8vw, 72px); line-height:1.02;
+  letter-spacing:-0.022em; color:var(--ink);
+}
+.three-intro h2 em{ font-style:italic; color:var(--cyan); }
+
+.office{
+  display:grid;
+  grid-template-columns: 80px 1fr;
+  gap:48px;
+  padding:60px 0;
+  max-width:1240px;
+  margin:0 auto;
+  border-top:1px solid var(--rule);
+  align-items:start;
+  position:relative;
+}
+.office-body{
+  display:grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap:64px;
+  align-items:start;
+}
+.office-text{
+  display:flex; flex-direction:column; gap:18px;
+}
+@media (max-width: 900px){
+  .office{ grid-template-columns: 1fr; gap:24px; }
+  .office-body{ grid-template-columns: 1fr; gap:24px; }
+}
+.office:last-child{ border-bottom:1px solid var(--rule); }
+.office:hover .office-name{ color:var(--ac); }
+.office:hover .office-thumb{ filter:none; transform:scale(1.01); }
+.office-1{ --ac: var(--warm); }
+.office-2{ --ac: var(--cyan); }
+.office-3{ --ac: var(--lime); }
+.office-num{ font-family:var(--mono); font-size:12px; color:var(--ac); padding-top:14px; }
+.office-body{ display:flex; flex-direction:column; gap:18px; }
+.office-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(32px, 3.8vw, 56px);
+  line-height:1; letter-spacing:-0.022em;
+  color:var(--ink); transition: color .25s;
+}
+.office-name em{ font-style:italic; color:var(--ac); }
+.office-phrase{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.office-desc{
+  font-size:16.5px; line-height:1.6;
+  color:var(--ink-2); max-width:50ch;
+}
+.office-desc strong{ color:var(--ink); font-weight:500; }
+.office-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+.office-tags span{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.02em; text-transform:uppercase;
+  color:var(--ink-2);
+  padding:5px 10px; border:1px solid var(--rule-2);
+}
+.office-link{
+  margin-top:10px; display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ac);
+  border-bottom:1px solid color-mix(in srgb, var(--ac) 30%, transparent);
+  padding:8px 0; width:fit-content;
+  transition: border-color .2s, gap .25s var(--ease);
+}
+.office-link:hover{ border-bottom-color:var(--ac); gap:18px; }
+.office-visual{
+  position:relative; aspect-ratio: 16/10;
+  transition: transform .4s var(--ease);
+}
+.office-visual img{
+  width:100%; height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+.office-visual .tag{ display:none; }
+.office-visual .tag{
+  position:absolute; top:14px; left:14px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--ink);
+  padding:5px 9px; background:rgba(11,8,16,0.7);
+  border:1px solid var(--rule-2);
+}
+@media (max-width:1000px){
+  .office{ grid-template-columns: 60px 1fr; gap:14px 20px; }
+  .office-visual{ grid-column: 1 / -1; margin-top:14px; aspect-ratio: 16/10; }
+}
+
+/* Studio */
+.studio{ padding: 16vh var(--pad); border-top:1px solid var(--rule); }
+.studio-in{
+  max-width:1100px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1.2fr;
+  gap:80px; align-items:start;
+}
+@media (max-width:900px){ .studio-in{ grid-template-columns:1fr; gap:48px; } }
+.studio-l .eyebrow{ margin-bottom:20px; }
+.studio-l h2{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 5vw, 68px); line-height:1.02;
+  letter-spacing:-0.022em; color:var(--ink); margin-bottom:36px;
+}
+.studio-l h2 em{ font-style:italic; color:var(--cyan); }
+.studio-l .since{
+  display:flex; align-items:baseline; gap:14px;
+  padding-top:24px; border-top:1px solid var(--rule-2);
+}
+.studio-l .since .year{
+  font-family:var(--serif); font-weight:500;
+  font-size:42px; letter-spacing:-0.02em; color:var(--cyan);
+  font-variant-numeric: tabular-nums;
+}
+.studio-l .since .label{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim); line-height:1.4;
+}
+.studio-l .since .label strong{ color:var(--ink); font-weight:500; display:block; }
+.studio-r p{
+  font-size:17px; line-height:1.7;
+  color:var(--ink-2); margin-bottom:20px;
+}
+.studio-r p strong{ color:var(--ink); font-weight:500; }
+.studio-r p em{ color:var(--cyan); font-style:normal; }
+.studio-r .quote{
+  margin-top:32px;
+  padding:22px 0 22px 24px;
+  border-left:2px solid var(--cyan);
+  font-family:var(--serif); font-style:italic;
+  font-size:22px; line-height:1.35;
+  color:var(--ink);
+}
+.studio-r .quote .att{
+  display:block; margin-top:14px;
+  font-family:var(--mono); font-style:normal;
+  font-size:11px; letter-spacing:0.04em;
+  text-transform:uppercase; color:var(--dim);
+}
+
+/* Work */
+.work{ padding: 14vh var(--pad); border-top:1px solid var(--rule); }
+.work-head{
+  max-width:1100px; margin:0 auto 60px;
+  display:flex; justify-content:space-between;
+  align-items:end; gap:40px; flex-wrap:wrap;
+}
+.work-head .eyebrow{ margin-bottom:16px; }
+.work-head h2{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(36px, 5vw, 64px); line-height:1;
+  letter-spacing:-0.022em; color:var(--ink);
+}
+.work-head h2 em{ font-style:italic; color:var(--cyan); }
+.work-head .all{
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--ink-2);
+  padding:12px 16px; border:1px solid var(--rule-2);
+  transition:all .2s;
+  display:inline-flex; align-items:center; gap:10px;
+}
+.work-head .all:hover{ border-color:var(--cyan); color:var(--cyan); }
+
+.work-list{ max-width:1100px; margin:0 auto; border-top:1px solid var(--rule-2); }
+.work-item{
+  display:grid; grid-template-columns: 60px 1fr 1.3fr 40px;
+  gap:32px; align-items:center;
+  padding:32px 12px; border-bottom:1px solid var(--rule-2);
+  position:relative;
+  transition: padding-left .3s var(--ease), background .3s;
+}
+.work-item:hover{ padding-left:24px; background:rgba(47,230,255,0.02); }
+.work-item:hover .work-name{ color:var(--cyan); }
+.work-item:hover .work-arrow{ background:var(--cyan); color:var(--bg); border-color:var(--cyan); }
+.work-num{ font-family:var(--mono); font-size:11px; color:var(--dim); }
+.work-info{ display:flex; flex-direction:column; gap:6px; }
+.work-name{
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(24px, 2.8vw, 38px); line-height:1.05;
+  letter-spacing:-0.018em; color:var(--ink);
+  transition: color .25s;
+}
+.work-name em{ font-style:italic; color:var(--cyan); }
+.work-info .meta{
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--dim);
+}
+.work-desc{ font-size:15px; line-height:1.55; color:var(--ink-2); }
+.work-arrow{
+  width:40px; height:40px;
+  border:1px solid var(--rule-2);
+  border-radius:50%;
+  display:grid; place-items:center;
+  color:var(--ink-2);
+  transition:all .25s;
+}
+.work-arrow svg{ width:14px; height:14px; }
+@media (max-width:800px){
+  .work-item{ grid-template-columns: 40px 1fr 40px; gap:14px 16px; }
+  .work-desc{ grid-column: 1 / -1; }
+}
+
+/* Ending pep silhouette */
+.end-pep{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:min(60vh, 380px);
+  aspect-ratio: 94.93 / 115.91;
+  opacity:0.12; z-index:0;
+}
+.end-pep svg{
+  width:100%; height:100%;
+  fill:none; stroke:var(--cyan); stroke-width:1.4;
+  stroke-linejoin:round;
+}
+</style>
 </head>
 <body>
 
-<!-- INTRO LOADER (1ra visita · pepper que se dibuja) -->
-<div class="pl-intro" id="plIntro" role="status" aria-label="Cargando">
-  <span class="pl-intro-corner tl"></span>
-  <span class="pl-intro-corner tr"></span>
-  <span class="pl-intro-corner bl"></span>
-  <span class="pl-intro-corner br"></span>
-  <span class="pl-intro-kick">Edición MMXXVI · Córdoba</span>
-  <svg class="pl-intro-pep" id="plIntroPep" viewBox="0 0 94.93 115.91" aria-hidden="true">
+<!-- Pepper symbol -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="pep-out" viewBox="0 0 94.93 115.91">
     <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
     <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
     <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
@@ -58,35 +547,11 @@
     <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
     <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
     <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
-  </svg>
-  <div class="pl-intro-text">
-    <div class="pl-intro-brand">Pepper<em>Labs</em></div>
-    <div class="pl-intro-status">
-      <span>cargando</span>
-      <span class="pct" id="plIntroPct">00</span>
-      <span>%</span>
-    </div>
-    <div class="pl-intro-bar"><div class="pl-intro-bar-fill" id="plIntroBar"></div></div>
-  </div>
-  <span class="pl-intro-foot">Software · Identidad · Comunicación</span>
-</div>
-
-<!-- PEPPER SYMBOL -->
-<svg width="0" height="0" aria-hidden="true" style="position:absolute">
-  <symbol id="pep" viewBox="0 0 94.93 115.91">
-    <path vector-effect="non-scaling-stroke" d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
-    <path vector-effect="non-scaling-stroke" d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
-    <path vector-effect="non-scaling-stroke" d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
-    <path vector-effect="non-scaling-stroke" d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
   </symbol>
 </svg>
 
-<!-- NAV -->
 <nav class="nav">
-  <a class="nav-logo" href="index.html"><img src="assets/logos/pepper_logo.svg" alt="PepperLabs"></a>
+  <a class="nav-logo" href="index.html"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
   <ul class="nav-links">
     <li><a href="sistema.html">Sistema</a></li>
     <li><a href="identidad.html">Identidad</a></li>
@@ -94,14 +559,14 @@
     <li><a href="trabajos.html">Trabajos</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Hablemos →</a>
+  <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar ✕</button>
+    <a href="index.html" class="nav-logo" style="text-decoration:none"><svg class="nav-logo-mark" viewBox="0 0 94.93 115.91" aria-hidden="true"><use href="#pep-out"/></svg><span class="nav-logo-name">Pepper<em>Labs</em></span></a>
+    <button class="mobile-menu-close" id="menuClose" aria-label="Cerrar menú">Cerrar &times;</button>
   </div>
   <ul>
     <li><a href="sistema.html" data-n="01">Sistema</a></li>
@@ -110,287 +575,374 @@
     <li><a href="trabajos.html" data-n="04">Trabajos</a></li>
     <li><a href="contacto.html" data-n="05">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="mm-cta">Hablemos →</a>
+  <a href="contacto.html" class="mm-cta">Hablemos &rarr;</a>
 </div>
 
-<!-- HERO · Home — El sello -->
-<header class="hero home">
-  <span class="folio">Portada · <strong>MMXXVI</strong> · PepperLabs</span>
-  <div class="wall" aria-hidden="true">
-    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-cyan"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-pink"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-violet"><use href="#pep"/></svg></div>
-    <div><svg viewBox="0 0 94.93 115.91" class="w-lime"><use href="#pep"/></svg></div>
+<!-- ── STAGE 1 — THE PEPPER ─────────────────────────────── -->
+<main id="top">
+<section class="stage">
+
+  <div class="stage-eyebrow">
+    <span>Estudio PepperLabs · Software, identidad y comunicación · <em>EST. 1992 / RE-EST. MMXXVI</em></span>
   </div>
-  <div class="pep-main" aria-hidden="true"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-  <span class="pep-spec">Marca · 01 de 12</span>
-  <div class="hero-in">
-    <span class="hero-kick">PepperLabs · Buenos Aires · MMXXVI</span>
-    <h1>Tu negocio creció. <em>Te damos un equipo</em> <span class="ln">a la altura.</span></h1>
-    <p class="hero-lead">Software, identidad visual y comunicación, en un mismo equipo. Venimos de Software Express — 30 años haciendo sistemas para PyMEs argentinas.</p>
-    <div class="hero-foot">
-      <a href="contacto.html" class="btn btn-fill">Hablemos <span class="ar">→</span></a>
-      <a href="#areas" class="btn btn-line">Ver las áreas <span class="ar">→</span></a>
+
+  <div class="pepper" id="pep" data-hover="">
+    <div class="pepper-canvas">
+      <svg class="layer signal" viewBox="0 0 94.93 115.91" preserveAspectRatio="xMidYMid meet">
+        <circle cx="65" cy="12" r="3"/>
+        <circle cx="65" cy="12" r="3"/>
+        <circle cx="65" cy="12" r="3"/>
+        <circle cx="65" cy="12" r="3"/>
+      </svg>
+
+      <svg class="layer skin" viewBox="0 0 94.93 115.91" preserveAspectRatio="xMidYMid meet">
+        <path d="M18.24,26.26c-21.75,9.99-15.6,40.67-7.74,59.37,5.01,13.37,14.76,23.09,29.96,25.54-19.9-17.81-30.14-71.07,1.56-81.5-7.13-4.78-15.41-6.25-23.79-3.41Z"/>
+        <path d="M50.87,13.35c-2.22,3.4-3.53,7.84-4.33,11.61-.23,1.54-.46,2.76-.46,4.33,1.83-.23,3.93.05,5.63.28-.88-10.3,7.21-27.48,18.44-19.73,2.89-9.9-12.74-6.31-19.27,3.5h0Z"/>
+        <path d="M46.08,29.31c0-1.58.22-2.79.46-4.33-4.42-2.17-9.14-1.96-13.27.64,3.09.88,5.98,2.24,8.76,4.06,1.44-.2,2.69-.39,4.05-.37h0Z"/>
+        <path d="M47.84,30.5c-38.15,2.65-24.46,71.44-2.77,81.22,2.71.02,5.11.32,7.93.19-13.96-14.22,4.52-36.36,8.85-51.44,5.83-15.11,2.65-30.38-14.01-29.96Z"/>
+        <path d="M56.59,26.07c-.09.09-.19.19-.28.19,0,1.56,0,2.92.28,4.52.92.37,1.84.74,2.67,1.2,4.28-3.15,9.48-5.49,13.83-5.25-3.2-2.25-6.04-3.04-8.94-2.77-3.25.36-6.72,1.39-7.56,2.12h0Z"/>
+        <path d="M56.31,27.65c-.27-6.1,2.84-16.63,10.69-16.13,1.29-.13,2.44-.53,3.14-1.66-11.23-7.74-19.31,9.42-18.44,19.73,1.7.23,3.26.63,4.89,1.2-.2-1.11-.24-2.1-.28-3.14Z"/>
+        <path d="M59.27,31.98c13.35,10.88,6.36,24.64-1.84,43.61-6.65,14.5-14.44,34.9,1.29,35.78,21.39-.99,26.66-28.4,31.71-47.85,5.85-24.92-9.56-47.25-31.16-31.53h0Z"/>
+      </svg>
+
+      <svg class="layer system" viewBox="0 0 94.93 115.91" preserveAspectRatio="xMidYMid meet">
+        <g>
+          <line x1="22" y1="55" x2="40" y2="55"/>
+          <line x1="22" y1="62" x2="36" y2="62"/>
+          <line x1="22" y1="69" x2="42" y2="69"/>
+          <line x1="56" y1="58" x2="76" y2="58"/>
+          <line x1="56" y1="65" x2="72" y2="65"/>
+          <line x1="56" y1="72" x2="78" y2="72"/>
+          <line x1="56" y1="79" x2="70" y2="79"/>
+          <line x1="30" y1="86" x2="52" y2="86"/>
+          <line x1="30" y1="93" x2="58" y2="93"/>
+          <line x1="36" y1="100" x2="50" y2="100"/>
+
+          <circle cx="22" cy="55" r="0.9" fill="currentColor"/>
+          <circle cx="22" cy="62" r="0.9" fill="currentColor"/>
+          <circle cx="22" cy="69" r="0.9" fill="currentColor"/>
+          <circle cx="56" cy="58" r="0.9" fill="currentColor"/>
+          <circle cx="56" cy="65" r="0.9" fill="currentColor"/>
+          <circle cx="56" cy="72" r="0.9" fill="currentColor"/>
+          <circle cx="30" cy="86" r="0.9" fill="currentColor"/>
+          <circle cx="30" cy="93" r="0.9" fill="currentColor"/>
+          <circle cx="36" cy="100" r="0.9" fill="currentColor"/>
+
+          <text x="42" y="55.8">SYS·01</text>
+          <text x="38" y="62.8">OPS</text>
+          <text x="44" y="69.8">REG·14</text>
+          <text x="78" y="58.8">DB</text>
+          <text x="74" y="65.8">API</text>
+          <text x="80" y="72.8">AUTH</text>
+          <text x="54" y="86.8">— FACT</text>
+          <text x="60" y="93.8">— STOCK</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="zones">
+      <a href="comunicacion.html" class="zone z-stem" data-area="stem" aria-label="Ir a Comunicación"></a>
+      <a href="identidad.html" class="zone z-body" data-area="body" aria-label="Ir a Identidad"></a>
+      <a href="sistema.html" class="zone z-inner" data-area="inner" aria-label="Ir a Sistemas"></a>
     </div>
   </div>
-</header>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
-    <span class="marquee-item">Software</span><span class="marquee-item">Diseño</span><span class="marquee-item">Comunicación</span><span class="marquee-item">Un solo equipo</span>
+  <div class="annotations first-load" id="annotations">
+    <a href="comunicacion.html" class="annot an-comunicacion">
+      <span class="num">— 01</span>
+      <span class="name">Comunicación</span>
+    </a>
+    <a href="identidad.html" class="annot an-identidad">
+      <span class="num">— 02</span>
+      <span class="name">Identidad</span>
+    </a>
+    <a href="sistema.html" class="annot an-sistemas">
+      <span class="num">— 03</span>
+      <span class="name">Sistema</span>
+    </a>
+  </div>
+
+  <div class="stage-text">
+    <h1 class="tagline">
+      <span class="fixed">Tu empresa necesita</span>
+      <em class="rotator" aria-live="polite">
+        <span class="r-track" id="rotatorTrack">
+          <span>orden</span>
+          <span>claridad</span>
+          <span>control</span>
+          <span>dirección</span>
+          <span>presencia</span>
+          <span>estructura</span>
+          <span>crecimiento</span>
+          <span class="brand">PepperLabs</span>
+        </span>
+      </em>
+    </h1>
+    <div class="sub">Desarrollamos el sistema. Diseñamos la identidad. Organizamos la comunicación. <em>Vos te ocupás del negocio.</em></div>
+  </div>
+
+  <a href="#three" class="scroll-hint">Bajá tranquilo</a>
+
+</section>
+
+<!-- ── TAPE ─────────────────────────────────────────── -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span class="tape-item">Orden</span>
+    <span class="tape-item">Claridad</span>
+    <span class="tape-item">Control</span>
+    <span class="tape-item">Dirección</span>
+    <span class="tape-item">Presencia</span>
+    <span class="tape-item">Estructura</span>
+    <span class="tape-item">Crecimiento</span>
+    <span class="tape-item">PepperLabs</span>
+    <span class="tape-item">Orden</span>
+    <span class="tape-item">Claridad</span>
+    <span class="tape-item">Control</span>
+    <span class="tape-item">Dirección</span>
+    <span class="tape-item">Presencia</span>
+    <span class="tape-item">Estructura</span>
+    <span class="tape-item">Crecimiento</span>
+    <span class="tape-item">PepperLabs</span>
   </div>
 </div>
 
-<!-- ÁREAS -->
-<section class="sec" id="areas">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:90px;height:110px;color:var(--lime);top:24px;left:-22px;transform:rotate(-16deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 01 — Qué hacemos</span>
-      <h2 class="h2">Tres áreas. <em>Un solo negocio.</em></h2>
+<!-- ── THREE OFFICES ───────────────────────────────────── -->
+<section class="three" id="three">
+
+  <div class="three-intro">
+    <span class="eyebrow">Lo que hacemos</span>
+    <h2>Software, marca y comunicación. <em>Resolvemos eso que hace que tu empresa dependa demasiado de vos.</em></h2>
+  </div>
+
+  <article class="office office-3">
+    <div class="office-num">— 01 · Sistema</div>
+    <div class="office-body">
+      <h3 class="office-name">Resolvemos <em>el caos.</em></h3>
+      <div class="office-text"><p class="office-desc">¿Tu contador te pide algo y empieza la búsqueda eterna entre carpetas, WhatsApp y planillas? <strong>Integramos facturación, stock, proveedores, caja y operación en un sistema pensado para adaptarse a cómo trabaja tu empresa.</strong> Treinta años haciéndolo en PyMEs argentinas.</p>
+      <div class="office-tags">
+        <span>ERP</span><span>Facturación</span><span>Stock</span><span>Reservas</span><span>Integración</span>
+      </div>
+      <a href="sistema.html" class="office-link">Ver el área →</a></div>
     </div>
-    <div class="areas">
-      <a href="sistema.html" class="area area-1">
-        <span class="area-num">01
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-          </svg>
-        </span>
-        <div class="area-art"><img src="assets/sistema.webp" alt="" loading="lazy"></div>
-        <h3 class="area-name">Sistemas y operación</h3>
-        <span class="area-tags">Estrategia · Flujo · Escala</span>
-        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
-      <a href="identidad.html" class="area area-2">
-        <span class="area-num">02
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </span>
-        <div class="area-art"><img src="assets/identidad.webp" alt="" loading="lazy"></div>
-        <h3 class="area-name">Identidad visual</h3>
-        <span class="area-tags">Marca · Guía · Diseño</span>
-        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
-      <a href="comunicacion.html" class="area area-3">
-        <span class="area-num">03
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </span>
-        <div class="area-art"><img src="assets/comunicacion.webp" alt="" loading="lazy"></div>
-        <h3 class="area-name">Comunicación</h3>
-        <span class="area-tags">Estrategia · Contenido</span>
-        <span class="area-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
+  </article>
+
+  <article class="office office-2">
+    <div class="office-num">— 02 · Identidad</div>
+    <div class="office-body">
+      <h3 class="office-name">Resolvemos <em>cómo te ven.</em></h3>
+      <div class="office-text"><p class="office-desc">Logo en Word, web hecha por un primo, cada pieza distinta según quién la haga. <strong>Hora de unificar.</strong> Que tu marca se vea igual la toque quien la toque.</p>
+      <div class="office-tags">
+        <span>Marca</span><span>Manual</span><span>Tipografía</span><span>Sistema</span><span>Empaque</span>
+      </div>
+      <a href="identidad.html" class="office-link">Ver el área →</a></div>
+    </div>
+  </article>
+
+  <article class="office office-1">
+    <div class="office-num">— 03 · Comunicación</div>
+    <div class="office-body">
+      <h3 class="office-name">Resolvemos <em>la improvisación.</em></h3>
+      <div class="office-text"><p class="office-desc">¿El lunes pensando qué publicar el martes? Publicar porque "hay que subir algo" se nota. <strong>Creamos estrategias, contenido y planes mensuales</strong> para que tu marca comunique con claridad y constancia.</p>
+      <div class="office-tags">
+        <span>Estrategia</span><span>Naming</span><span>Copy</span><span>Contenido</span><span>Lanzamientos</span>
+      </div>
+      <a href="comunicacion.html" class="office-link">Ver el área →</a></div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ── STUDIO ──────────────────────────────────────────── -->
+<section class="studio" id="estudio">
+  <div class="studio-in">
+    <div class="studio-l">
+      <span class="eyebrow">El estudio</span>
+      <h2>Treinta años <em>resolviendo el caos.</em> Hoy también la imagen y la presencia.</h2>
+      <div class="since">
+        <span class="year">1992</span>
+        <span class="label"><strong>Software Express</strong>Carlos Buira funda el estudio en Buenos Aires.</span>
+      </div>
+    </div>
+
+    <div class="studio-r">
+      <p>PepperLabs salió de Software Express, que <strong>Carlos Buira</strong> armó en 1992. Treinta años haciendo sistemas para gente que vende algo — bares, gimnasios, ferreterías, almacenes de barrio que en algún momento dejaron de ser tan de barrio.</p>
+      <p>Nos cansamos de ver al cliente sufrir coordinando el sistema con el flyer y con la publicación de Instagram. <strong>Coordinar 3 lugares distintos terminó siendo un laburo aparte.</strong> En 2026 dijimos basta y lo juntamos todo acá.</p>
+      <p>Trabajamos cerca, hablamos como vos, y entregamos cosas que sirven el lunes a la mañana.</p>
+
+      <blockquote class="quote">
+        “El sistema se adapta al negocio. Nunca al revés.”
+        <span class="att">— Carlos Buira · Software Express · 1992</span>
+      </blockquote>
     </div>
   </div>
 </section>
 
-<!-- 02 — EL ESTUDIO -->
-<section class="sec" id="estudio">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:120px;height:147px;color:var(--violet);top:-30px;right:-30px;transform:rotate(14deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 02 — El estudio</span>
-      <h2 class="h2">Treinta años haciendo software. <em class="lime">Ahora con diseño y contenido.</em></h2>
-      <p class="sec-lead">PepperLabs es la evolución de Software Express, el estudio que Carlos Buira fundó en Buenos Aires en 1992. Después de tres décadas haciendo sistemas para PyMEs argentinas, sumamos diseño e identidad para cerrar el círculo: el mismo equipo se ocupa de cómo tu negocio funciona, cómo se ve y cómo se comunica.</p>
+<!-- ── SELECTED WORK ───────────────────────────────────── -->
+<section class="work" id="trabajos">
+
+  <div class="work-head">
+    <div>
+      <span class="eyebrow">Trabajos seleccionados</span>
+      <h2>Lo <em>último</em> que hicimos.</h2>
     </div>
-    <div class="cita">
-      <div class="cita-bubble">
-        <p class="cita-t">El sistema se adapta al negocio. Nunca al revés.</p>
-        <p class="cita-a">— Carlos Buira · Software Express, 1992</p>
+    <a href="trabajos.html" class="all">Ver todos los trabajos →</a>
+  </div>
+
+  <div class="work-list">
+
+    <a href="trabajos.html#brox" class="work-item">
+      <span class="work-num">— 01</span>
+      <div class="work-info">
+        <h3 class="work-name">Brox <em>Club</em></h3>
+        <span class="meta">App nativa web · Gimnasio premium · 2026</span>
       </div>
-    </div>
+      <p class="work-desc">Portal del socio: QR de acceso, reservas, beneficios, perfil. Sin que nadie del gym levante el teléfono.</p>
+      <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </a>
+
+    <a href="proyectos/trama-manual.html" class="work-item">
+      <span class="work-num">— 02</span>
+      <div class="work-info">
+        <h3 class="work-name">Trama <em>— manual</em></h3>
+        <span class="meta">Identidad · Estudio de diseño · 2026</span>
+      </div>
+      <p class="work-desc">Identidad, web y manual de marca para que un estudio nuevo arranque como empresa establecida.</p>
+      <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </a>
+
+    <a href="proyectos/elcarro/index.html" class="work-item">
+      <span class="work-num">— 03</span>
+      <div class="work-info">
+        <h3 class="work-name">El <em>Carro</em></h3>
+        <span class="meta">Web · Bodegón · 2025</span>
+      </div>
+      <p class="work-desc">Identidad y web para un bodegón de Escobar. La pasta del lunes se ve igual de bien que la del sábado.</p>
+      <span class="work-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    </a>
+
   </div>
 </section>
 
-<!-- 03 — CÓMO TRABAJAMOS -->
-<section class="sec" id="trabajo">
-  <div class="wrap">
-    <div class="pep" aria-hidden="true" style="width:74px;height:90px;color:var(--pink);top:30px;right:5%;transform:rotate(18deg);"><svg viewBox="0 0 94.93 115.91"><use href="#pep"/></svg></div>
-    <div class="sec-head">
-      <span class="sec-kick">// 03 — Cómo trabajamos</span>
-      <h2 class="h2">Cinco cosas que <em class="lime">no negociamos.</em></h2>
-      <p class="sec-lead">Detrás de cada decisión hay una razón. Estas cinco la guían.</p>
+<!-- ── ENDING ─────────────────────────────────────────── -->
+<section class="end">
+  <div class="end-pep" aria-hidden="true">
+    <svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg>
+  </div>
+  <div class="end-in">
+    <span class="eyebrow">Cuando quieras arrancar</span>
+    <h2 class="h-page">Si llegaste hasta acá, <em>hablemos.</em></h2>
+    <p class="lead">Contanos qué pasa. Vemos cómo se resuelve.</p>
+    <div class="end-ctas">
+      <a href="contacto.html" class="btn btn--p">Iniciar conversación <span class="ar">→</span></a>
+      <a href="https://wa.me/5493484333427" target="_blank" rel="noopener" class="btn btn--g">WhatsApp directo <span class="ar">→</span></a>
     </div>
-    <div class="sintomas">
-      <div class="sintoma"><span class="sintoma-n">— 01</span><span class="sintoma-t">Claridad</span><span class="sintoma-d">Que se entienda sin esfuerzo.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 02</span><span class="sintoma-t">Funcionalidad</span><span class="sintoma-d">Que sirva de verdad, no en la teoría.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 03</span><span class="sintoma-t">Criterio</span><span class="sintoma-d">Cada decisión, con su razón.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 04</span><span class="sintoma-t">Estructura</span><span class="sintoma-d">Una base que dura.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— 05</span><span class="sintoma-t">Entender la PyME</span><span class="sintoma-d">Sabemos cómo es un negocio real.</span></div>
-      <div class="sintoma"><span class="sintoma-n">— Eje</span><span class="sintoma-t">Tu laburo, más fácil</span><span class="sintoma-d">No te vendemos orden — te sacamos peso de encima.</span></div>
+    <div class="end-channels">
+      <a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a>
+      <a href="https://wa.me/5493484333427">+54 9 3484 33-3427</a>
+      <a href="contacto.html">Formulario</a>
     </div>
   </div>
 </section>
+</main>
 
-<!-- TRABAJOS (preview) -->
-<section class="work-section" id="trabajos">
-  <div class="wrap">
-    <div class="work-head">
-      <div class="left">
-        <span class="sec-kick">// 04 — Trabajos</span>
-        <h2>Lo último <em>que hicimos.</em></h2>
-      </div>
-      <div class="right">
-        <a href="trabajos.html">Ver todos los trabajos →</a>
-      </div>
+<!-- ── FOOTER ──────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <span class="pep"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="name">Pepper<em>Labs</em></span>
+      <p>Resolvemos problemas.</p>
     </div>
-
-    <div class="work-card">
-      <div class="work-meta">
-        <span class="tag">Caso · 01</span>
-        <span class="name">Brox Club</span>
-        <span class="info">Portal del Socio · App para gimnasio · 2026</span>
-      </div>
-      <p class="work-desc">App nativa web para los socios de Brox Club: <em>QR de acceso, reservas de clases, beneficios y perfil</em> — en un look "Dark Fitness Luxury" diseñado y desarrollado por nosotros.</p>
-      <div class="work-features">
-        <span>Diseño UI</span><span>Theming dinámico</span><span>Flask · Blueprint</span><span>Mobile-first</span><span>i18n</span>
-      </div>
-      <div class="work-phones preview">
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 01 · Inicio del socio"><img src="assets/work/brox-inicio.webp" alt="Brox Club · Inicio"><span class="label">— 01 · Inicio</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 02 · QR de acceso"><img src="assets/work/brox-qr.webp" alt="Brox Club · QR de acceso"><span class="label">— 02 · QR</span></div>
-        <div class="work-phone" data-lightbox="brox" data-caption="Brox Club · 03 · Reservas de clases"><img src="assets/work/brox-reservas.webp" alt="Brox Club · Reservas"><span class="label">— 03 · Reservas</span></div>
-      </div>
+    <div class="foot-col">
+      <h4>— Áreas</h4>
+      <ul>
+        <li><a href="sistema.html">Sistemas</a></li>
+        <li><a href="identidad.html">Identidad</a></li>
+        <li><a href="comunicacion.html">Comunicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Estudio</h4>
+      <ul>
+        <li><a href="trabajos.html">Trabajos</a></li>
+        <li><a href="index.html#estudio">Manifiesto</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>— Hablemos</h4>
+      <ul>
+        <li><a href="mailto:pepperlabs@softwareexpress.com.ar">pepperlabs@softwareexpress.com.ar</a></li>
+        <li><a href="https://wa.me/5493484333427">WhatsApp</a></li>
+      </ul>
     </div>
   </div>
-</section>
-
-<!-- CTA FINO (→ contacto.html) -->
-<section class="cta-fino">
-  <div class="wrap">
-    <div class="cta-fino-row">
-      <h2 class="cta-fino-title">¿Tenés un proyecto en mente? <em>Hablemos.</em></h2>
-      <a href="contacto.html" class="btn btn-fill">Empezar conversación <span class="ar">→</span></a>
-    </div>
-    <span class="cta-fino-alt">o WhatsApp directo: <a href="https://wa.me/5493484333427" target="_blank" rel="noopener noreferrer">+54 9 3484 33-3427</a></span>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-row">
-      <img src="assets/logos/pepper_logo.svg" alt="PepperLabs">
-      <div class="footer-links">
-        <a href="sistema.html">Sistema</a>
-        <a href="identidad.html">Identidad</a>
-        <a href="comunicacion.html">Comunicación</a>
-        <a href="trabajos.html">Trabajos</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <span class="mono" style="color:var(--dim);font-size:10px;">© MMXXVI PepperLabs</span>
-    </div>
+  <div class="foot-bar">
+    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>v3.0 · build 2026.05</span>
+    <span>Estudio activo · Tomando proyectos</span>
   </div>
 </footer>
 
-<script>
-(function(){
-  /* mobile menu */
-  var hamb=document.getElementById('navHamb'),menu=document.getElementById('mobileMenu'),mc=document.getElementById('menuClose');
-  function sm(o){if(!menu)return;menu.classList.toggle('open',o);if(hamb){hamb.classList.toggle('open',o);hamb.setAttribute('aria-expanded',o);}document.body.style.overflow=o?'hidden':'';}
-  if(hamb)hamb.addEventListener('click',function(){sm(!menu.classList.contains('open'));});
-  if(mc)mc.addEventListener('click',function(){sm(false);});
-  document.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){sm(false);});});
+<!-- ── MOBILE MENU ─────────────────────────────────────── -->
+<div class="mm" id="mm">
+  <div class="mm-head">
+    <a class="brand" href="index.html">
+      <span class="brand-mark"><svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg></span>
+      <span class="brand-name">Pepper<em>Labs</em></span>
+    </a>
+    <button class="mm-close" id="navClose" type="button">Cerrar ✕</button>
+  </div>
+  <ul>
+    <li><a href="sistema.html" data-n="— 03">Sistemas</a></li>
+    <li><a href="identidad.html" data-n="— 02">Identidad</a></li>
+    <li><a href="comunicacion.html" data-n="— 01">Comunicación</a></li>
+    <li><a href="trabajos.html" data-n="— 04">Trabajos</a></li>
+    <li><a href="contacto.html" data-n="— 05">Contacto</a></li>
+  </ul>
+  <a class="mm-cta" href="contacto.html">Iniciar conversación →</a>
+</div>
 
-  /* smooth scroll */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click',function(e){
-      var t=document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+<script>
+/* Pepper hover */
+(function(){
+  var pep = document.getElementById('pep');
+  var annot = document.getElementById('annotations');
+  if (!pep) return;
+  pep.querySelectorAll('.zone').forEach(function(z){
+    z.addEventListener('mouseenter', function(){
+      pep.setAttribute('data-hover', z.dataset.area);
+      if (annot) annot.classList.remove('first-load');
+    });
+    z.addEventListener('mouseleave', function(){
+      pep.setAttribute('data-hover', '');
     });
   });
+  setTimeout(function(){ if (annot) annot.classList.remove('first-load'); }, 6000);
 })();
-
-/* contact form → WhatsApp prefill */
-function enviarForm(e){
-  if(e) e.preventDefault();
-  var n   = (document.getElementById('cfName').value||'').trim();
-  var emp = (document.getElementById('cfEmp').value||'').trim();
-  var via = (document.getElementById('cfVia').value||'').trim();
-  var msg = (document.getElementById('cfMsg').value||'').trim();
-  if(!n)  { alert('Por favor completá tu nombre.'); return false; }
-  if(!msg){ alert('Contanos brevemente qué necesitás.'); return false; }
-  function safe(s){ return s.replace(/[<>"&]/g,''); }
-  var txt = encodeURIComponent(
-    'Hola PepperLabs, me contacto desde el sitio.\n\n' +
-    'Nombre: ' + safe(n) + '\n' +
-    'Empresa: ' + (safe(emp) || 'No especificada') + '\n' +
-    'Contacto preferido: ' + (safe(via) || 'WhatsApp') + '\n\n' +
-    'Mensaje:\n' + safe(msg).slice(0, 500)
-  );
-  window.open('https://wa.me/5493484333427?text=' + txt, '_blank');
-  return false;
-}
 </script>
-<script src="lightbox.js" defer></script>
+<script src="pepperlabs.js" defer></script>
+
 <script>
-(function(){
-  if (document.documentElement.classList.contains('pl-intro-skip')) {
-    var ld0 = document.getElementById('plIntro');
-    if (ld0) ld0.parentNode.removeChild(ld0);
-    document.documentElement.classList.remove('pl-intro-active');
-    return;
+/* Rotator del H1 — rollo vertical que termina en "PepperLabs" (no loopea). */
+(function () {
+  var track = document.getElementById('rotatorTrack');
+  if (!track) return;
+  var items = track.children.length;
+  var i = 0;
+  var timer = null;
+  function tick() {
+    i++;
+    track.style.transform = 'translateY(-' + (i * 1.2) + 'em)';
+    if (i >= items - 1) {
+      clearInterval(timer);
+    }
   }
-  var loader = document.getElementById('plIntro');
-  var pep = document.getElementById('plIntroPep');
-  var pct = document.getElementById('plIntroPct');
-  var bar = document.getElementById('plIntroBar');
-  if (!loader || !pep) return;
-  var paths = pep.querySelectorAll('path');
-  var lengths = [];
-  paths.forEach(function(p){
-    var len = p.getTotalLength();
-    lengths.push(len);
-    p.style.strokeDasharray = len;
-    p.style.strokeDashoffset = len;
-  });
-  function play(){
-    requestAnimationFrame(function(){
-      loader.classList.add('in','glow');
-      paths.forEach(function(p, i){
-        p.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.2,1) ' + (i*0.12) + 's';
-        p.style.strokeDashoffset = '0';
-      });
-      var totalMs = 2400, start = performance.now();
-      (function tick(now){
-        var t = Math.min(1, ((now||performance.now()) - start) / totalMs);
-        var eased = 1 - Math.pow(1 - t, 2.2);
-        var n = Math.round(eased * 100);
-        pct.textContent = (n<10?'0':'') + n;
-        bar.style.width = (eased * 100) + '%';
-        if (t < 1) requestAnimationFrame(tick);
-      })();
-      setTimeout(function(){ loader.classList.add('text-in'); }, 1400);
-      setTimeout(function(){ loader.classList.add('filled'); }, 2200);
-      setTimeout(function(){
-        loader.classList.add('done');
-        document.documentElement.classList.remove('pl-intro-active');
-        try{ localStorage.setItem('pl-intro-seen', String(Date.now())); }catch(e){}
-        setTimeout(function(){
-          if (loader.parentNode) loader.parentNode.removeChild(loader);
-        }, 800);
-      }, 3000);
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', play);
-  } else { play(); }
+  // arranca después de la animación de entrada inicial (~3s)
+  setTimeout(function () {
+    timer = setInterval(tick, 1600);
+  }, 2800);
 })();
 </script>
 
