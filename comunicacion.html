@@ -52,6 +52,7 @@
   width:100%;
 }
 @media (max-width:1100px){ .hero-co-inner{ grid-template-columns:1fr; gap:48px; } }
+@media (max-width:780px){ .sonar{ display:none; } .hero-co-inner{ gap:0; } }
 
 .hero-co-left .back{
   display:inline-flex; align-items:center; gap:8px;
@@ -283,6 +284,7 @@
 .sec.co .h-section em{ color:var(--warm); }
 
 </style>
+<script>(function(){try{var t=localStorage.getItem('pl-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -308,6 +310,7 @@
     <li><a href="trabajos.html">Trabajos</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
+  <button type="button" class="theme-toggle" aria-label="Cambiar tema"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
@@ -356,7 +359,7 @@
       <div class="sonar-frame"><i></i><i></i></div>
       <span class="sonar-label">— Señal · Transmitiendo</span>
       <span class="sonar-signal">Transmit · 01</span>
-      <span class="sonar-spec">— Banda · MMXXVI · BA / CBA</span>
+      <span class="sonar-spec">— Banda · MMXXVI · Buenos Aires</span>
 
       <span class="bearing b-n">— N</span>
       <span class="bearing b-e">E</span>
@@ -650,7 +653,7 @@
     </div>
   </div>
   <div class="foot-bar">
-    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>© MMXXVI · PepperLabs · Buenos Aires</span>
     <span>v3.0 · build 2026.05</span>
     <span>Estudio activo · Tomando proyectos</span>
   </div>

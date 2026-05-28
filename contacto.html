@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PepperLabs | Resolvemos problemas</title>
-<meta name="description" content="Si tenés un proyecto en mente o algo que no termina de cerrar, agendá una llamada de 30 minutos.">
+<meta name="description" content="Si tenés un proyecto en mente o algo que no termina de cerrar, agendá una llamada.">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -222,11 +222,12 @@
   margin-bottom:8px;
 }
 .seal .sig{
-  font-family:var(--serif); font-style:italic; font-weight:500;
-  font-size:20px; color:var(--ink);
+  font-family:var(--sans); font-weight:600;
+  font-size:20px; letter-spacing:-0.01em;
+  color:var(--ink);
   margin-bottom:6px;
 }
-.seal .sig em{ font-style:italic; color:var(--cyan); }
+.seal .sig em{ font-style:normal; color:var(--ink); font-weight:400; }
 .seal .sub{
   font-family:var(--mono); font-size:10px;
   letter-spacing:0.04em; text-transform:uppercase;
@@ -317,6 +318,7 @@
 }
 
 </style>
+<script>(function(){try{var t=localStorage.getItem('pl-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -342,6 +344,7 @@
     <li><a href="trabajos.html">Trabajos</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
+  <button type="button" class="theme-toggle" aria-label="Cambiar tema"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
@@ -451,7 +454,7 @@
         <svg viewBox="0 0 94.93 115.91"><use href="#pep-out"/></svg>
       </div>
       <p class="sig">Pepper<em>Labs</em></p>
-      <span class="sub">Estudio · Buenos Aires &amp; Córdoba</span>
+      <span class="sub">Estudio · Buenos Aires</span>
     </div>
 
     <div class="channels">
@@ -483,7 +486,7 @@
         </span>
         <span class="channel-info">
           <span class="l">— Agenda</span>
-          <span class="v">Llamada de 30 min</span>
+          <span class="v">Llamada</span>
         </span>
         <span class="channel-arrow">→</span>
       </a>
@@ -491,7 +494,7 @@
 
     <div class="info">
       <h3>— Info del estudio</h3>
-      <div class="info-row"><span class="l">Sede</span><span class="v">BS AS / CBA</span></div>
+      <div class="info-row"><span class="l">Sede</span><span class="v">Buenos Aires</span></div>
       <div class="info-row"><span class="l">Horario</span><span class="v">L–V · 09–19 BA</span></div>
       <div class="info-row"><span class="l">Respuesta</span><span class="v"><em>&lt; 24 horas</em></span></div>
       <div class="info-row"><span class="l">Idiomas</span><span class="v">ES · EN</span></div>
@@ -533,7 +536,7 @@
     </div>
   </div>
   <div class="foot-bar">
-    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>© MMXXVI · PepperLabs · Buenos Aires</span>
     <span>v3.0 · build 2026.05</span>
     <span>Estudio activo · Tomando proyectos</span>
   </div>

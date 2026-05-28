@@ -498,8 +498,11 @@ button{ background:none; border:0; color:inherit; font:inherit; cursor:pointer; 
 }
 .row-desc strong{ color:var(--ink); font-weight:500; }
 @media (max-width:900px){
-  .row{ grid-template-columns: 50px 1fr; gap:14px 18px; }
-  .row-desc{ grid-column: 1 / -1; }
+  .row{ grid-template-columns: 1fr; gap:8px; padding:28px 12px; }
+  .row-num{ font-size:10px; }
+  .row-name{ font-size:clamp(24px, 6vw, 32px); }
+  .row-desc{ grid-column: 1 / -1; margin-top:6px; }
+  .row > div{ grid-column: 1 / -1; }
 }
 
 /* ── FOOTER ─────────────────────────────────────────────────── */
@@ -520,6 +523,13 @@ button{ background:none; border:0; color:inherit; font:inherit; cursor:pointer; 
 }
 @media (max-width:800px){
   .foot-grid{ grid-template-columns:1fr 1fr; gap:28px 24px; }
+}
+@media (max-width:700px){
+  /* footer minimalista mobile: solo brand + canales de contacto */
+  .foot-grid{ grid-template-columns:1fr; gap:24px; padding-bottom:28px; }
+  .foot-grid > div:nth-child(2),
+  .foot-grid > div:nth-child(3){ display:none; }
+  .foot-bar{ display:none; }
 }
 .foot-brand{ display:flex; flex-direction:column; gap:14px; }
 .foot-brand .pep{ width:28px; height:34px; }
@@ -648,3 +658,83 @@ button{ background:none; border:0; color:inherit; font:inherit; cursor:pointer; 
   transition:all .2s;
 }
 .end-channels a:hover{ color:var(--cyan); border-color:var(--cyan); }
+
+
+/* ============================================================
+   THEME TOGGLE · light mode override
+   Aplicar via [data-theme="light"] en <html>
+   ============================================================ */
+[data-theme="light"]{
+  --bg:        #F4EFE2;
+  --bg-2:      #EBE5D5;
+  --bg-3:      #DDD6C3;
+  --ink:       #1A1612;
+  --ink-2:     #423E36;
+  --dim:       #807A6F;
+  --dimmer:    #B5AFA3;
+  --rule:      rgba(26, 22, 18, 0.10);
+  --rule-2:    rgba(26, 22, 18, 0.22);
+  --cyan:      #0F7A9C;
+  --cyan-dim:  #0A5A75;
+  --warm:      #C4421F;
+  --lime:      #6E8A14;
+}
+
+/* Cero glow en light */
+[data-theme="light"] *,
+[data-theme="light"] *::before,
+[data-theme="light"] *::after { text-shadow: none !important; }
+
+[data-theme="light"] .skin path,
+[data-theme="light"] .system line,
+[data-theme="light"] .system circle,
+[data-theme="light"] .system rect,
+[data-theme="light"] .system path,
+[data-theme="light"] .signal circle,
+[data-theme="light"] .arch-pep svg,
+[data-theme="light"] .sonar .echo,
+[data-theme="light"] .sonar .pulse,
+[data-theme="light"] .nav-logo-mark,
+[data-theme="light"] .specimen-pep svg,
+[data-theme="light"] .seal-pep svg,
+[data-theme="light"] .foot-brand .pep svg,
+[data-theme="light"] .end-pep svg {
+  filter: none !important;
+}
+
+[data-theme="light"] .h-page .dot,
+[data-theme="light"] .tape-item::after,
+[data-theme="light"] .nav-cta:hover,
+[data-theme="light"] .swatch.s1,
+[data-theme="light"] .swatch.s2,
+[data-theme="light"] .swatch.s3,
+[data-theme="light"] .swatch.s4 {
+  box-shadow: none !important;
+}
+
+/* Nav backdrop en light */
+[data-theme="light"] .nav{
+  background:rgba(244,239,226,.85);
+}
+[data-theme="light"] .mobile-menu{
+  background:rgba(244,239,226,.97);
+}
+
+/* Theme toggle button */
+.theme-toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px;
+  background:transparent; border:1px solid var(--rule-2);
+  color:var(--ink); cursor:pointer; padding:0;
+  border-radius:50%;
+  transition:.2s;
+}
+.theme-toggle:hover{ border-color:var(--cyan); color:var(--cyan); }
+.theme-toggle svg{ width:16px; height:16px; }
+.theme-toggle .icon-sun{ display:none; }
+.theme-toggle .icon-moon{ display:block; }
+[data-theme="light"] .theme-toggle .icon-sun{ display:block; }
+[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
+@media (max-width:860px){
+  .theme-toggle{ margin-left:auto; margin-right:10px; }
+}

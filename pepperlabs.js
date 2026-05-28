@@ -40,6 +40,18 @@
     document.querySelectorAll('.fadein').forEach(function (el) { el.classList.add('in'); });
   }
 
+  /* === Theme toggle (dark default, light optional, localStorage persists) === */
+  var themeBtns = document.querySelectorAll('.theme-toggle');
+  themeBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'light' ? 'dark' : 'light';
+      if (next === 'dark') document.documentElement.removeAttribute('data-theme');
+      else document.documentElement.setAttribute('data-theme', 'light');
+      try { localStorage.setItem('pl-theme', next); } catch (e) {}
+    });
+  });
+
   /* === Smooth in-page links === */
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {

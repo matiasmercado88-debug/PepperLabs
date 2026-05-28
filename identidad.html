@@ -19,6 +19,10 @@
 <link rel="stylesheet" href="pepperlabs.css">
 
 <style>
+/* Identidad usa lime/verde en lugar de cyan — redefine a nivel de página */
+body{ --cyan: #D8FF4D; --cyan-dim: #A8C926; }
+[data-theme="light"] body{ --cyan: #6E8A14; --cyan-dim: #4D6010; }
+
 /* ── Identidad hero ────────────────────────────────────── */
 .hero-id{
   position:relative;
@@ -39,7 +43,7 @@
 }
 .hero-id .meta-strip .l{ display:block; color:var(--dim); margin-bottom:6px; }
 .hero-id .meta-strip .v{ color:var(--ink); }
-.hero-id .meta-strip .v em{ font-style:normal; color:var(--cyan); }
+.hero-id .meta-strip .v em{ font-style:normal; color:var(--lime); }
 @media (max-width:780px){
   .hero-id .meta-strip{ grid-template-columns:1fr 1fr; gap:18px 24px; margin-bottom:40px; }
 }
@@ -52,6 +56,7 @@
   width:100%;
 }
 @media (max-width:1100px){ .hero-id-inner{ grid-template-columns:1fr; gap:48px; } }
+@media (max-width:780px){ .specimen{ display:none; } .hero-id-inner{ gap:0; } }
 
 .hero-id-left .back{
   display:inline-flex; align-items:center; gap:8px;
@@ -61,7 +66,7 @@
   margin-bottom:36px;
   transition:color .2s, gap .2s;
 }
-.hero-id-left .back:hover{ color:var(--cyan); gap:14px; }
+.hero-id-left .back:hover{ color:var(--lime); gap:14px; }
 .hero-id-left h1{
   font-family:var(--serif); font-weight:500;
   font-size:clamp(36px, 5.5vw, 80px);
@@ -70,14 +75,14 @@
   max-width:16ch;
 }
 .hero-id-left h1 em{
-  font-style:italic; color:var(--cyan);
-  text-shadow:0 0 22px rgba(47,230,255,0.3);
+  font-style:italic; color:var(--lime);
+  text-shadow:0 0 22px rgba(216,255,77,0.3);
 }
 .hero-id-left h1 .dot{
   display:inline-block; width:0.14em; height:0.14em;
-  background:var(--cyan); border-radius:50%;
+  background:var(--lime); border-radius:50%;
   margin-left:0.04em; vertical-align:0.18em;
-  box-shadow:0 0 18px var(--cyan);
+  box-shadow:0 0 18px var(--lime);
 }
 .hero-id-left .lead{
   font-size:19px; line-height:1.55;
@@ -85,7 +90,7 @@
   margin-bottom:40px;
 }
 .hero-id-left .lead strong{ color:var(--ink); font-weight:500; }
-.hero-id-left .lead em{ font-style:normal; color:var(--cyan); }
+.hero-id-left .lead em{ font-style:normal; color:var(--lime); }
 .hero-id-left .ctas{ display:flex; gap:14px; flex-wrap:wrap; }
 
 /* Brand specimen board */
@@ -96,14 +101,14 @@
   max-width:640px;
   margin-left:auto;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(47,230,255,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(216,255,77,0.06) 0%, transparent 70%),
     var(--bg-2);
   border:1px solid var(--rule-2);
   overflow:hidden;
 }
 .specimen-corner{
   position:absolute; width:12px; height:12px;
-  border:1px solid var(--cyan);
+  border:1px solid var(--lime);
 }
 .specimen-corner.tl{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
 .specimen-corner.tr{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
@@ -114,11 +119,11 @@
   position:absolute; top:14px; left:14px;
   font-family:var(--mono); font-size:10px;
   letter-spacing:0.04em; text-transform:uppercase;
-  color:var(--cyan);
+  color:var(--lime);
   display:flex; gap:10px;
 }
 .specimen-label::before{
-  content:""; width:14px; height:1px; background:var(--cyan); align-self:center;
+  content:""; width:14px; height:1px; background:var(--lime); align-self:center;
 }
 .specimen-spec{
   position:absolute; bottom:14px; right:14px;
@@ -137,9 +142,9 @@
 .specimen-pep svg{
   width:100%; height:100%;
   fill:var(--bg);
-  stroke:var(--cyan); stroke-width:2.4;
+  stroke:var(--lime); stroke-width:2.4;
   stroke-linejoin:round;
-  filter:drop-shadow(0 0 16px rgba(47,230,255,0.45));
+  filter:drop-shadow(0 0 16px rgba(216,255,77,0.45));
 }
 
 /* Measurement marks around the pep */
@@ -186,9 +191,9 @@
   font-family:var(--mono); font-size:7.5px;
   letter-spacing:0.04em; color:rgba(0,0,0,0.45);
 }
-.swatch.s1{ top:18%; right:14%; background:var(--cyan); box-shadow:0 0 18px rgba(47,230,255,0.4); }
+.swatch.s1{ top:18%; right:14%; background:var(--lime); box-shadow:0 0 18px rgba(216,255,77,0.4); }
 .swatch.s2{ top:18%; right:22%; background:var(--warm); box-shadow:0 0 18px rgba(255,113,86,0.4); }
-.swatch.s3{ top:18%; right:30%; background:var(--lime); box-shadow:0 0 18px rgba(216,255,77,0.4); }
+.swatch.s3{ top:18%; right:30%; background:var(--cyan); box-shadow:0 0 18px rgba(47,230,255,0.4); }
 .swatch.s4{ top:18%; right:38%; background:var(--ink); }
 
 /* Type spec */
@@ -205,7 +210,7 @@
   font-size:42px; line-height:1;
   letter-spacing:-0.025em; color:var(--ink);
 }
-.type-spec .aa em{ font-style:italic; color:var(--cyan); }
+.type-spec .aa em{ font-style:italic; color:var(--lime); }
 .type-spec .meta{
   font-family:var(--mono); font-size:9px;
   letter-spacing:0.04em; text-transform:uppercase;
@@ -228,8 +233,8 @@
   display:flex; align-items:center; justify-content:center;
 }
 .iter svg{ width:100%; height:100%; stroke-linejoin:round; }
-.iter.i1 svg{ fill:none; stroke:var(--cyan); stroke-width:3; }
-.iter.i2 svg{ fill:var(--cyan); stroke:none; }
+.iter.i1 svg{ fill:none; stroke:var(--lime); stroke-width:3; }
+.iter.i2 svg{ fill:var(--lime); stroke:none; }
 .iter.i3 svg{ fill:var(--ink); stroke:none; }
 .iter::after{
   content:attr(data-l);
@@ -267,7 +272,7 @@
 }
 .tape-item::after{
   content:""; width:6px; height:6px; border-radius:50%;
-  background:var(--cyan); box-shadow:0 0 8px var(--cyan);
+  background:var(--lime); box-shadow:0 0 8px var(--lime);
 }
 @keyframes tape{ to{ transform:translateX(-50%); } }
 
@@ -323,18 +328,18 @@
 .proj-meta .tag{
   font-family:var(--mono); font-size:10px;
   letter-spacing:0.04em; text-transform:uppercase;
-  color:var(--cyan);
+  color:var(--lime);
   display:flex; align-items:center; gap:10px;
 }
 .proj-meta .tag::before{
-  content:""; width:14px; height:1px; background:var(--cyan);
+  content:""; width:14px; height:1px; background:var(--lime);
 }
 .proj-meta .name{
   font-family:var(--serif); font-weight:500;
   font-size:clamp(28px, 3.4vw, 48px);
   letter-spacing:-0.022em; line-height:1; color:var(--ink);
 }
-.proj-meta .name em{ font-style:italic; color:var(--cyan); }
+.proj-meta .name em{ font-style:italic; color:var(--lime); }
 .proj-meta .info{
   font-family:var(--mono); font-size:10px;
   letter-spacing:0.04em; text-transform:uppercase;
@@ -343,7 +348,7 @@
 .proj-meta .desc{
   font-size:15.5px; color:var(--ink-2); line-height:1.6;
 }
-.proj-meta .desc em{ font-style:italic; color:var(--cyan); }
+.proj-meta .desc em{ font-style:italic; color:var(--lime); }
 
 .proj-screens{
   display:grid; gap:16px;
@@ -357,7 +362,7 @@
   aspect-ratio: 16/10;
   transition: border-color .25s, transform .25s var(--ease);
 }
-.proj-screen:hover{ border-color:var(--cyan); transform:translateY(-3px); }
+.proj-screen:hover{ border-color:var(--lime); transform:translateY(-3px); }
 .proj-screen img{
   width:100%; height:100%; object-fit:cover; object-position:top;
   transition: transform .4s var(--ease);
@@ -371,7 +376,7 @@
   letter-spacing:0.04em; text-transform:uppercase;
   color:var(--ink);
 }
-.proj-screen .label em{ font-style:normal; color:var(--cyan); }
+.proj-screen .label em{ font-style:normal; color:var(--lime); }
 .proj-screen .open{
   position:absolute; top:10px; right:10px;
   width:30px; height:30px;
@@ -381,10 +386,11 @@
   color:var(--ink-2);
   opacity:0; transition:all .25s var(--ease);
 }
-.proj-screen:hover .open{ opacity:1; border-color:var(--cyan); color:var(--cyan); }
+.proj-screen:hover .open{ opacity:1; border-color:var(--lime); color:var(--lime); }
 .proj-screen .open svg{ width:14px; height:14px; }
 
 </style>
+<script>(function(){try{var t=localStorage.getItem('pl-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -410,6 +416,7 @@
     <li><a href="trabajos.html">Trabajos</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
+  <button type="button" class="theme-toggle" aria-label="Cambiar tema"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   <a href="contacto.html" class="nav-cta">Hablemos &rarr;</a>
   <button type="button" class="nav-hamburger" id="navHamb" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
@@ -444,7 +451,7 @@
 
     <div class="hero-id-left">
       <a href="index.html" class="back">← PepperLabs</a>
-      <span class="eyebrow"><span style="background:var(--cyan); box-shadow:0 0 8px var(--cyan); width:7px; height:7px; border-radius:50%; display:inline-block; animation:pl-pulse 2.4s ease-in-out infinite;"></span>Lo que se ve</span>
+      <span class="eyebrow"><span style="background:var(--lime); box-shadow:0 0 8px var(--lime); width:7px; height:7px; border-radius:50%; display:inline-block; animation:pl-pulse 2.4s ease-in-out infinite;"></span>Lo que se ve</span>
       <h1>Resolvemos cómo te ven. <em>Para que se vea lo que ya sos.</em></h1>
       <p class="lead"><strong>Logo, tipografía, colores, web, piezas.</strong> Las reglas claras para que tu marca no cambie según <em>quién agarra el teclado.</em></p>
       <div class="ctas">
@@ -758,7 +765,7 @@
     </div>
   </div>
   <div class="foot-bar">
-    <span>© MMXXVI · PepperLabs · Buenos Aires &amp; Córdoba</span>
+    <span>© MMXXVI · PepperLabs · Buenos Aires</span>
     <span>v3.0 · build 2026.05</span>
     <span>Estudio activo · Tomando proyectos</span>
   </div>
