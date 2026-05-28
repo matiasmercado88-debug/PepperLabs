@@ -738,3 +738,16 @@ button{ background:none; border:0; color:inherit; font:inherit; cursor:pointer; 
 @media (max-width:860px){
   .theme-toggle{ margin-left:auto; margin-right:10px; }
 }
+
+
+/* Light: cards/nodos/specimen con bg crema en lugar de dark */
+[data-theme="light"] .node{ background:rgba(244,239,226,0.92) !important; }
+[data-theme="light"] .node.ext{ background:rgba(244,239,226,0.75) !important; }
+[data-theme="light"] .type-spec{ background:rgba(244,239,226,0.85) !important; }
+[data-theme="light"] .iter{ background:rgba(244,239,226,0.7) !important; }
+[data-theme="light"] .swatch{ border-color:rgba(26,22,18,0.12) !important; }
+
+/* Light: stroke crema (no dark) en system labels del pepper home */
+[data-theme="light"] .system text{
+  stroke:rgba(244,239,226,0.95) !important;
+}
